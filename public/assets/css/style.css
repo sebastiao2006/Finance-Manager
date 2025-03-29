@@ -53,7 +53,9 @@ body{
     user-select: none;
     overflow-x: hidden;
     color: var(--color-dark);
-    background-color: var(--color-background);
+  /*   background: url('/assets/img/capa12.png') center center no-repeat;
+    background-size: cover; */
+    background-color: #f6f6f9;
 }
 
 a{
@@ -679,3 +681,4 @@ main .recent-orders a{
     }
 
 }
+

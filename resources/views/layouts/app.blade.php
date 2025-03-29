@@ -31,6 +31,7 @@
         <!-- Aside direito -->
         @include('partials.aside-right')
     </div>
+    
 
     <script src="{{ asset('assets/js/orders.js') }}"></script>
     <script src="{{ asset('assets/js/index.js') }}"></script>

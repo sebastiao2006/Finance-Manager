@@ -6,6 +6,22 @@
 <main>
     <h1>Analytics</h1>
     <!-- Analyses -->
+
+{{--     <video autoplay loop muted playsinline id="background-video">
+        <source src="/assets/img/video1.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+    </video>
+    <style>
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+    </style> --}}
     <div class="analyse">
         <div class="sales">
             <div class="status">

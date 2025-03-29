@@ -26,13 +26,13 @@
             </span>
             <h3>Transções</h3>
         </a>
-        <a href="#">
+        <a href="{{ route('tip.index') }}">
             <span class="material-icons-sharp">
                 receipt_long
             </span>
             <h3>Escola de Finanças</h3>
         </a>
-        <a href="#" class="active">
+        <a href="{{ route('goals.index') }}">
             <span class="material-icons-sharp">
                 insights
             </span>
@@ -57,13 +57,13 @@
             </span>
             <h3>Reports</h3>
         </a> --}}
-        <a href="#">
+        <a href="{{ route('settings.index') }}">
             <span class="material-icons-sharp">
                 settings
             </span>
             <h3>Settings</h3>
         </a>
-        <a href="#">
+        <a href="{{ route('login.index') }}">
             <span class="material-icons-sharp">
                 add
             </span>

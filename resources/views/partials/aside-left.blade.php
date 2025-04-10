@@ -3,78 +3,83 @@
     <div class="toggle">
         <div class="logo">
             <img src="images/logo.png">
-            <h2>Asmr<span class="danger">Prog</span></h2>
+            <h2>KUMBU<span class="danger">.KZ</span></h2>
         </div>
         <div class="close" id="close-btn">
-            <span class="material-icons-sharp">
-                close
-            </span>
+            <span class="material-icons-sharp"> close </span>
         </div>
     </div>
 
     <div class="sidebar">
-        <a href="{{ route('dashboard.index') }}">
-            <span class="material-icons-sharp">
-                dashboard
-            </span>
+        <a href="{{ route('dashboard.index') }}" class="{{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> dashboard </span>
             <h3>Dashboard</h3>
         </a>
-        <a href="{{ route('transaction.index') }}">
-
-            <span class="material-icons-sharp">
-                person_outline
-            </span>
-            <h3>Transções</h3>
+        <a href="{{ route('tip.index') }}" class="{{ request()->routeIs('tip.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> account_balance </span>
+            <h3>Contas</h3>
         </a>
-        <a href="{{ route('tip.index') }}">
-            <span class="material-icons-sharp">
-                receipt_long
-            </span>
+        <a href="{{ route('transaction.index') }}" class="{{ request()->routeIs('transaction.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> sync_alt </span>
+            <h3>Transações</h3>
+        </a>
+        <a href="{{ route('planning.index') }}" class="{{ request()->routeIs('planning.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> flag </span>
+            <h3>Planejamento</h3>
+        </a>
+        <a href="{{ route('report.index') }}" class="{{ request()->routeIs('report.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> assessment </span>
+            <h3>Relatórios</h3>
+        </a>
+        <a href="{{ route('tip.index') }}" class="{{ request()->routeIs('settings.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> lightbulb </span>
             <h3>Escola de Finanças</h3>
         </a>
-        <a href="{{ route('goals.index') }}">
-            <span class="material-icons-sharp">
-                insights
-            </span>
+        <a href="{{ route('goals.index') }}" class="{{ request()->routeIs('goals.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> track_changes </span>
             <h3>Metas</h3>
         </a>
-{{--         <a href="#">
-            <span class="material-icons-sharp">
-                mail_outline
-            </span>
-            <h3>Tickets</h3>
-            <span class="message-count">27</span>
+        <a href="{{ route('category.index') }}" class="{{ request()->routeIs('category.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> category </span>
+            <h3>Categoria</h3>
         </a>
-        <a href="#">
-            <span class="material-icons-sharp">
-                inventory
-            </span>
-            <h3>Sale List</h3>
+        <a href="{{ route('calendar.index') }}" class="{{ request()->routeIs('calendar.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> calendar_today </span>
+            <h3>Calendário</h3>
         </a>
-        <a href="#">
-            <span class="material-icons-sharp">
-                report_gmailerrorred
-            </span>
-            <h3>Reports</h3>
-        </a> --}}
-        <a href="{{ route('settings.index') }}">
-            <span class="material-icons-sharp">
-                settings
-            </span>
-            <h3>Settings</h3>
+        <a href="{{ route('tip.index') }}" class="{{ request()->routeIs('tip.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> trending_up </span>
+            <h3>Desempenho</h3>
         </a>
-        <a href="{{ route('login.index') }}">
-            <span class="material-icons-sharp">
-                add
-            </span>
-            <h3>New Login</h3>
-        </a>
-        <a href="#">
-            <span class="material-icons-sharp">
-                logout
-            </span>
-            <h3>Logout</h3>
+        <a href="{{ route('settings.index') }}" class="{{ request()->routeIs('settings.index') ? 'active' : '' }}">
+            <span style="font-size: 24px; font-weight: bold; font-family: Arial, sans-serif;"> K </span>
+            <h3>Kixikila</h3>
         </a>
     </div>
 </aside>
 <!-- End of Sidebar Section -->
+
+<!-- End of Sidebar Section -->
+<style>
+    .sidebar-link.active {
+    background-color: #0f62e4; /* Altere a cor de fundo para o link ativo */
+    color: white; /* Texto branco para o item ativo */
+}
+
+</style>
+
+<script>
+    // Selecione todos os links da sidebar
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+    // Adiciona um evento de clique a cada link
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Remove a classe 'active' de todos os links
+            sidebarLinks.forEach(item => item.classList.remove('active'));
+
+            // Adiciona a classe 'active' ao link clicado
+            this.classList.add('active');
+        });
+    });
+</script>

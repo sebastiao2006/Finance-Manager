@@ -1,8 +1,6 @@
 @extends('layouts.app2')
 @section('title', 'Kivula')
 @section('content')
-
-
 <main>
     <style>
         .left-panel {
@@ -13,7 +11,6 @@
             border-radius: 10px;
             margin-top: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-           
         }
         .right-panel {
             margin-top: 20%;
@@ -23,17 +20,16 @@
 
         #transacoes-btn {
             background-color: #0f62e4;
-            margin-top: 10px; /* Reduzi a margem superior para aproximar o botão do painel */
+            margin-top: 10px;
             color: white;
-            padding: 15px 30px; /* Aumentei o tamanho do botão */
-            border-radius: 25px; /* Aumentei o arredondamento */
+            padding: 15px 30px;
+            border-radius: 25px;
             display: inline-block;
             border: none;
             cursor: pointer;
-            font-size: 16px; /* Aumentei o tamanho da fonte */
+            font-size: 16px;
         }
 
-        /* Menu suspenso */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -46,7 +42,7 @@
         }
 
         .dropdown-content a {
-            color: black; /* Texto preto */
+            color: black;
             padding: 10px;
             text-decoration: none;
             display: flex;
@@ -60,25 +56,6 @@
             background-color: #f1f1f1;
         }
 
-        .dropdown-content a span {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .dropdown-content a .red {
-            background-color: red;
-        }
-
-        .dropdown-content a .green {
-            background-color: green;
-        }
-
-        .dropdown-content a .blue {
-            background-color: blue;
-        }
-
-        /* Mostrar o menu suspenso quando o botão for clicado */
         #transacoes-btn:hover .dropdown-content {
             display: block;
         }
@@ -87,27 +64,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px 0;
-            gap: 15px; /* Afastamento das setas */
+            margin: 1px 0;
+            gap: 15px;
         }
         .month-selector button {
             background: none;
             border: none;
-            color: #0f62e4; /* Cor da seta */
+            color: #0f62e4;
             font-size: 20px;
             cursor: pointer;
             transition: 0.3s;
         }
         .month-selector button:hover {
-            color: #0049bf; /* Tom mais claro no hover */
+            color: #0049bf;
         }
         .month-selector span {
             padding: 5px 15px;
-            color: #0f62e4; /* Mesma cor das setas */
-            border-radius: 10px; /* Arredondamento leve */
+            color: #0f62e4;
+            border-radius: 10px;
         }
         .month-selector span b {
-            font-weight: bold; /* Apenas o mês fica negrito */
+            font-weight: bold;
         }
         table {
             width: 100%;
@@ -116,9 +93,9 @@
         }
         th {
             padding: 10px;
-            background-color: #e0e0e0; /* Barra cinza que ocupa toda a largura */
+            background-color: #e0e0e0;
             text-align: left;
-            font-weight: normal; /* Remove negrito */
+            font-weight: normal;
         }
         td {
             padding: 10px;
@@ -129,75 +106,86 @@
             padding: 50px;
         }
 
-        /* Barra horizontal no final do painel */
         .horizontal-bar {
             width: 100%;
             height: 2px;
-            background-color: #ccc; /* Cor da barra */
-            margin-top: 90px; /* Aumentei a distância da barra em relação ao conteúdo */
+            background-color: #ccc;
+            margin-top: 90px;
         }
 
-        /* Estilo para a imagem acima do "Nenhum resultado" */
         .image-placeholder {
             text-align: center;
-            margin-bottom: 20px; /* Distância entre a imagem e o texto */
+            margin-bottom: 20px;
         }
 
         .image-placeholder img {
+            margin-top: -20px;
             margin-left: 300px;
-            max-width: 100px; /* Ajuste o tamanho da imagem conforme necessário */
+            max-width: 100px;
             height: auto;
         }
+
+/* Estilo do botão abaixo de "Nenhum resultado" */
+.no-results-button {
+    margin-top: 20px;
+    display: block;
+    margin: 1px auto;
+    padding: 12px 20px; /* Diminuí o padding horizontal */
+    background-color: #0f62e4;
+    color: white;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    width: auto; /* Permite que o botão tenha o tamanho ideal para o texto */
+    max-width: 300px; /* Define uma largura máxima */
+}
+
+.no-results-button:hover {
+    background-color: #0049bf;
+}
+.no-results p{
+    color: #0049bf
+}
     </style>
 
     <div class="painel">
-        <button id="transacoes-btn"><i class="fas fa-chevron-down"></i> Transações
+        <button id="transacoes-btn"><i class="fas fa-chevron-down"></i> Planejamento Mensal
             <div class="dropdown-content">
-                <a href="#"><span class="red"></span> Despesas</a>
-                <a href="#"><span class="green"></span> Receitas</a>
-                <a href="#"><span class="blue"></span> Transferências</a>
+                <a href="#">Planejamento Personalizado</a>
             </div>
         </button>
         <div class="left-panel">
             <div class="month-selector">
                 <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
-                <span id="month"><b>Abril</b> 2025</span> <!-- Apenas o mês em negrito -->
+                <span id="month"><b>Abril</b> 2025</span>
                 <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
-            
 
-            
             <table>
-                <thead>
-                    <tr>
-                        <th>Situação</th>
-                        <th>Data <i class="fas fa-sort-down"></i></th>
-                        <th>Descrição</th>
-                        <th>Categoria</th>
-                        <th>Conta</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
                 <tbody>
-
                     <tr>
-                        
-                        <td colspan="7" class="no-results">                                <!-- Imagem adicionada diretamente acima da palavra "Nenhum resultado" -->
+                        <td colspan="7" class="no-results">
                             <div class="image-placeholder">
-                                <img src="assets/img/result.svg"  alt="Imagem de placeholder" />
-                            </div>Nenhum resultado</td>
+                                <img src="assets/img/result.svg" alt="Imagem de placeholder" />
+                            </div>
+                            <a>Nenhum Planejamento</a>
+                            <!-- Apenas o botão abaixo -->
+                            <a href="#" class="no-results-button">Adicionar Novo Planejamento</a>
+                            <a href=""><p style="margin-top: 10px">Copiar Planejamento do mês anterior</p></a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-            <!-- Barra de separação colocada ao final do painel -->
+
             <div class="horizontal-bar"></div>
         </div>
     </div>
 
     <script>
         const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-        let currentMonth = 3; 
+        let currentMonth = 3;
         let currentYear = 2025;
 
         function changeMonth(direction) {
@@ -213,13 +201,6 @@
         }
     </script>
 </main>
-
-
-
-
-
-
-
 
 
 @endsection

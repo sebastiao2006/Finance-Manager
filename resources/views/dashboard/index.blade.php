@@ -143,6 +143,7 @@
                 <p>3 Hours Ago</p>
             </div>
         </div>
+        
     </div>
     <!-- End of New Users Section -->
 
@@ -162,6 +163,7 @@
         </table>
     </div>
     <!-- End of Recent Orders -->
+    
     
 
 </main>

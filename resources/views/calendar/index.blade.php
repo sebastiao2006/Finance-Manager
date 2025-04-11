@@ -69,6 +69,8 @@
         }
     </style>
 
+    
+
     <div class="layout-wrapper ">
         <div class="calendar-container">
             <div class="calendar-header">
@@ -86,6 +88,158 @@
             <p>Funcionalidade Exclusiva Premium!</p>
         </div>
     </div>
+
+    <div class="conversor">
+        <h1>Câmbios</h1>
+        <p class="updated">Actualizado em 11/04/2025 04:27:38</p>
+      
+        <div class="conversor-slider">
+          <button class="arrow">&lt;</button>
+      
+          <div class="currency-card">
+            <img src="https://flagcdn.com/w320/eu.png" alt="EUR">
+            <h2>EUR</h2>
+            <p class="name">Euro</p>
+            <div class="rates">
+              <p>Compra<br><span>1.040,756</span></p>
+              <p>Venda<br><span>1.061,571</span></p>
+            </div>
+          </div>
+      
+          <div class="currency-card">
+            <img src="https://flagcdn.com/w320/gb.png" alt="GBP">
+            <h2>GBP</h2>
+            <p class="name">Libra Esterlina</p>
+            <div class="rates">
+              <p>Compra<br><span>1.212,441</span></p>
+              <p>Venda<br><span>1.236,690</span></p>
+            </div>
+          </div>
+      
+          <div class="currency-card">
+            <img src="https://flagcdn.com/w320/us.png" alt="USD">
+            <h2>USD</h2>
+            <p class="name">Dólar Dos Estados Unidos</p>
+            <div class="rates">
+              <p>Compra<br><span>937,702</span></p>
+              <p>Venda<br><span>956,456</span></p>
+            </div>
+          </div>
+      
+          <div class="currency-card">
+            <img src="https://flagcdn.com/w320/za.png" alt="ZAR">
+            <h2>ZAR</h2>
+            <p class="name">Rand</p>
+            <div class="rates">
+              <p>Compra<br><span>48,354</span></p>
+              <p>Venda<br><span>49,321</span></p>
+            </div>
+          </div>
+      
+          <button class="arrow">&gt;</button>
+        </div>
+      
+        <div class="ver-todos">
+          <button>Ver todos</button>
+        </div>
+      </div>
+      
+      <style>
+        .conversor {
+          background: #f6f9fc;
+          text-align: center;
+          padding: 40px 20px;
+          font-family: Arial, sans-serif;
+        }
+      
+        .conversor h1 {
+          font-size: 36px;
+          color: #00205b;
+          margin-bottom: 5px;
+        }
+      
+        .conversor .updated {
+          font-size: 14px;
+          color: #6e7c93;
+          margin-bottom: 30px;
+        }
+      
+        .conversor-slider {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          flex-wrap: wrap;
+          margin-bottom: 30px;
+        }
+      
+        .conversor .arrow {
+          font-size: 24px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          color: #00205b;
+        }
+      
+        .currency-card {
+          background: white;
+          border-radius: 12px;
+          padding: 20px;
+          width: 170px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+      
+        .currency-card img {
+          width: 100%;
+          height: auto;
+          border-radius: 4px;
+          margin-bottom: 10px;
+        }
+      
+        .currency-card h2 {
+          font-size: 22px;
+          color: #001c54;
+          margin: 5px 0;
+        }
+      
+        .currency-card .name {
+          font-size: 14px;
+          color: #6e7c93;
+          margin-bottom: 10px;
+        }
+      
+        .currency-card .rates {
+          font-size: 14px;
+          color: #222;
+          display: flex;
+          justify-content: space-between;
+        }
+      
+        .currency-card .rates span {
+          display: block;
+          color: #00a9e0;
+          font-weight: bold;
+          font-size: 15px;
+        }
+      
+        .ver-todos button {
+          background: #00a9e0;
+          border: none;
+          border-radius: 50px;
+          color: white;
+          padding: 12px 30px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      
+        @media (max-width: 768px) {
+          .conversor-slider {
+            flex-direction: column;
+          }
+        }
+      </style>
+      
+
     <script>
         const monthYear = document.getElementById("monthYear");
         const calendarDays = document.getElementById("calendarDays");
@@ -126,5 +280,7 @@
 
         renderCalendar(currentMonth, currentYear);
     </script>
+
+    
 </main>
 @endsection

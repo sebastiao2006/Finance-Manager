@@ -51,7 +51,7 @@
             <span class="material-icons-sharp"> trending_up </span>
             <h3>Desempenho</h3>
         </a>
-        <a href="{{ route('settings.index') }}" class="{{ request()->routeIs('settings.index') ? 'active' : '' }}">
+        <a href="{{ route('kixi.index') }}" class="{{ request()->routeIs('kixi.index') ? 'active' : '' }}">
             <span style="font-size: 24px; font-weight: bold; font-family: Arial, sans-serif;"> K </span>
             <h3>Kixikila</h3>
         </a>

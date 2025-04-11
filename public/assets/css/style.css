@@ -52,7 +52,7 @@ body{
     font-size: 0.88rem;
     user-select: none;
     overflow-x: hidden;
-    color: var(--color-dark);
+    color: var(--color-dark);    
   /*   background: url('/assets/img/capa12.png') center center no-repeat;
     background-size: cover; */
     background-color: #f6f6f9;
@@ -125,6 +125,7 @@ b{
 
 aside{
     height: 100vh;
+    
 }
 
 aside .toggle{

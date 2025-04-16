@@ -151,13 +151,13 @@
     <div class="recent-orders">
         <table>
             <thead>
-                <tr>
-                    <th>Descrição</th>
+{{--                 <tr>
+                    <th style="color: rgb(255, 255, 255)">Descrição</th>
                     <th>Valor</th>
                     <th>Categoria</th>
                     <th>Data</th>
                     <th></th>
-                </tr>
+                </tr> --}}
             </thead>
             
         </table>
@@ -176,7 +176,8 @@
             /* labels: ['Educação', 'Casa', 'Alimentação', 'Outros'], */
             datasets: [{
                 data: [650, 276, 220, 290],
-                backgroundColor: ['green', 'blue', 'red', 'gray']
+                backgroundColor: ['#0a53d1', '#00745c', '#c59e07', '#fb573b']
+
             }]
         },
         options: {

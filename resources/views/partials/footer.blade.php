@@ -7,7 +7,7 @@
   <style>
     .footer {
       background-color: #003087; /* azul escuro bonito */
-      background-image: url('assets/img/capa4.jpg'); /* Adicione a imagem de textura africana aqui */
+      background-image: url('assets/img/textura.jpg'); /* Adicione a imagem de textura africana aqui */
       background-size: cover; /* Isso cobre toda a área com a textura */
       background-position: center; /* A textura ficará centralizada */
       padding: 20px 0;

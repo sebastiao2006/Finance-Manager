@@ -172,7 +172,7 @@
                             </div>
                             <a>Nenhum Planejamento</a>
                             <!-- Apenas o botão abaixo -->
-                            <a href="#" class="no-results-button">Adicionar Novo Planejamento</a>
+                            <a href="#" class="no-results-button" class="btn-open" onclick="abrirModal()">Adicionar Novo Planejamento</a>
                             <a href=""><p style="margin-top: 10px">Copiar Planejamento do mês anterior</p></a>
                         </td>
                     </tr>
@@ -200,6 +200,197 @@
             document.getElementById("month").innerHTML = `<b>${months[currentMonth]}</b> ${currentYear}`;
         }
     </script>
+
+<style>
+
+
+    .btn-open {
+      padding: 0.75rem 1.5rem;
+      background-color: #0f62e4;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal {
+      background-color: white;
+      width: 90%;
+      max-width: 600px;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="number"] {
+      font-size: 1.5rem;
+      border: none;
+      border-bottom: 2px solid #0f62e4;
+      outline: none;
+      width: 100%;
+      background: transparent;
+      color: #0f62e4;
+    }
+
+    .input-group {
+      margin-bottom: 2rem;
+    }
+
+    .input-prefix {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #0f62e4;
+    }
+
+    .info-box {
+      background-color: #ebe6fe;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      margin-top: 1rem;
+    }
+
+    .info-box p {
+      margin: 0.5rem 0;
+    }
+
+    .orcamento {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0f62e4;
+    }
+
+    .economia {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #16a34a;
+    }
+
+    .btn-next {
+      margin-top: 2rem;
+      float: right;
+      background: #ccc;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .small {
+      font-size: 0.875rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="close-btn" onclick="fecharModal()">✖</button>
+      <h2>Renda mensal</h2>
+
+      <div class="input-group">
+        <label>Quanto você ganha por mês?</label>
+        <div class="input-prefix">
+          <span>€</span>
+          <input type="number" id="renda" value="0">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>E quanto você quer economizar por mês?</label>
+        <p class="small">Essa porcentagem será utilizada para calcular seu orçamento mensal de gastos.</p>
+        <div class="input-prefix">
+          <input type="number" id="percentual" value="20">
+          <span>%</span>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <p><strong>💲 Seu orçamento mensal de gastos será:</strong></p>
+        <p class="orcamento" id="orcamento">€ 0,00</p>
+        <p class="small">E você economizará mensalmente:</p>
+        <p class="economia" id="economia">€ 0,00</p>
+      </div>
+
+      <button class="btn-next" disabled>➝</button>
+    </div>
+  </div>
+
+  <script>
+    const rendaInput = document.getElementById('renda');
+    const percentualInput = document.getElementById('percentual');
+    const orcamentoText = document.getElementById('orcamento');
+    const economiaText = document.getElementById('economia');
+    const modalOverlay = document.getElementById('modalOverlay');
+
+    function abrirModal() {
+      modalOverlay.style.display = 'flex';
+      calcular();
+    }
+
+    function fecharModal() {
+      modalOverlay.style.display = 'none';
+    }
+
+    function calcular() {
+      const renda = parseFloat(rendaInput.value) || 0;
+      const percentual = parseFloat(percentualInput.value) || 0;
+
+      const economia = renda * (percentual / 100);
+      const orcamento = renda - economia;
+
+      economiaText.textContent = `€ ${economia.toFixed(2)}`;
+      orcamentoText.textContent = `€ ${orcamento.toFixed(2)}`;
+    }
+
+    rendaInput.addEventListener('input', calcular);
+    percentualInput.addEventListener('input', calcular);
+  </script>
+
+  
+
 </main>
 
 

@@ -2,8 +2,8 @@
 <aside>
     <div class="toggle">
         <div class="logo">
-            <img src="images/logo.png">
-            <h2>KUMBU<span class="danger">.KZ</span></h2>
+            <img src="assets/img/logo.png" alt="Imagem de entradas">
+            {{-- <h2>KUMBU<span class="danger">.KZ</span></h2> --}}
         </div>
         <div class="close" id="close-btn">
             <span class="material-icons-sharp"> close </span>
@@ -15,7 +15,7 @@
             <span class="material-icons-sharp"> dashboard </span>
             <h3>Dashboard</h3>
         </a>
-        <a href="{{ route('tip.index') }}" class="{{ request()->routeIs('tip.index') ? 'active' : '' }}">
+        <a href="{{ route('account.index') }}" class="{{ request()->routeIs('account.index') ? 'active' : '' }}">
             <span class="material-icons-sharp"> account_balance </span>
             <h3>Contas</h3>
         </a>

@@ -141,8 +141,9 @@ aside .toggle .logo{
 }
 
 aside .toggle .logo img{
-    width: 2rem;
-    height: 2rem;
+    border-radius: 5px;
+    width: 10rem;
+    height: 4rem;
 }
 
 aside .toggle .close{
@@ -326,8 +327,10 @@ main .recent-orders h2{
 }
 
 main .recent-orders table{
-    background-color: var(--color-white);
+   background: url('/assets/img/capa4.jpg') center center no-repeat;
+    background-size: cover; 
     width: 100%;
+    height: 80px;
     padding: var(--card-padding);
     text-align: center;
     box-shadow: var(--box-shadow);

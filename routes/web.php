@@ -42,7 +42,7 @@ Route::get('/kixi', [KixiController::class, 'index'])->name('kixi.index');
 /* Login*/
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 /* contas*/
-Route::get('/account', [AccountController::class, 'index'])->name('Account.index');
+Route::get('/account', [AccountController::class, 'index'])->name('account.index');
 /* Planejamento*/
 Route::get('/planning', [PlanningController::class, 'index'])->name('planning.index');
 /* Relatorio*/

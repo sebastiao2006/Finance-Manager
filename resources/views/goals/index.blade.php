@@ -1,8 +1,133 @@
+
+
+
+
+
+
+
+
+
 @extends('layouts.app2')
 @section('title', 'Kivula')
 @section('content')
 
 <main>
+
+
+
+<style>
+  .card-goals-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.goal-card {
+  width: 360px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.new-goal-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  height: 200px;
+}
+
+.new-goal-card i {
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.goal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.goal-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #7c3aed;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.goal-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.goal-body {
+  margin-top: 16px;
+  position: relative;
+}
+
+.goal-label {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 0;
+}
+
+.goal-date {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 4px;
+}
+
+.goal-percentage {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.progress-bar {
+  height: 8px;
+  border-radius: 4px;
+  background-color: #e5e7eb;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #7c3aed;
+  border-radius: 4px 0 0 4px;
+}
+
+.goal-values {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 10px;
+}
+
+.goal-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #4b5563;
+}
+</style>  
+
+  
     <h1>Objetivos</h1>
     <div class="dropdown-container">
         <button class="dropdown-button" onclick="toggleDropdown()">
@@ -15,9 +140,54 @@
             <a href="#">Objetivos Ativos</a>
         </div>
     </div>
-    <div class="card" class="open-button" onclick="openModal()">
+    <div class="card-goals-list">
+      <!-- Card "Novo objetivo" -->
+      <div class="goal-card new-goal-card" onclick="openModal()">
         <i class="fas fa-plus"></i>
-        <p >Novo objetivo</p>
+        <p>Novo objetivo</p>
+      </div>
+  
+      <div class="goals-container">
+        @foreach($goals as $goal)
+          @php
+            $percent = $goal->valor_total != 0 ? ($goal->valor_atual / $goal->valor_total) * 100 : 0;
+          @endphp
+          <div class="goal-card">
+            <div class="goal-header">
+              <div class="goal-icon">
+                <i class="fas fa-car"></i>
+              </div>
+              <h3>{{ $goal->nome }}</h3>
+            </div>
+            <div class="goal-body">
+              <p class="goal-label">Data final do objetivo</p>
+              <div class="goal-date">{{ \Carbon\Carbon::parse($goal->data)->format('d \d\e M \d\e Y') }}</div>
+              <div class="goal-percentage">{{ number_format($percent, 2) }}%</div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ $percent }}%;"></div>
+              </div>
+              <div class="goal-values">€ {{ number_format($goal->valor_atual, 2, ',', '.') }} / € {{ number_format($goal->valor_total, 2, ',', '.') }}</div>
+              <div class="goal-actions">
+                <i class="fas fa-pause"></i>
+                <i class="fas fa-pen"></i>
+                <form action="{{ route('goals.destroy', $goal->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Eliminar este objetivo?')">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" style="all: unset; cursor: pointer;">
+                    <i class="fas fa-trash" style="color: red;"></i>
+                  </button>
+                </form>
+                
+              
+                <i class="fas fa-check"></i>
+                <i class="fas fa-list"></i>
+              </div>
+              
+            </div>
+          </div>
+        @endforeach
+      </div>
+      
     </div>
 
 
@@ -75,77 +245,89 @@
 
     <!-- Modal -->
 
-  <div class="goal-modal-overlay" id="goalModal">
-    <div class="goal-modal">
-      <div class="goal-modal-header">
-        <h2>Novo objetivo</h2>
-        <button class="goal-close-btn" onclick="closeGoalModal()">&times;</button>
-      </div>
-      <div class="goal-modal-content">
-        <div>
-          <div class="goal-form-group">
-            <label>Nome do objetivo</label>
-            <div class="goal-input-icon">
-              <span>📄</span>
-              <input type="text" placeholder="Novo carro">
-            </div>
-          </div>
-          <div class="goal-form-group">
-            <label>Data</label>
-            <div class="goal-input-icon">
-              <span>📅</span>
-              <input type="text" value="11 abril 2025">
-            </div>
-          </div>
-          <div class="goal-form-group">
-            <label>Ícone</label>
-            <div class="goal-icon-set">
-              <div style="background:#ddd">🍽️</div>
-              <div class="goal-color-roxo">🚗</div>
-              <div style="background:#ddd">👕</div>
-              <div style="background:#ddd">🎭</div>
-            </div>
-            <div class="goal-btn-outros">OUTROS</div>
-          </div>
-          <div class="goal-form-group">
-            <label>Descrição</label>
-            <div class="goal-input-icon">
-              <span>📝</span>
-              <input type="text" placeholder="Digite uma descrição">
-            </div>
-          </div>
-        </div>
+    <!-- Modal -->
 
-        <div>
-          <div class="goal-form-group">
-            <label>Valor do objetivo</label>
-            <div class="goal-input-icon">
-              <span style="color: #0049bf;">€</span>
-              <input type="text" value="0,00" style="color: #0049bf;">
+    <div class="goal-modal-overlay" id="goalModal">
+      <div class="goal-modal">
+        <form action="{{ route('goals.store') }}" method="POST">
+          @csrf
+          <div class="goal-modal-header">
+            <h2>Novo goal</h2>
+            <button class="goal-close-btn" onclick="closeGoalModal()" type="button">&times;</button>
+          </div>
+    
+          <div class="goal-modal-content">
+            <div>
+              <div class="goal-form-group">
+                <label>Nome do goal</label>
+                <div class="goal-input-icon">
+                  <span>📄</span>
+                  <input type="text" name="nome" placeholder="Novo carro" required>
+                </div>
+              </div>
+    
+              <div class="goal-form-group">
+                <label>Data</label>
+                <div class="goal-input-icon">
+                  <span>📅</span>
+                  <input type="date" name="data" required>
+                </div>
+              </div>
+    
+              <div class="goal-form-group">
+                <label>Ícone</label>
+                <div class="goal-icon-set">
+                  <label><input type="radio" name="icone" value="🍽️"> 🍽️</label>
+                  <label><input type="radio" name="icone" value="🚗" checked> 🚗</label>
+                  <label><input type="radio" name="icone" value="👕"> 👕</label>
+                  <label><input type="radio" name="icone" value="🎭"> 🎭</label>
+                </div>
+                <div class="goal-btn-outros">OUTROS</div>
+              </div>
+    
+              <div class="goal-form-group">
+                <label>Descrição</label>
+                <div class="goal-input-icon">
+                  <span>📝</span>
+                  <input type="text" name="descricao" placeholder="Digite uma descrição">
+                </div>
+              </div>
+            </div>
+    
+            <div>
+              <div class="goal-form-group">
+                <label>Valor do goal</label>
+                <div class="goal-input-icon">
+                  <span style="color: #0049bf;">€</span>
+                  <input type="text" name="valor_total" value="0.00" style="color: #0049bf;" required>
+                </div>
+              </div>
+    
+              <div class="goal-form-group">
+                <label>Valor inicial</label>
+                <div class="goal-input-icon">
+                  <span style="color: #0049bf;">€</span>
+                  <input type="text" name="valor_inicial" value="0.00" style="color: #0049bf;">
+                </div>
+              </div>
+    
+              <div class="goal-form-group">
+                <label>Cor</label>
+                <div class="goal-color-set">
+                  <label><input type="radio" name="cor" value="#0049bf"> <div class="goal-color-azul"></div></label>
+                  <label><input type="radio" name="cor" value="#6f42c1" checked> <div class="goal-color-roxo selected">&#10003;</div></label>
+                  <label><input type="radio" name="cor" value="#28a745"> <div class="goal-color-verde"></div></label>
+                  <label><input type="radio" name="cor" value="#fd7e14"> <div class="goal-color-laranja"></div></label>
+                </div>
+                <div class="goal-btn-outros">OUTROS</div>
+              </div>
             </div>
           </div>
-          <div class="goal-form-group">
-            <label>Valor inicial do objetivo</label>
-            <div class="goal-input-icon">
-              <span style="color: #0049bf;">€</span>
-              <input type="text" value="0,00" style="color: #0049bf;">
-            </div>
-          </div>
-          <div class="goal-form-group">
-            <label>Cor</label>
-            <div class="goal-color-set">
-              <div class="goal-color-azul"></div>
-              <div class="goal-color-roxo selected">&#10003;</div>
-              <div class="goal-color-verde"></div>
-              <div class="goal-color-laranja"></div>
-            </div>
-            <div class="goal-btn-outros">OUTROS</div>
-          </div>
-        </div>
+    
+          <button class="goal-btn-salvar" type="submit">SALVAR</button>
+        </form>
       </div>
-      <button class="goal-btn-salvar">SALVAR</button>
     </div>
-  </div>
 
   <script>
     function openGoalModal() {
@@ -233,25 +415,7 @@
         .dropdown-menu a:hover {
             background: #e0e0e0;
         }
-        .card {
-            cursor: pointer;
-            width: 400px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-            padding: 60px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .card i {
-            font-size: 24px;
-            color: black;
-        }
-        .card p {
-            font-size: 14px;
-            color: #333;
-            margin-top: 10px;
-        }
+
         .modal-overlay {
       position: fixed;
       inset: 0;

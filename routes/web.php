@@ -35,6 +35,11 @@ Route::get('/', function () {
 Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction.index');
 /* Metas*/
 Route::get('/goals', [GoalsController::class, 'index'])->name('goals.index');
+Route::post('/goals', [GoalsController::class, 'store'])->name('goals.store');
+Route::delete('/goals/{goal}', [GoalsController::class, 'destroy'])->name('goals.destroy');
+
+
+
 /* Escola Financeira*/
 Route::get('/tip', [tipController::class, 'index'])->name('tip.index');
 /* Definição*/

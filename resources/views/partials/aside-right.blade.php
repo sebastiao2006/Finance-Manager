@@ -34,17 +34,91 @@
         
         
 
-        <div class="user-profile">
-            <div class="saldo-container">
-                <div class="saldo-header">
-                    <h3>Setembro <span class="dropdown-icon">▼</span></h3>
-                </div>
-                <p class="saldo-descricao">Saldo até o fim do mês</p>
-                <p class="saldo-valor">5.000,00 Kz</p>
-
+    <div class="user-profile">
+        <div class="saldo-container">
+            <div class="saldo-header">
+                <select id="mesSelect" style="font-size: 18px; font-weight: bold;">
+                    <option value="janeiro">Janeiro</option>
+                    <option value="fevereiro">Fevereiro</option>
+                    <option value="marco">Março</option>
+                    <option value="abril">Abril</option>
+                    <option value="maio">Maio</option>
+                    <option value="junho">Junho</option>
+                    <option value="julho">Julho</option>
+                    <option value="agosto">Agosto</option>
+                    <option value="setembro">Setembro</option>
+                    <option value="outubro">Outubro</option>
+                    <option value="novembro">Novembro</option>
+                    <option value="dezembro">Dezembro</option>
+                </select>
             </div>
-            
+            <p class="saldo-descricao">Saldo até o fim do mês</p>
+            <p class="saldo-valor">
+                <span id="saldoValor" contenteditable="true" inputmode="decimal">5.000,00</span><span> Kz</span>
+            </p>
         </div>
+    </div>
+    
+    <script>
+        const saldoEl = document.getElementById('saldoValor');
+        const mesSelect = document.getElementById('mesSelect');
+
+
+
+    
+        // Função para recuperar o valor do mês no localStorage
+        function recuperarValorMes(mes) {
+            return localStorage.getItem(mes) || '0,00';
+        }
+    
+        // Função para salvar o valor do mês no localStorage
+        function salvarValorMes(mes, valor) {
+            localStorage.setItem(mes, valor);
+        }
+    
+        // Inicializa o valor do saldo baseado no mês selecionado
+        function inicializarSaldo() {
+            const mesSelecionado = mesSelect.value;
+            saldoEl.textContent = recuperarValorMes(mesSelecionado);
+        }
+    
+        // Inicializa o saldo ao carregar a página
+        inicializarSaldo();
+    
+        saldoEl.addEventListener('focus', () => {
+            const range = document.createRange();
+            const sel = window.getSelection();
+            range.selectNodeContents(saldoEl);
+            range.collapse(false); // Coloca o cursor no final
+            sel.removeAllRanges();
+            sel.addRange(range);
+        });
+    
+        saldoEl.addEventListener('blur', () => {
+            let texto = saldoEl.textContent.replace(',', '.').replace(/[^\d.]/g, '');
+            const valor = parseFloat(texto);
+    
+            if (!isNaN(valor)) {
+                const mesSelecionado = mesSelect.value;
+                const valorFormatado = valor.toLocaleString('pt-AO', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+    
+                saldoEl.textContent = valorFormatado;
+                salvarValorMes(mesSelecionado, valorFormatado); // Salva o valor no localStorage
+            } else {
+                saldoEl.textContent = '0,00';
+            }
+        });
+    
+        // Quando o mês for alterado
+        mesSelect.addEventListener('change', () => {
+            const mesSelecionado = mesSelect.value;
+            saldoEl.textContent = recuperarValorMes(mesSelecionado); // Atualiza o saldo com o valor do mês selecionado
+        });
+    </script>
+    
 
         <div class="reminders">
             <div class="header">
@@ -160,3 +234,5 @@
 }
 
 </style>
+
+

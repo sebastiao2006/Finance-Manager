@@ -43,6 +43,20 @@
                     <i class="fas fa-university"></i>
                 </div>
             </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                  const saldoAtual = document.querySelector('.info-box strong');
+                  const mesSelecionado = localStorage.getItem('mesSelecionado') || 'janeiro';
+                  const valorSalvo = localStorage.getItem(mesSelecionado) || '0,00';
+              
+                  if (saldoAtual) {
+                    saldoAtual.textContent = `€ ${valorSalvo}`;
+                  }
+                });
+              </script>
+              
+
         
             <div class="info-box">
                 <div class="info-text">

@@ -389,6 +389,18 @@
     percentualInput.addEventListener('input', calcular);
   </script>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const saldoAtual = document.querySelector('.info-box strong');
+      const mesSelecionado = localStorage.getItem('mesSelecionado') || 'janeiro';
+      const valorSalvo = localStorage.getItem(mesSelecionado) || '0,00';
+
+      if (saldoAtual) {
+        saldoAtual.textContent = `€ ${valorSalvo}`;
+      }
+    });
+  </script>
+
   
 
 </main>

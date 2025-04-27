@@ -25,26 +25,87 @@
     <div class="analyse">
         <div class="sales">
             <div class="status">
-                <div class="info">
-                    <h3>Entradas</h3>
-                    <h1> 0,00 kz</h1>
-                </div>
-                <div class="enter">
-                    <img src="assets/img/income.svg" alt="Imagem de entradas">
-                </div>
+              <div class="info">
+                <h3>Entradas</h3>
+                <h1>
+                  <span id="entradaValor" contenteditable="true" inputmode="decimal">0,00</span><span> kz</span>
+                </h1>
+              </div>
+              <div class="enter">
+                <img src="assets/img/income.svg" alt="Imagem de entradas" />
+              </div>
             </div>
-        </div>
-        <div class="visits">
+          </div>
+          
+          <script>
+            const entradaEl = document.getElementById('entradaValor');
+          
+            entradaEl.addEventListener('focus', () => {
+              // Move o cursor para o final
+              const range = document.createRange();
+              const sel = window.getSelection();
+              range.selectNodeContents(entradaEl);
+              range.collapse(false); // false = fim
+              sel.removeAllRanges();
+              sel.addRange(range);
+            });
+          
+            entradaEl.addEventListener('blur', () => {
+              let texto = entradaEl.textContent.replace(',', '.').replace(/[^\d.]/g, '');
+              const valor = parseFloat(texto);
+          
+              if (!isNaN(valor)) {
+                entradaEl.textContent = valor.toLocaleString('pt-AO', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                });
+              } else {
+                entradaEl.textContent = '0,00';
+              }
+            });
+          </script>
+          
+          <div class="visits">
             <div class="status">
                 <div class="info">
-                    <h3>Saidas</h3>
-                    <h1>0,00 kz</h1>
+                    <h3>Saídas</h3>
+                    <h1>
+                        <span id="saidaValor" contenteditable="true" inputmode="decimal">0,00</span><span> kz</span>
+                    </h1>
                 </div>
                 <div class="progresss">
                     <img src="assets/img/expense.svg" alt="Imagem de entradas">
                 </div>
             </div>
         </div>
+        
+        <script>
+            const saidaEl = document.getElementById('saidaValor');
+        
+            saidaEl.addEventListener('focus', () => {
+                const range = document.createRange();
+                const sel = window.getSelection();
+                range.selectNodeContents(saidaEl);
+                range.collapse(false); // Coloca o cursor no final
+                sel.removeAllRanges();
+                sel.addRange(range);
+            });
+        
+            saidaEl.addEventListener('blur', () => {
+                let texto = saidaEl.textContent.replace(',', '.').replace(/[^\d.]/g, '');
+                const valor = parseFloat(texto);
+        
+                if (!isNaN(valor)) {
+                    saidaEl.textContent = valor.toLocaleString('pt-AO', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                } else {
+                    saidaEl.textContent = '0,00';
+                }
+            });
+        </script>
+        
         <div class="searches">
             <div class="buttons">
                 <button class="entry">
@@ -126,10 +187,10 @@
             <div class="pizza">
                 <canvas id="grafico"></canvas>
                 <div class="legenda">
-                    <div><span class="cor" style="background: rgb(0, 128, 32);"></span> Educação - R$650,00</div>
-                    <div><span class="cor" style="background: blue;"></span> Casa - R$276,00</div>
-                    <div><span class="cor" style="background: red;"></span> Alimentação - R$220,00</div>
-                    <div><span class="cor" style="background: gray;"></span> Outros - R$290,00</div>
+                    <div><span class="cor" style="background: rgb(0, 128, 32);"></span> Educação - 650,00 kz</div>
+                    <div><span class="cor" style="background: blue;"></span> Casa - 276,00 kz</div>
+                    <div><span class="cor" style="background: red;"></span> Alimentação - 220,00 kz</div>
+                    <div><span class="cor" style="background: gray;"></span> Outros - 290,00 kz</div>
                 </div>
             </div>
             <div class="user">

@@ -12,6 +12,7 @@ use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ContaController;
 
 
 
@@ -27,9 +28,13 @@ use App\Http\Controllers\CalendarController;
 */
 
 /* Dashboard*/
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard.index');
+
+Route::get('/', function () {
+    return view('site.home.index');
+})->name('site.home.index');
 
 /* Transação*/
 Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction.index');
@@ -57,6 +62,8 @@ Route::get('/category', [CategoryController::class, 'index'])->name('category.in
 /* Calendario*/
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
 
+Route::post('/salvar-conta', [ContaController::class, 'store']);
+
 
 /* site*/
-Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+Route::get('/home', [HomeController::class, 'index'])->name('sitehome.index');

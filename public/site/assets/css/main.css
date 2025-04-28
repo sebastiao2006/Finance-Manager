@@ -22,7 +22,7 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #222222; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #106eea; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #4d27b2; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -30,11 +30,11 @@
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #222222;  /* The default color of the main navmenu links */
-  --nav-hover-color: #106eea; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-hover-color: #4d27b2; /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #222222; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #106eea; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-hover-color: #4d27b2; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -626,7 +626,7 @@ h6 {
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
-#preloader {
+/* #preloader {
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -698,7 +698,7 @@ h6 {
   100% {
     transform: translate(24px, 0);
   }
-}
+} */
 
 /*--------------------------------------------------------------
 # Scroll Top Button
@@ -844,11 +844,11 @@ section,
   padding: 60px 0;
   display: flex;
   align-items: center;
-  background: url("../img/hero-bg.jpg") top left;
+  background: url("../img/capa 5.jpg") top left;
   background-size: cover;
 }
 
-.hero:before {
+/* .hero:before {
   content: "";
   background: color-mix(in srgb, var(--background-color), transparent 30%);
   position: absolute;
@@ -856,7 +856,7 @@ section,
   top: 0;
   left: 0;
   right: 0;
-}
+} */
 
 .hero .container {
   position: relative;
@@ -1021,9 +1021,9 @@ section,
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
-.about .about-content h3 {
-  font-weight: 700;
-  font-size: 26px;
+.about .about-content h1 {
+  font-weight: 750;
+  font-size: 36px;
 }
 
 .about .about-content ul {
@@ -1056,8 +1056,8 @@ section,
   border-radius: 50px;
 }
 
-.about .about-content ul h4 {
-  font-size: 18px;
+.about .about-content ul h3 {
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -1953,4 +1953,16 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+.flag-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

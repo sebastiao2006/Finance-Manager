@@ -2,6 +2,7 @@
 @section('title', 'Kivula')
 @section('content')
 
+
 <main>
     <h1>Contas</h1>
 
@@ -205,8 +206,13 @@
     <button class="close-btn" id="fecharModalBtn">×</button>
 
     <h2>Nova conta</h2>
-
-    <div class="valor">€ 0,00</div>
+   
+    <div class="valor">
+      Kz <input type="text" id="valorConta" class="valor-input" value="0,00" style="border: none; color: #7c3aed; background: transparent; font-size: inherit; text-align: center; width: 100px; ">
+    </div>
+    
+    
+    
 
     <div class="input-group">
       <label>Instituição financeira</label>
@@ -228,14 +234,15 @@
 
     <div class="input-group">
       <label>Cor da conta</label>
-      <div class="cores">
-        <span class="cor azul selected"></span>
-        <span class="cor roxo"></span>
-        <span class="cor verde"></span>
-        <span class="cor laranja"></span>
+      <div class="cores" id="coresConta">
+        <span class="cor azul selected" data-color="azul"></span>
+        <span class="cor roxo" data-color="roxo"></span>
+        <span class="cor verde" data-color="verde"></span>
+        <span class="cor laranja" data-color="laranja"></span>
         <button class="outros">OUTROS</button>
       </div>
     </div>
+    
 
     <div class="input-group switch-group">
       <span>Incluir na soma da tela inicial</span>
@@ -247,10 +254,86 @@
 
     <div class="botoes">
       <button class="btn-secondary">Salvar e criar nova</button>
-      <button class="btn-primary">Salvar</button>
+      <button type="button" class="btn-primary" id="salvarBtn">Salvar</button>
+
     </div>
   </div>
 </div>
+
+<script>
+  const cores = document.querySelectorAll("#coresConta .cor");
+
+  cores.forEach(cor => {
+    cor.addEventListener("click", () => {
+      cores.forEach(c => c.classList.remove("selected"));
+      cor.classList.add("selected");
+    });
+  });
+</script>
+
+<script>
+  const inputValor = document.getElementById('valorConta');
+
+  inputValor.addEventListener('input', function(e) {
+    let value = e.target.value;
+
+    // Remove tudo que não for número
+    value = value.replace(/\D/g, '');
+
+    // Se estiver vazio, coloca 0
+    if (value.length === 0) {
+      value = '0';
+    }
+
+    // Formatar como dinheiro (centavos)
+    value = (parseInt(value) / 100).toFixed(2)  // exemplo: "1234" -> "12.34"
+      .replace('.', ',')                       // troca ponto por vírgula
+      .replace(/\B(?=(\d{3})+(?!\d))/g, '.');   // coloca pontos a cada milhar
+
+    e.target.value = value;
+  });
+</script>
+
+<script>
+  document.getElementById('salvarBtn').addEventListener('click', async function() {
+    const valor = document.getElementById('valorConta').value;
+    const instituicao = document.querySelector('#instituicaoFinanceira span').innerText;
+    const descricao = document.getElementById('descricaoConta').value;
+    const tipoConta = document.getElementById('tipoConta').value;
+    const corSelecionada = document.querySelector('#coresConta .selected')?.getAttribute('data-color') || 'Nenhuma';
+    const incluirTelaInicial = document.getElementById('incluirTelaInicial').checked ? 1 : 0;
+
+    try {
+      const response = await fetch('/salvar-conta', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+          valor: valor,
+          instituicao: instituicao,
+          descricao: descricao,
+          tipoConta: tipoConta,
+          cor: corSelecionada,
+          incluir: incluirTelaInicial
+        })
+      });
+
+      const result = await response.json();
+      console.log(result);
+
+      alert(result.message);
+
+    } catch (error) {
+      console.error('Erro ao salvar:', error);
+      alert('Erro ao salvar a conta.');
+    }
+  });
+</script>
+
+
+
 
 
 <style>
@@ -305,9 +388,11 @@ h2 {
 .valor {
   color: #7c3aed;
   font-size: 24px;
-  font-weight: bold;
+ 
   margin-bottom: 30px;
 }
+
+
 
 .input-group {
   margin-bottom: 20px;

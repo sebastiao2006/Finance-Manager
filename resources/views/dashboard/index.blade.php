@@ -29,6 +29,8 @@
                 <h3>Entradas</h3>
                 <h1>
                   <span id="entradaValor" contenteditable="true" inputmode="decimal">0,00</span><span> kz</span>
+              
+
                 </h1>
               </div>
               <div class="enter">
@@ -105,6 +107,8 @@
                 }
             });
         </script>
+
+        
         
         <div class="searches">
             <div class="buttons">

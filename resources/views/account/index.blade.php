@@ -2,6 +2,8 @@
 @section('title', 'Kivula')
 @section('content')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 <main>
     <h1>Contas</h1>
@@ -208,7 +210,7 @@
     <h2>Nova conta</h2>
    
     <div class="valor">
-      Kz <input type="text" id="valorConta" class="valor-input" value="0,00" style="border: none; color: #7c3aed; background: transparent; font-size: inherit; text-align: center; width: 100px; ">
+      Kz <input type="text" id="valorConta" class="valor-input" value="0,00" style="border: none; color: #000000; font-weight: 1000;  background: transparent; font-size: inherit; text-align: center; width: 100px; ">
     </div>
     
     
@@ -256,9 +258,116 @@
       <button class="btn-secondary">Salvar e criar nova</button>
       <button type="button" class="btn-primary" id="salvarBtn">Salvar</button>
 
+
     </div>
+
+    
   </div>
 </div>
+
+
+
+
+<script>
+  document.getElementById('salvarBtn').addEventListener('click', async function() {
+  console.log('Botão salvar clicado');
+
+  const valor = document.getElementById('valorConta').value;
+  const instituicao = document.querySelector('.instituicao span').innerText;
+  const descricao = document.querySelector('input[placeholder="Descrição"]').value;
+  const tipoConta = document.querySelector('select').value;
+  const corSelecionada = document.querySelector('#coresConta .selected')?.getAttribute('data-color') || 'Nenhuma';
+  const incluirTelaInicial = document.querySelector('.switch input[type="checkbox"]').checked ? 1 : 0;
+
+  try {
+    const response = await fetch('/salvar-conta', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      },
+      body: JSON.stringify({
+        valor: valor.replace(',', '.'),
+        instituicao: instituicao,
+        descricao: descricao,
+        tipoConta: tipoConta,
+        cor: corSelecionada,
+        incluir: incluirTelaInicial
+      })
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    alert(result.message);
+
+    const contaInfo = result.conta;
+
+    const contaDiv = document.createElement('div');
+    contaDiv.classList.add('conta-info');
+
+    contaDiv.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="background: red; width: 40px; height: 40px; border-radius: 50%;"></div>
+        <div style="font-weight: bold;">${contaInfo.instituicao}</div>
+      </div>
+      <div style="margin-top: 10px;">
+        <p style="margin: 0; font-size: 14px;">Saldo atual</p>
+        <p style="margin: 0; font-size: 18px; color: green;">€ ${parseFloat(contaInfo.valor).toFixed(2).replace('.', ',')}</p>
+      </div>
+      <div style="margin-top: 10px; text-align: right;">
+        <button class="verMaisBtn" style="background: none; border: none; color: #7c3aed; font-weight: bold; cursor: pointer;">VER MAIS</button>
+      </div>
+    `;
+
+    // Salvando dados no elemento (dataset)
+    contaDiv.dataset.instituicao = contaInfo.instituicao;
+    contaDiv.dataset.valor = contaInfo.valor;
+    contaDiv.dataset.descricao = contaInfo.descricao || 'Não informada';
+    contaDiv.dataset.tipoConta = contaInfo.tipoConta;
+    contaDiv.dataset.cor = contaInfo.cor || 'Nenhuma';
+    contaDiv.dataset.incluir = contaInfo.incluir ? 'Sim' : 'Não';
+
+    // Evento botão "Ver Mais"
+    contaDiv.querySelector('.verMaisBtn').addEventListener('click', function() {
+      abrirModalConta(contaDiv.dataset);
+    });
+
+    document.getElementById('contasContainer').appendChild(contaDiv);
+
+  } catch (error) {
+    console.error('Erro ao salvar:', error);
+    alert('Erro ao salvar a conta.');
+  }
+});
+
+function abrirModalConta(data) {
+  const modal = document.getElementById('modalDetalhesConta');
+  const modalContent = document.getElementById('modalContentConta');
+
+  modalContent.innerHTML = `
+    <h3 style="margin-top:0;">Detalhes da Conta</h3>
+    <p><strong>Instituição:</strong> ${data.instituicao}</p>
+    <p><strong>Valor:</strong> € ${parseFloat(data.valor).toFixed(2).replace('.', ',')}</p>
+    <p><strong>Descrição:</strong> ${data.descricao}</p>
+    <p><strong>Tipo de Conta:</strong> ${data.tipoConta}</p>
+    <p><strong>Cor da Conta:</strong> 
+      <span style="display:inline-block; width:15px; height:15px; background:${data.cor}; border-radius:50%;"></span> ${data.cor}
+    </p>
+    <p><strong>Incluir na Tela Inicial:</strong> ${data.incluir}</p>
+  `;
+
+  modal.style.display = 'flex';
+}
+
+// Botão fechar modal
+document.getElementById('fecharModalConta').addEventListener('click', function() {
+  document.getElementById('modalDetalhesConta').style.display = 'none';
+});
+
+</script>
+
+
 
 <script>
   const cores = document.querySelectorAll("#coresConta .cor");
@@ -294,43 +403,7 @@
   });
 </script>
 
-<script>
-  document.getElementById('salvarBtn').addEventListener('click', async function() {
-    const valor = document.getElementById('valorConta').value;
-    const instituicao = document.querySelector('#instituicaoFinanceira span').innerText;
-    const descricao = document.getElementById('descricaoConta').value;
-    const tipoConta = document.getElementById('tipoConta').value;
-    const corSelecionada = document.querySelector('#coresConta .selected')?.getAttribute('data-color') || 'Nenhuma';
-    const incluirTelaInicial = document.getElementById('incluirTelaInicial').checked ? 1 : 0;
 
-    try {
-      const response = await fetch('/salvar-conta', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: JSON.stringify({
-          valor: valor,
-          instituicao: instituicao,
-          descricao: descricao,
-          tipoConta: tipoConta,
-          cor: corSelecionada,
-          incluir: incluirTelaInicial
-        })
-      });
-
-      const result = await response.json();
-      console.log(result);
-
-      alert(result.message);
-
-    } catch (error) {
-      console.error('Erro ao salvar:', error);
-      alert('Erro ao salvar a conta.');
-    }
-  });
-</script>
 
 
 
@@ -386,7 +459,7 @@ h2 {
 }
 
 .valor {
-  color: #7c3aed;
+  color: #000000;
   font-size: 24px;
  
   margin-bottom: 30px;
@@ -548,6 +621,103 @@ h2 {
   border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
+}
+#contasContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.conta-info {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.conta-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Topo */
+.conta-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.conta-topo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: red;
+}
+
+.conta-nome {
+  font-weight: 600;
+  font-size: 16px;
+  color: #666666;
+  margin-left: 10px;
+  flex: 1;
+}
+
+.conta-menu {
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+}
+
+/* Saldo */
+.saldo-info {
+  margin-top: 20px;
+}
+
+.saldo-info div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.saldo-info span {
+  font-size: 14px;
+  color: #555;
+}
+
+.saldo-info .info-icon {
+  font-size: 14px;
+  margin-left: 5px;
+  color: #888;
+}
+
+.valor {
+  font-weight: 1000;
+  font-size: 16px;
+  color: #000000;
+}
+
+/* Rodapé */
+.conta-footer {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+  text-align: right;
+}
+
+.conta-footer a {
+  color: #7c3aed;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 </style>

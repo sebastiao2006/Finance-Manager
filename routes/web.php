@@ -12,7 +12,8 @@ use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\ContaController;
+use App\Http\Controllers\NewplanningController;
+
 
 
 
@@ -55,6 +56,8 @@ Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::get('/account', [AccountController::class, 'index'])->name('account.index');
 /* Planejamento*/
 Route::get('/planning', [PlanningController::class, 'index'])->name('planning.index');
+/* Novo Planejamento*/
+Route::get('/newplanning', [NewplanningController::class, 'index'])->name('newplanning.index');
 /* Relatorio*/
 Route::get('/report', [ReportController::class, 'index'])->name('report.index');
 /* Categoria*/
@@ -62,7 +65,7 @@ Route::get('/category', [CategoryController::class, 'index'])->name('category.in
 /* Calendario*/
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
 
-Route::post('/salvar-conta', [ContaController::class, 'store']);
+
 
 
 /* site*/

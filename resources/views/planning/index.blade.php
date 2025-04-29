@@ -308,12 +308,12 @@
     .btn-next {
       margin-top: 2rem;
       float: right;
-      background: #ccc;
+      background: #0f62e4;
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 999px;
-      opacity: 0.5;
-      cursor: not-allowed;
+      
+      cursor: pointer;
     }
 
     .small {
@@ -353,8 +353,9 @@
         <p class="small">E você economizará mensalmente:</p>
         <p class="economia" id="economia">€ 0,00</p>
       </div>
+      <button class="btn-next" onclick="window.location.href='{{ route('newplanning.index') }}';">➝</button>
 
-      <button class="btn-next" disabled>➝</button>
+
     </div>
   </div>
 

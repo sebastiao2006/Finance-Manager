@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <!-- Ícones do FontAwesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   
 
    

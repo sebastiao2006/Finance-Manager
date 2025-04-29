@@ -202,24 +202,40 @@
 
 
 <!-- Modal -->
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<!-- Botão para abrir modal -->
+{{-- <button onclick="document.getElementById('contaModal').style.display = 'flex';" class="btn-primary">Nova Conta</button> --}}
+
+<!-- Container para exibir as contas -->
+<div id="contasContainer" style="margin-top: 20px;"></div>
+
+<!-- Modal Detalhes -->
+<div id="modalDetalhesConta" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); align-items:center; justify-content:center;">
+  <div style="background:white; padding:20px; border-radius:8px; width:300px; position:relative;">
+    <button id="fecharModalConta" style="position:absolute; top:10px; right:10px;">×</button>
+    <div id="modalContentConta"></div>
+  </div>
+</div>
+
+<!-- Modal Criação de Conta -->
 <div class="conta-modal" id="contaModal" style="display: none;">
-  <div class="modal-overlay"></div>
-  <div class="modal-content">
-    <button class="close-btn" id="fecharModalBtn">×</button>
+  <div class="modal-overlay" onclick="document.getElementById('contaModal').style.display = 'none';"></div>
+  <div class="modal-content" style="background:#fff; padding:20px; border-radius:8px; width:650px; position:relative;">
+    <button class="close-btn" id="fecharModalBtn" style="position:absolute; top:10px; right:10px;">×</button>
 
     <h2>Nova conta</h2>
-   
+
     <div class="valor">
-      Kz <input type="text" id="valorConta" class="valor-input" value="0,00" style="border: none; color: #000000; font-weight: 1000;  background: transparent; font-size: inherit; text-align: center; width: 100px; ">
+      <strong style="font-weight: 900;">Kz</strong>
+      <input type="text" id="valorConta" class="valor-input" value="0,00" style="border: none; font-weight: bold; background: transparent; font-size: inherit; text-align: center; width: 100px;">
     </div>
-    
-    
-    
 
     <div class="input-group">
       <label>Instituição financeira</label>
       <div class="instituicao">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Santander_Logo.png" alt="Santander">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Santander_Logo.png" alt="Santander" style="width:30px;">
         <span>Santander</span>
       </div>
     </div>
@@ -237,14 +253,12 @@
     <div class="input-group">
       <label>Cor da conta</label>
       <div class="cores" id="coresConta">
-        <span class="cor azul selected" data-color="azul"></span>
-        <span class="cor roxo" data-color="roxo"></span>
-        <span class="cor verde" data-color="verde"></span>
-        <span class="cor laranja" data-color="laranja"></span>
-        <button class="outros">OUTROS</button>
+        <span class="cor azul selected" data-color="blue" style="background:blue; display:inline-block; width:20px; height:20px; border-radius:50%;"></span>
+        <span class="cor roxo" data-color="purple" style="background:purple; display:inline-block; width:20px; height:20px; border-radius:50%;"></span>
+        <span class="cor verde" data-color="green" style="background:green; display:inline-block; width:20px; height:20px; border-radius:50%;"></span>
+        <span class="cor laranja" data-color="orange" style="background:orange; display:inline-block; width:20px; height:20px; border-radius:50%;"></span>
       </div>
     </div>
-    
 
     <div class="input-group switch-group">
       <span>Incluir na soma da tela inicial</span>
@@ -255,23 +269,15 @@
     </div>
 
     <div class="botoes">
-      <button class="btn-secondary">Salvar e criar nova</button>
       <button type="button" class="btn-primary" id="salvarBtn">Salvar</button>
-
-
     </div>
-
-    
   </div>
 </div>
 
 
-
-
+@section('scripts')
 <script>
-  document.getElementById('salvarBtn').addEventListener('click', async function() {
-  console.log('Botão salvar clicado');
-
+document.getElementById('salvarBtn').addEventListener('click', async function() {
   const valor = document.getElementById('valorConta').value;
   const instituicao = document.querySelector('.instituicao span').innerText;
   const descricao = document.querySelector('input[placeholder="Descrição"]').value;
@@ -280,7 +286,7 @@
   const incluirTelaInicial = document.querySelector('.switch input[type="checkbox"]').checked ? 1 : 0;
 
   try {
-    const response = await fetch('/salvar-conta', {
+    const response = await fetch('{{ route('account.store') }}', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -297,43 +303,40 @@
     });
 
     const result = await response.json();
-    console.log(result);
-
     alert(result.message);
-
     const contaInfo = result.conta;
 
     const contaDiv = document.createElement('div');
     contaDiv.classList.add('conta-info');
-
     contaDiv.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <div style="background: red; width: 40px; height: 40px; border-radius: 50%;"></div>
+      <div style="display: flex; align-items: center; gap: 10px; ">
+        <div style="background: ${contaInfo.cor}; width: 40px; height: 40px; border-radius: 50%;"></div>
         <div style="font-weight: bold;">${contaInfo.instituicao}</div>
       </div>
       <div style="margin-top: 10px;">
         <p style="margin: 0; font-size: 14px;">Saldo atual</p>
-        <p style="margin: 0; font-size: 18px; color: green;">€ ${parseFloat(contaInfo.valor).toFixed(2).replace('.', ',')}</p>
+        <p style="margin: 0; font-size: 18px; color: green;">Kz ${parseFloat(contaInfo.valor).toFixed(2).replace('.', ',')}</p>
       </div>
       <div style="margin-top: 10px; text-align: right;">
         <button class="verMaisBtn" style="background: none; border: none; color: #7c3aed; font-weight: bold; cursor: pointer;">VER MAIS</button>
       </div>
     `;
 
-    // Salvando dados no elemento (dataset)
-    contaDiv.dataset.instituicao = contaInfo.instituicao;
-    contaDiv.dataset.valor = contaInfo.valor;
-    contaDiv.dataset.descricao = contaInfo.descricao || 'Não informada';
-    contaDiv.dataset.tipoConta = contaInfo.tipoConta;
-    contaDiv.dataset.cor = contaInfo.cor || 'Nenhuma';
-    contaDiv.dataset.incluir = contaInfo.incluir ? 'Sim' : 'Não';
+    contaDiv.dataset = {
+      instituicao: contaInfo.instituicao,
+      valor: contaInfo.valor,
+      descricao: contaInfo.descricao ?? 'Não informada',
+      tipoConta: contaInfo.tipo,
+      cor: contaInfo.cor,
+      incluir: contaInfo.incluir ? 'Sim' : 'Não'
+    };
 
-    // Evento botão "Ver Mais"
     contaDiv.querySelector('.verMaisBtn').addEventListener('click', function() {
       abrirModalConta(contaDiv.dataset);
     });
 
     document.getElementById('contasContainer').appendChild(contaDiv);
+    document.getElementById('contaModal').style.display = 'none';
 
   } catch (error) {
     console.error('Erro ao salvar:', error);
@@ -346,12 +349,12 @@ function abrirModalConta(data) {
   const modalContent = document.getElementById('modalContentConta');
 
   modalContent.innerHTML = `
-    <h3 style="margin-top:0;">Detalhes da Conta</h3>
+    <h3>Detalhes da Conta</h3>
     <p><strong>Instituição:</strong> ${data.instituicao}</p>
-    <p><strong>Valor:</strong> € ${parseFloat(data.valor).toFixed(2).replace('.', ',')}</p>
+    <p><strong>Valor:</strong> Kz ${parseFloat(data.valor).toFixed(2).replace('.', ',')}</p>
     <p><strong>Descrição:</strong> ${data.descricao}</p>
     <p><strong>Tipo de Conta:</strong> ${data.tipoConta}</p>
-    <p><strong>Cor da Conta:</strong> 
+    <p><strong>Cor da Conta:</strong>
       <span style="display:inline-block; width:15px; height:15px; background:${data.cor}; border-radius:50%;"></span> ${data.cor}
     </p>
     <p><strong>Incluir na Tela Inicial:</strong> ${data.incluir}</p>
@@ -360,48 +363,33 @@ function abrirModalConta(data) {
   modal.style.display = 'flex';
 }
 
-// Botão fechar modal
 document.getElementById('fecharModalConta').addEventListener('click', function() {
   document.getElementById('modalDetalhesConta').style.display = 'none';
 });
 
-</script>
+document.getElementById('fecharModalBtn').addEventListener('click', function() {
+  document.getElementById('contaModal').style.display = 'none';
+});
 
-
-
-<script>
-  const cores = document.querySelectorAll("#coresConta .cor");
-
-  cores.forEach(cor => {
-    cor.addEventListener("click", () => {
-      cores.forEach(c => c.classList.remove("selected"));
-      cor.classList.add("selected");
-    });
+const cores = document.querySelectorAll("#coresConta .cor");
+cores.forEach(cor => {
+  cor.addEventListener("click", () => {
+    cores.forEach(c => c.classList.remove("selected"));
+    cor.classList.add("selected");
   });
+});
+
+document.getElementById('valorConta').addEventListener('input', function(e) {
+  let value = e.target.value.replace(/\D/g, '');
+  if (value.length === 0) value = '0';
+  value = (parseInt(value) / 100).toFixed(2)
+    .replace('.', ',')
+    .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  e.target.value = value;
+});
 </script>
+@endsection
 
-<script>
-  const inputValor = document.getElementById('valorConta');
-
-  inputValor.addEventListener('input', function(e) {
-    let value = e.target.value;
-
-    // Remove tudo que não for número
-    value = value.replace(/\D/g, '');
-
-    // Se estiver vazio, coloca 0
-    if (value.length === 0) {
-      value = '0';
-    }
-
-    // Formatar como dinheiro (centavos)
-    value = (parseInt(value) / 100).toFixed(2)  // exemplo: "1234" -> "12.34"
-      .replace('.', ',')                       // troca ponto por vírgula
-      .replace(/\B(?=(\d{3})+(?!\d))/g, '.');   // coloca pontos a cada milhar
-
-    e.target.value = value;
-  });
-</script>
 
 
 
@@ -634,7 +622,7 @@ h2 {
   border-radius: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 300px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

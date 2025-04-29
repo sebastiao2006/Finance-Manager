@@ -28,6 +28,7 @@
         <!-- Conteúdo principal -->
         <main>
             @yield('content')
+            
         </main>
 
         <!-- Aside direito -->
@@ -39,6 +40,7 @@
 
     <script src="{{ asset('assets/js/orders.js') }}"></script>
     <script src="{{ asset('assets/js/index.js') }}"></script>
+    @yield('scripts')
     
     
 

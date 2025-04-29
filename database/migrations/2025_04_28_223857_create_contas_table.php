@@ -15,9 +15,16 @@ class CreateContasTable extends Migration
     {
         Schema::create('contas', function (Blueprint $table) {
             $table->id();
+            $table->decimal('valor', 15, 2);
+            $table->string('instituicao');
+            $table->string('descricao')->nullable();
+            $table->string('tipo');
+            $table->string('cor')->nullable();
+            $table->boolean('incluir')->default(1);
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

@@ -38,30 +38,34 @@
         <div class="saldo-container">
             <div class="saldo-header">
                 <select id="mesSelect" style="font-size: 18px; font-weight: bold;">
-                    <option value="janeiro">Janeiro</option>
-                    <option value="fevereiro">Fevereiro</option>
-                    <option value="marco">Março</option>
-                    <option value="abril">Abril</option>
-                    <option value="maio">Maio</option>
-                    <option value="junho">Junho</option>
-                    <option value="julho">Julho</option>
-                    <option value="agosto">Agosto</option>
-                    <option value="setembro">Setembro</option>
-                    <option value="outubro">Outubro</option>
-                    <option value="novembro">Novembro</option>
-                    <option value="dezembro">Dezembro</option>
+                    @php
+                        $meses = [
+                            'janeiro', 'fevereiro', 'marco', 'abril', 'maio', 'junho',
+                            'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+                        ];
+                    @endphp
+                    @foreach ($meses as $mes)
+                        <option value="{{ $mes }}" {{ strtolower($month) == $mes ? 'selected' : '' }}>
+                            {{ ucfirst($mes) }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
-            <p class="saldo-descricao">Saldo até o fim do mês</p>
+    
+            <p class="saldo-descricao">Saldo até o fim de {{ ucfirst($month) }}</p>
             <p class="saldo-valor">
-                <span id="saldoValor" contenteditable="true" inputmode="decimal">5.000,00</span><span> Kz</span>
+                <span id="saldoValor" contenteditable="true" inputmode="decimal">
+                    {{ number_format($saldo, 2, ',', '.') }}
+                </span>
+                <span> Kz</span>
             </p>
         </div>
     </div>
+    
 
   
     
-    <script>
+ {{--    <script>
         const saldoEl = document.getElementById('saldoValor');
         const mesSelect = document.getElementById('mesSelect');
 
@@ -119,7 +123,7 @@
             const mesSelecionado = mesSelect.value;
             saldoEl.textContent = recuperarValorMes(mesSelecionado); // Atualiza o saldo com o valor do mês selecionado
         });
-    </script>
+    </script> --}}
     
 
         <div class="reminders">

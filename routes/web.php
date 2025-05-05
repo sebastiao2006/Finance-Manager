@@ -13,6 +13,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\NewplanningController;
+use App\Http\Controllers\DashboardController;
 
 
 
@@ -68,6 +69,10 @@ Route::get('/category', [CategoryController::class, 'index'])->name('category.in
 /* Calendario*/
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
 
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
 
 
 

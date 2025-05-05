@@ -22,105 +22,103 @@
             z-index: -1;
         }
     </style> --}}
-    <div class="analyse">
-        <div class="sales">
-            <div class="status">
-              <div class="info">
+  {{--   <div class="card entradas">
+        <p>Entradas</p>
+        <h3>{{ number_format($entradas, 2, ',', '.') }} Kz</h3>
+    </div>
+    
+    <div class="card saidas">
+        <p>Saídas</p>
+        <h3>{{ number_format($saidas, 2, ',', '.') }} Kz</h3>
+    </div>
+    
+    <div class="card saldo">
+        <p>Saldo até o fim de {{ ucfirst($month) }}</p>
+        <h3>{{ number_format($saldo, 2, ',', '.') }} Kz</h3>
+    </div> --}}
+<!-- Receita -->
+{{-- <form method="POST" action="{{ route('transactions.store') }}">
+    @csrf
+    <input type="hidden" name="type" value="receita">
+    <input type="hidden" name="month" value="{{ $month }}">
+    <input type="hidden" name="year" value="{{ date('Y') }}">
+    <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
+    <button type="submit">+ Receita</button>
+</form>
+
+<!-- Despesa -->
+<form method="POST" action="{{ route('transactions.store') }}">
+    @csrf
+    <input type="hidden" name="type" value="despesa">
+    <input type="hidden" name="month" value="{{ $month }}">
+    <input type="hidden" name="year" value="{{ date('Y') }}">
+    <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
+    <button type="submit">– Despesa</button>
+</form> --}}
+    
+
+
+<div class="analyse">
+    <div class="sales">
+        <div class="status">
+            <div class="info">
                 <h3>Entradas</h3>
                 <h1>
-                  <span id="entradaValor" contenteditable="true" inputmode="decimal">0,00</span><span> kz</span>
-              
-
+                    <span id="entradaValor">{{ number_format($entradas, 2, ',', '.') }}</span><span> kz</span>
                 </h1>
-              </div>
-              <div class="enter">
-                <img src="assets/img/income.svg" alt="Imagem de entradas" />
-              </div>
             </div>
-          </div>
-          
-          <script>
-            const entradaEl = document.getElementById('entradaValor');
-          
-            entradaEl.addEventListener('focus', () => {
-              // Move o cursor para o final
-              const range = document.createRange();
-              const sel = window.getSelection();
-              range.selectNodeContents(entradaEl);
-              range.collapse(false); // false = fim
-              sel.removeAllRanges();
-              sel.addRange(range);
-            });
-          
-            entradaEl.addEventListener('blur', () => {
-              let texto = entradaEl.textContent.replace(',', '.').replace(/[^\d.]/g, '');
-              const valor = parseFloat(texto);
-          
-              if (!isNaN(valor)) {
-                entradaEl.textContent = valor.toLocaleString('pt-AO', {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2
-                });
-              } else {
-                entradaEl.textContent = '0,00';
-              }
-            });
-          </script>
-          
-          <div class="visits">
-            <div class="status">
-                <div class="info">
-                    <h3>Saídas</h3>
-                    <h1>
-                        <span id="saidaValor" contenteditable="true" inputmode="decimal">0,00</span><span> kz</span>
-                    </h1>
-                </div>
-                <div class="progresss">
-                    <img src="assets/img/expense.svg" alt="Imagem de entradas">
-                </div>
+            <div class="enter">
+                <img src="assets/img/income.svg" alt="Imagem de entradas" />
             </div>
         </div>
-        
-        <script>
-            const saidaEl = document.getElementById('saidaValor');
-        
-            saidaEl.addEventListener('focus', () => {
-                const range = document.createRange();
-                const sel = window.getSelection();
-                range.selectNodeContents(saidaEl);
-                range.collapse(false); // Coloca o cursor no final
-                sel.removeAllRanges();
-                sel.addRange(range);
-            });
-        
-            saidaEl.addEventListener('blur', () => {
-                let texto = saidaEl.textContent.replace(',', '.').replace(/[^\d.]/g, '');
-                const valor = parseFloat(texto);
-        
-                if (!isNaN(valor)) {
-                    saidaEl.textContent = valor.toLocaleString('pt-AO', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
-                } else {
-                    saidaEl.textContent = '0,00';
-                }
-            });
-        </script>
 
-        
-        
-        <div class="searches">
-            <div class="buttons">
-                <button class="entry">
-                    <span class="icon">&#43;</span> Receita
-                </button>
-                <button class="exit">
-                    <span class="icon">&#8722;</span> Despesa
-                </button>
+        <!-- Formulário Receita -->
+        <form method="POST" action="{{ route('transactions.store') }}">
+            @csrf
+            <input type="hidden" name="type" value="receita">
+            <input type="hidden" name="month" value="{{ $month }}">
+            <input type="hidden" name="year" value="{{ date('Y') }}">
+            <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
+            <button type="submit">+ Receita</button>
+        </form>
+    </div>
+
+    <div class="visits">
+        <div class="status">
+            <div class="info">
+                <h3>Saídas</h3>
+                <h1>
+                    <span id="saidaValor">{{ number_format($saidas, 2, ',', '.') }}</span><span> kz</span>
+                </h1>
             </div>
+            <div class="progresss">
+                <img src="assets/img/expense.svg" alt="Imagem de saídas">
+            </div>
+        </div>
+
+        <!-- Formulário Despesa -->
+        <form method="POST" action="{{ route('transactions.store') }}">
+            @csrf
+            <input type="hidden" name="type" value="despesa">
+            <input type="hidden" name="month" value="{{ $month }}">
+            <input type="hidden" name="year" value="{{ date('Y') }}">
+            <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
+            <button type="submit">– Despesa</button>
+        </form>
+    </div>
+
+    <div class="searches">
+        <div class="buttons">
+            <button class="entry" onclick="document.querySelector('.sales form').scrollIntoView({behavior: 'smooth'})">
+                <span class="icon">&#43;</span> Receita
+            </button>
+            <button class="exit" onclick="document.querySelector('.visits form').scrollIntoView({behavior: 'smooth'})">
+                <span class="icon">&#8722;</span> Despesa
+            </button>
         </div>
     </div>
+</div>
+
 
     <style>
         .buttons {

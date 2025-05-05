@@ -52,9 +52,10 @@ Route::get('/tip', [tipController::class, 'index'])->name('tip.index');
 Route::get('/kixi', [KixiController::class, 'index'])->name('kixi.index');
 /* Login*/
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
-/* contas*/
+/* contas */
 Route::get('/account', [AccountController::class, 'index'])->name('account.index');
 Route::post('/account', [AccountController::class, 'store'])->name('account.store');
+Route::delete('/account/{id}', [AccountController::class, 'destroy'])->name('account.destroy');  // Corrigido para usar AccountController
 
 /* Planejamento*/
 Route::get('/planning', [PlanningController::class, 'index'])->name('planning.index');

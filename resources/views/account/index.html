@@ -266,8 +266,8 @@
       <div class="input-group">
         <label>Instituição financeira</label>
         <div class="instituicao">
-          <img src="{{ asset('assets/img/bfa.png') }}" alt="BFA" style="width:30px;">
-          <span>BFA</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Santander_Logo.png" alt="Santander" style="width:30px;">
+          <span>Santander</span>
         </div>
       </div>
   
@@ -276,9 +276,8 @@
       </div>
   
       <div class="input-group">
-        <select id="tipoConta" name="tipoConta">
-          <option value="corrente">Conta corrente</option>
-          <option value="Salario">Conta salario</option>
+        <select>
+          <option>Conta corrente</option>
         </select>
       </div>
   
@@ -315,118 +314,92 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // VER MAIS
-  document.querySelectorAll('.verMaisBtn').forEach(btn => {
+  // Evento de clique para o botão "VER MAIS"
+  const verMaisBtns = document.querySelectorAll('.verMaisBtn');
+  verMaisBtns.forEach((btn) => {
     btn.addEventListener('click', function () {
-      const modal = document.getElementById('modalDetalhesConta');
-      const content = document.getElementById('modalContentConta');
-      const data = {
-        instituicao: this.dataset.instituicao,
-        valor: parseFloat(this.dataset.valor).toFixed(2).replace('.', ','),
-        descricao: this.dataset.descricao,
-        tipo: this.dataset.tipo,
-        cor: this.dataset.cor,
-        incluir: this.dataset.incluir
-      };
-      content.innerHTML = `
-        <h3>Detalhes da Conta</h3>
-        <p><strong>Instituição:</strong> ${data.instituicao}</p>
-        <p><strong>Valor:</strong> Kz ${data.valor}</p>
-        <p><strong>Descrição:</strong> ${data.descricao}</p>
-        <p><strong>Tipo de Conta:</strong> ${data.tipo}</p>
-        <p><strong>Cor:</strong> <span style="background:${data.cor}; width:15px; height:15px; display:inline-block; border-radius:50%;"></span> ${data.cor}</p>
-        <p><strong>Incluir na Tela Inicial:</strong> ${data.incluir}</p>
-      `;
-      modal.style.display = 'flex';
+      console.log('Botão VER MAIS clicado');
+      
+      const instituicao = this.getAttribute('data-instituicao');
+      const valor = this.getAttribute('data-valor');
+      const descricao = this.getAttribute('data-descricao');
+      const tipoConta = this.getAttribute('data-tipo');
+      const cor = this.getAttribute('data-cor');
+      const incluir = this.getAttribute('data-incluir');
+      
+      console.log('Dados da Conta:', instituicao, valor, descricao, tipoConta, cor, incluir);
+      
+      abrirModalConta({
+        instituicao,
+        valor,
+        descricao,
+        tipoConta,
+        cor,
+        incluir
+      });
     });
   });
 
-  document.getElementById('fecharModalConta').addEventListener('click', () => {
+  // Função para abrir o modal com os dados
+  function abrirModalConta(data) {
+    console.log('Abrindo modal com os dados:', data);
+
+    const modal = document.getElementById('modalDetalhesConta');
+    const modalContent = document.getElementById('modalContentConta');
+
+    modalContent.innerHTML = `
+      <h3>Detalhes da Conta</h3>
+      <p><strong>Instituição:</strong> ${data.instituicao}</p>
+      <p><strong>Valor:</strong> Kz ${parseFloat(data.valor).toFixed(2).replace('.', ',')}</p>
+      <p><strong>Descrição:</strong> ${data.descricao}</p>
+      <p><strong>Tipo de Conta:</strong> ${data.tipoConta}</p>
+      <p><strong>Cor da Conta:</strong> 
+        <span style="display:inline-block; width:15px; height:15px; background:${data.cor}; border-radius:50%;"></span> ${data.cor}
+      </p>
+      <p><strong>Incluir na Tela Inicial:</strong> ${data.incluir}</p>
+    `;
+    modal.style.display = 'flex';
+  }
+
+  // Fechar o modal
+  document.getElementById('fecharModalConta').addEventListener('click', function () {
     document.getElementById('modalDetalhesConta').style.display = 'none';
   });
 
-  // EXCLUIR
-  document.querySelectorAll('.excluirBtn').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const contaDiv = this.closest('.conta-info');
-      const id = contaDiv.dataset.id;
-      if (confirm('Deseja realmente excluir esta conta?')) {
-        fetch(`/account/${id}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-          }
-        })
-        .then(res => res.json())
-        .then(data => {
-          if (data.message.includes('sucesso')) {
-            alert(data.message);
-            contaDiv.remove();
-          } else {
-            alert('Erro ao excluir: ' + data.message);
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          alert('Erro ao excluir conta');
-        });
-      }
-    });
-  });
+  // Evento de clique para o botão "Apagar"
+  const excluirBtns = document.querySelectorAll('.excluirBtn');
+excluirBtns.forEach((btn) => {
+  btn.addEventListener('click', function () {
+    const contaDiv = this.closest('.conta-info');  // Encontra a div da conta relacionada ao botão
+    const contaId = contaDiv.getAttribute('data-id');  // Pegue o ID da conta
 
-  // COR SELECIONADA
-  document.querySelectorAll('#coresConta .cor').forEach(span => {
-    span.addEventListener('click', function () {
-      document.querySelectorAll('#coresConta .cor').forEach(c => c.classList.remove('selected'));
-      this.classList.add('selected');
-    });
-  });
-
-  // SALVAR
-  document.getElementById('salvarBtn').addEventListener('click', () => {
-    const valorRaw = document.getElementById('valorConta').value.replace(',', '.');
-    const valor = parseFloat(valorRaw) || 0;
-    const descricao = document.getElementById('descricaoConta')?.value || '';
-    const tipoConta = document.getElementById('tipoConta')?.value || 'corrente';
-    const incluir = document.getElementById('incluirConta')?.checked || false;
-    const cor = document.querySelector('#coresConta .cor.selected')?.dataset.color || null;
-
-    const payload = {
-      valor,
-      instituicao: 'BFA',
-      descricao,
-      tipoConta,
-      cor,
-      incluir
-    };
-
-    fetch('/account', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.message.includes('sucesso')) {
-        alert(data.message);
-        location.reload();
-      } else {
-        alert('Erro ao salvar: ' + data.message);
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert('Erro ao salvar conta');
-    });
+    if (confirm('Deseja realmente excluir esta conta?')) {
+      fetch(`/account/${contaId}`, {  // Alterado para /account/{id}
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      })
+      .then(response => response.json())
+      .then(result => {
+        if (result.message === 'Conta excluída com sucesso.') {
+          alert('Conta excluída com sucesso');
+          contaDiv.remove();  // Remove a conta da interface
+        } else {
+          alert('Erro ao excluir conta: ' + result.message);
+        }
+      })
+      .catch(error => {
+        console.error('Erro ao excluir conta:', error);
+        alert('Erro ao excluir conta');
+      });
+    }
   });
 });
+});
+
 </script>
-
-
 @endsection
 
 <style>

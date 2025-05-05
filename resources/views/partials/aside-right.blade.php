@@ -62,6 +62,13 @@
         </div>
     </div>
     
+    <script>
+        document.getElementById('mesSelect').addEventListener('change', function() {
+            const mes = this.value;
+            window.location.href = "{{ route('dashboard.index') }}" + "?month=" + mes;
+        });
+    </script>
+    
 
   
     

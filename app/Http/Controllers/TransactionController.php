@@ -8,6 +8,18 @@ use App\Models\Transaction;
 class TransactionController extends Controller
 {
     // Exibe uma view de transações (se usares)
+    public function receita()
+    {
+        return view('transaction.receita');
+    }
+    
+    public function despesa()
+    {
+        return view('transaction.despesa');
+    }
+    
+
+
     public function index()
     {
         return view('transaction.index')->with('ocultarAsideRight', true);

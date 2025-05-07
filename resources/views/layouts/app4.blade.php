@@ -34,7 +34,7 @@
         </main>
 
         <!-- Aside direito -->
-        @include('partials.aside-right2')
+        @include('partials.aside-right4')
 
         
     </div>

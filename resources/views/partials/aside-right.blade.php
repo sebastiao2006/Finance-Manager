@@ -133,62 +133,106 @@
     </script> --}}
     
 
-        <div class="reminders">
-            <div class="header">
-                <h2>Lembretes</h2>
-                <span class="material-icons-sharp">
-                    notifications_none
-                </span>
-            </div>
-
-            <div class="notification">
-                <div class="icon">
-                    <span class="material-icons-sharp">
-                        volume_up
-                    </span>
-                </div>
-                <div class="content">
-                    <div class="info">
-                        <h3>Tarefas</h3>
-                        <small class="text_muted">
-                            08:00 AM - 12:00 PM
-                        </small>
-                    </div>
-                    <span class="material-icons-sharp">
-                        more_vert
-                    </span>
-                </div>
-            </div>
-
-            <div class="notification deactive">
-                <div class="icon">
-                    <span class="material-icons-sharp">
-                        edit
-                    </span>
-                </div>
-                <div class="content">
-                    <div class="info">
-                        <h3>Metas</h3>
-                        <small class="text_muted">
-                            08:00 AM - 12:00 PM
-                        </small>
-                    </div>
-                    <span class="material-icons-sharp">
-                        more_vert
-                    </span>
-                </div>
-            </div>
-
-            <div class="notification add-reminder">
-                <div>
-                    <span class="material-icons-sharp">
-                        add
-                    </span>
-                    <h3>Add Reminder</h3>
-                </div>
-            </div>
-
+    <div class="reminders">
+        <div class="header">
+          <h2>Lembretes</h2>
+          <span class="material-icons-sharp">notifications_none</span>
         </div>
+      
+        <div class="notification">
+          <div class="icon">
+            <span class="material-icons-sharp">volume_up</span>
+          </div>
+          <div class="content">
+            <div class="info">
+              <h3>Tarefas</h3>
+              <small class="text_muted">08:00 AM - 12:00 PM</small>
+            </div>
+            <div class="actions">
+              <span class="material-icons-sharp edit-btn">edit</span>
+              <span class="material-icons-sharp delete-btn">delete</span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="notification deactive">
+          <div class="icon">
+            <span class="material-icons-sharp">edit</span>
+          </div>
+          <div class="content">
+            <div class="info">
+              <h3>Metas</h3>
+              <small class="text_muted">08:00 AM - 12:00 PM</small>
+            </div>
+            <div class="actions">
+              <span class="material-icons-sharp edit-btn">edit</span>
+              <span class="material-icons-sharp delete-btn">delete</span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="notification add-reminder">
+          <div>
+            <span class="material-icons-sharp">add</span>
+            <h3>Add Reminder</h3>
+          </div>
+        </div>
+      </div>
+      
+        <script>
+const addReminderBtn = document.querySelector('.add-reminder');
+const remindersContainer = document.querySelector('.reminders');
+
+addReminderBtn.addEventListener('click', () => {
+  const newNotification = document.createElement('div');
+  newNotification.className = 'notification';
+
+  newNotification.innerHTML = `
+    <div class="icon">
+      <span class="material-icons-sharp">event</span>
+    </div>
+    <div class="content">
+      <div class="info">
+        <h3>Novo Lembrete</h3>
+        <small class="text_muted">00:00 AM - 00:00 PM</small>
+      </div>
+      <div class="actions">
+        <span class="material-icons-sharp edit-btn">edit</span>
+        <span class="material-icons-sharp delete-btn">delete</span>
+      </div>
+    </div>
+  `;
+
+  // Inserir antes do botão "Add Reminder"
+  remindersContainer.insertBefore(newNotification, addReminderBtn);
+
+  attachActions(newNotification);
+});
+
+// Função para Editar e Apagar
+function attachActions(notification) {
+  const editBtn = notification.querySelector('.edit-btn');
+  const deleteBtn = notification.querySelector('.delete-btn');
+  const title = notification.querySelector('h3');
+
+  editBtn.addEventListener('click', () => {
+    const newTitle = prompt('Edite o lembrete:', title.textContent);
+    if (newTitle) {
+      title.textContent = newTitle;
+    }
+  });
+
+  deleteBtn.addEventListener('click', () => {
+    if (confirm('Deseja apagar este lembrete?')) {
+      notification.remove();
+    }
+  });
+}
+
+// Aplica nas notificações já existentes
+document.querySelectorAll('.notification').forEach(attachActions);
+
+        </script>
 
     </div>
 

@@ -40,6 +40,9 @@ Route::get('/', function () {
 
 /* Transação*/
 Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction.index');
+Route::get('/transaction/receita', [TransactionController::class, 'receita'])->name('transaction.receita');
+Route::get('/transaction/despesa', [TransactionController::class, 'despesa'])->name('transaction.despesa');
+
 /* Metas*/
 Route::get('/goals', [GoalsController::class, 'index'])->name('goals.index');
 Route::post('/goals', [GoalsController::class, 'store'])->name('goals.store');

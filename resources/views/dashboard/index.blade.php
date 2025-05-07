@@ -106,17 +106,53 @@
             <button type="submit">– Despesa</button>
         </form>
     </div>
-
-    <div class="searches">
-        <div class="buttons">
-            <button class="entry" onclick="document.querySelector('.sales form').scrollIntoView({behavior: 'smooth'})">
-                <span class="icon">&#43;</span> Receita
-            </button>
-            <button class="exit" onclick="document.querySelector('.visits form').scrollIntoView({behavior: 'smooth'})">
-                <span class="icon">&#8722;</span> Despesa
-            </button>
+    <div class="searches"> 
+        <div class="buttons" style="display: flex; gap: 10px; justify-content: center;">
+    
+            <!-- Botão Receita -->
+            <a href="{{ route('transaction.receita') }}" 
+               style="
+                    border: 2px solid green; 
+                    color: green; 
+                    padding: 10px 20px; 
+                    border-radius: 20px; 
+                    text-decoration: none; 
+                    font-weight: bold;
+                    font-size: 16px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    transition: background 0.3s;
+               "
+               onmouseover="this.style.background='rgba(0,128,0,0.1)'" 
+               onmouseout="this.style.background='transparent'">
+                <span class="icon">+</span> Receita
+            </a>
+    
+            <!-- Botão Despesa -->
+            <a href="{{ route('transaction.despesa') }}" 
+               style="
+                    border: 2px solid red; 
+                    color: red; 
+                    padding: 10px 20px; 
+                    border-radius: 20px; 
+                    text-decoration: none; 
+                    font-weight: bold;
+                    font-size: 16px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    transition: background 0.3s;
+               "
+               onmouseover="this.style.background='rgba(255,0,0,0.1)'" 
+               onmouseout="this.style.background='transparent'">
+                <span class="icon">−</span> Despesa
+            </a>
+    
         </div>
     </div>
+    
+    
 </div>
 
 

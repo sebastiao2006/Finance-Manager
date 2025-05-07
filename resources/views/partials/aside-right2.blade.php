@@ -27,6 +27,90 @@
     
         </div>
         <!-- End of Nav -->
+
+        <style>
+           
+        
+            .button-container {
+              display: flex;
+              gap: 10px;
+              align-items: center;
+            }
+        
+            .btn {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border: none;
+              cursor: pointer;
+              box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+              transition: background-color 0.3s;
+            }
+        
+            .btn:focus {
+              outline: none;
+            }
+        
+            .btn-text {
+              background-color: white;
+              border-radius: 999px;
+              padding: 10px 20px;
+              color: green;
+              font-weight: normal;
+              font-size: 14px;
+              display: flex;
+              align-items: center;
+              gap: 5px;
+            }
+            .btn.active {
+            background-color: green !important;
+            color: white;
+            }
+
+        
+            .btn-icon {
+              background-color: white;
+              border-radius: 50%;
+              width: 40px;
+              height: 40px;
+              font-size: 20px;
+              color: #555;
+            }
+        
+            .material-icons {
+              font-size: 20px;
+            }
+        
+            .btn-icon:hover, .btn-text:hover {
+              background-color: #f0f0f0;
+            }
+          </style>
+        
+        
+          <div class="button-container">
+            <!-- Botão Nova Receita -->
+            <button class="btn btn-text" id="openModalBtn">
+            <span class="material-icons" style="font-size:18px; color:green;">add</span>
+            <span style="margin-left:5px; white-space: nowrap;">NOVA RECEITA</span>
+            </button>
+
+              
+        
+            <!-- Botão de pesquisa -->
+            <button class="btn btn-icon">
+              <span class="material-icons">search</span>
+            </button>
+        
+            <!-- Botão de filtro -->
+            <button class="btn btn-icon">
+              <span class="material-icons">filter_list</span>
+            </button>
+        
+            <!-- Botão de mais opções -->
+            <button class="btn btn-icon">
+              <span class="material-icons">more_vert</span>
+            </button>
+          </div>
             
             
     
@@ -160,6 +244,8 @@
 }
 
  </style>
+
+
     
    {{--  <style>
     .saldo-container {

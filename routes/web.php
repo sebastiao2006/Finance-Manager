@@ -14,6 +14,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\NewplanningController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SettingsController;
+
 
 
 
@@ -28,6 +30,10 @@ use App\Http\Controllers\DashboardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 /* Dashboard*/
 Route::get('/dashboard', function () {
@@ -64,8 +70,7 @@ Route::delete('/goals/{goal}', [GoalsController::class, 'destroy'])->name('goals
 Route::get('/tip', [tipController::class, 'index'])->name('tip.index');
 /* Definição*/
 Route::get('/kixi', [KixiController::class, 'index'])->name('kixi.index');
-/* Login*/
-Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+
 /* contas */
 Route::get('/account', [AccountController::class, 'index'])->name('account.index');
 Route::post('/account', [AccountController::class, 'store'])->name('account.store');
@@ -84,6 +89,8 @@ Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.in
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
 
 Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
 

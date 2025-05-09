@@ -48,7 +48,7 @@
               <li><a href="#">Dropdown 4</a></li>
             </ul>
           </li>
-          <li><a href="{{ route('dashboard.index') }}">My</a></li>
+          <li><a href="{{ route('login') }}">My</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

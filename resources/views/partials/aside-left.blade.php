@@ -31,7 +31,7 @@
             <span class="material-icons-sharp"> assessment </span>
             <h3>Relatórios</h3>
         </a>
-        <a href="{{ route('tip.index') }}" class="{{ request()->routeIs('settings.index') ? 'active' : '' }}">
+        <a href="#" class="{{ request()->routeIs/* ('settings.index')  */? 'active' : '' }}">
             <span class="material-icons-sharp"> lightbulb </span>
             <h3>Escola de Finanças</h3>
         </a>
@@ -51,9 +51,15 @@
             <span class="material-icons-sharp"> trending_up </span>
             <h3>Desempenho</h3>
         </a>
+
         <a href="{{ route('kixi.index') }}" class="{{ request()->routeIs('kixi.index') ? 'active' : '' }}">
             <span style="font-size: 24px; font-weight: bold; font-family: Arial, sans-serif;"> K </span>
             <h3>Kixikila</h3>
+        </a>
+
+        <a href="{{ route('settings.index') }}" class="{{ request()->routeIs('settings.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> settings </span>
+            <h3>Definições</h3>
         </a>
     </div>
 </aside>

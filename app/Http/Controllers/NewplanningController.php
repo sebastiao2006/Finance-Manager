@@ -10,4 +10,6 @@ class NewplanningController extends Controller
     {
         return view('newplanning.index'); // Ou retorne um JSON se for uma API
     }
+
+    
 }

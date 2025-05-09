@@ -1,31 +1,20 @@
 @extends('layouts.app3')
 @section('title', 'Kivula')
 @section('content')
-  <!-- Ícones do FontAwesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- Ícones do FontAwesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 <main>
+
+
     <div class="planejamento-container">
         <div class="planejamento-left-panel">
             <h2 class="planejamento-title">Hora de planejar!</h2>
             <p class="planejamento-subtitle">Preencha os campos abaixo com seus limites de gastos para cada categoria.</p>
-          
             <h3 class="planejamento-categorias-title">Categorias</h3>
-          
             <div class="planejamento-categorias-scroll">
-              <!-- Categoria Casa -->
-       {{--        <div class="planejamento-category-card">
-                <div class="planejamento-icon planejamento-casa"><i class="fas fa-home"></i></div>
-                <div class="planejamento-details">
-                  <span class="planejamento-category-name">Casa</span>
-                  <div class="planejamento-total">
-                    <label>Total</label>
-                    <div class="planejamento-value">€ 0,00</div>
-                    <input type="text">
-                  </div>
-                </div>
-              </div> --}}
-          
+              
               <!-- Categoria Educação -->
               <div class="planejamento-category-card">
                 <div class="planejamento-icon planejamento-educacao"><i class="fas fa-book"></i></div>
@@ -51,8 +40,8 @@
                   </div>
                 </div>
               </div>
-          
-              <!-- Mais categorias -->
+              
+              <!-- Categoria Transporte -->
               <div class="planejamento-category-card">
                 <div class="planejamento-icon planejamento-transporte"><i class="fas fa-car"></i></div>
                 <div class="planejamento-details">
@@ -65,6 +54,7 @@
                 </div>
               </div>
           
+              <!-- Categoria Saúde -->
               <div class="planejamento-category-card">
                 <div class="planejamento-icon planejamento-saude"><i class="fas fa-heartbeat"></i></div>
                 <div class="planejamento-details">
@@ -77,6 +67,7 @@
                 </div>
               </div>
           
+              <!-- Categoria Alimentação -->
               <div class="planejamento-category-card">
                 <div class="planejamento-icon planejamento-alimentacao"><i class="fas fa-utensils"></i></div>
                 <div class="planejamento-details">
@@ -89,6 +80,7 @@
                 </div>
               </div>
           
+              <!-- Categoria Investimentos -->
               <div class="planejamento-category-card">
                 <div class="planejamento-icon planejamento-investimento"><i class="fas fa-piggy-bank"></i></div>
                 <div class="planejamento-details">
@@ -101,6 +93,7 @@
                 </div>
               </div>
           
+              <!-- Categoria Outros -->
               <div class="planejamento-category-card">
                 <div class="planejamento-icon planejamento-outros"><i class="fas fa-ellipsis-h"></i></div>
                 <div class="planejamento-details">
@@ -114,26 +107,114 @@
               </div>
             </div>
           </div>
-          
 
-        
-    
         <div class="planejamento-right-panel">
           <div class="planejamento-circle"></div>
           <div class="planejamento-summary">
             <h4>Total categorizado</h4>
             <p class="planejamento-amount">€ 0,00</p>
-            <p class="planejamento-uncategorized">€ 8,00 sem categorização</p>
+            <p class="planejamento-uncategorized">€ 0,00 sem categorização</p>
           </div>
     
           <div class="planejamento-tip">
             <p><strong><i class="fas fa-info-circle"></i> Dica:</strong> Para remover ou adicionar categorias ao seu planejamento mensal, clique em “Gerenciar categorias”.</p>
           </div>
     
-          <button class="planejamento-button">GERENCIAR CATEGORIAS</button>
+             <!-- Botão para abrir modal -->
+    <button onclick="openModal()" style="margin: 20px; padding: 10px 20px; background-color: #7d3cff; color: white; border: none; border-radius: 10px; cursor: pointer;">
+      Calcular Economia
+    </button>
         </div>
       </div>
-      
+
+      <!-- Modal -->
+      <div id="economiaModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+        <div style="background:white; padding:30px; border-radius:20px; width:90%; max-width:400px; text-align:center;">
+          <h2>Calcule sua economia</h2>
+          <p>Informe seu salário e a porcentagem que deseja economizar.</p>
+
+          <input type="number" id="salarioInput" placeholder="Salário (€)" style="width:100%; padding:10px; margin:10px 0; border:1px solid #ccc; border-radius:10px;">
+          <input type="number" id="percentualInput" placeholder="% para economizar" style="width:100%; padding:10px; margin:10px 0; border:1px solid #ccc; border-radius:10px;">
+
+          <button onclick="calcularEconomia()" style="background-color:#7d3cff; color:white; padding:10px 20px; border:none; border-radius:10px; cursor:pointer;">Calcular</button>
+          <p id="resultado" style="margin-top:15px; font-weight:bold;"></p>
+
+          <button onclick="closeModal()" style="margin-top:15px; background:none; border:none; color:#7d3cff; cursor:pointer;">Fechar</button>
+        </div>
+      </div>
+
+      <script>
+// Função para abrir o modal
+function openModal() {
+  document.getElementById('economiaModal').style.display = 'flex';
+}
+
+// Função para fechar o modal
+function closeModal() {
+  document.getElementById('economiaModal').style.display = 'none';
+  document.getElementById('resultado').innerText = '';
+}
+
+// Função para atualizar visualmente os valores nas categorias (lado esquerdo)
+function atualizarValoresCategorias() {
+  let inputsCategorias = document.querySelectorAll('.planejamento-total input');
+  let valoresCategorias = document.querySelectorAll('.planejamento-value');
+
+  inputsCategorias.forEach((input, index) => {
+    let valor = parseFloat(input.value.replace(',', '.')) || 0;
+    valoresCategorias[index].innerText = `€ ${valor.toFixed(2)}`;
+  });
+}
+
+// Função principal para calcular a economia
+function calcularEconomia() {
+  let salario = parseFloat(document.getElementById('salarioInput').value);
+  let percentual = parseFloat(document.getElementById('percentualInput').value);
+
+  if (isNaN(salario) || isNaN(percentual)) {
+    alert('Por favor, preencha o salário e a % de economia corretamente!');
+    return;
+  }
+
+  // Pega todos os inputs das categorias
+  let inputsCategorias = document.querySelectorAll('.planejamento-total input');
+  let totalGasto = 0;
+
+  inputsCategorias.forEach(input => {
+    let valor = parseFloat(input.value.replace(',', '.')) || 0; // trata valores vazios ou com vírgula
+    totalGasto += valor;
+  });
+
+  let economia = (salario * percentual) / 100;
+  let restante = salario - totalGasto - economia;
+
+  if (restante < 0) {
+    alert('Atenção! Seus gastos + economia superam o salário.');
+  }
+
+  document.getElementById('resultado').innerText = 
+    `Total para gastar nas categorias: € ${totalGasto.toFixed(2)}\n` +
+    `Você deve economizar: € ${economia.toFixed(2)}\n` +
+    `Sobrará livre: € ${restante.toFixed(2)}`;
+
+  // Atualiza o painel direito
+  document.querySelector('.planejamento-amount').innerText = `€ ${totalGasto.toFixed(2)} gastos`;
+  document.querySelector('.planejamento-uncategorized').innerText = `€ ${economia.toFixed(2)} economizados`;
+
+  // Atualiza valores visuais nas categorias
+  atualizarValoresCategorias();
+}
+
+// Detecta mudança nos inputs e já atualiza valores visuais
+document.addEventListener('DOMContentLoaded', () => {
+  let inputsCategorias = document.querySelectorAll('.planejamento-total input');
+  inputsCategorias.forEach(input => {
+    input.addEventListener('input', atualizarValoresCategorias);
+  });
+});
+
+      </script>
+
  <style>
 
 
@@ -341,6 +422,8 @@
 
 
  </style>
+
 </main>
+
 
 @endsection

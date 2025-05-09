@@ -155,7 +155,7 @@
             <div class="dropdown-content">
                 <a href="{{ route('transaction.despesa') }}"><span class="red"></span> Despesas</a>
                 <a href="{{ route('transaction.receita') }}"><span class="green"></span> Receitas</a>
-                <a href="#"><span class="blue"></span> Transferências</a>
+                <a href="{{ route('transaction.index') }}"><span class="blue"></span> Transferências</a>
             </div>
         </button>
         <div class="left-panel">
@@ -167,29 +167,64 @@
             
 
             
-            <table>
-                <thead>
-                    <tr>
-                        <th>Situação</th>
-                        <th>Data <i class="fas fa-sort-down"></i></th>
-                        <th>Descrição</th>
-                        <th>Categoria</th>
-                        <th>Conta</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
+            
+<!-- Filtro -->
+{{-- <form method="GET" action="{{ route('transaction.despesa') }}">
+    <label>Mês:</label>
+    <select name="month">
+        @for ($m = 1; $m <= 12; $m++)
+            <option value="{{ $m }}" {{ $m == $month ? 'selected' : '' }}>{{ $m }}</option>
+        @endfor
+    </select>
 
-                    <tr>
+    <label>Ano:</label>
+    <select name="year">
+        @for ($y = date('Y'); $y >= 2020; $y--)
+            <option value="{{ $y }}" {{ $y == $year ? 'selected' : '' }}>{{ $y }}</option>
+        @endfor
+    </select>
+
+    <button type="submit">Filtrar</button>
+</form>
+ --}}
+<table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Situação</th>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Conta</th>
+            <th>Valor</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($transactions as $transaction)
+            <tr>
+                <td>{{ ucfirst($transaction->status ?? 'efectuada') }}</td>
+                <td>{{ $transaction->created_at->format('d/m/Y') }}</td>
+                <td>{{ $transaction->description ?? '-' }}</td>
+                <td>{{ $transaction->category ?? '-' }}</td>
+                <td>{{ $transaction->account ?? '-' }}</td>
+                <td>{{ number_format($transaction->value, 2, ',', '.') }} kz</td>
+                <td>
+                      <!-- Botão de Editar -->
+                      <a href="{{ route('transaction.edit', $transaction->id) }}"><i class="fas fa-edit"></i> </a>|
                         
-                        <td colspan="7" class="no-results">                                <!-- Imagem adicionada diretamente acima da palavra "Nenhum resultado" -->
-                            <div class="image-placeholder">
-                                {{-- <img src="assets/img/result.svg"  alt="Imagem de placeholder" /> --}}
-                            </div>Nenhum resultado</td>
-                    </tr>
-                </tbody>
-            </table>
+                      <!-- Formulário de Exclusão -->
+                      <form action="{{ route('transaction.destroy', $transaction->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" style="background:none; border:none; color:rgb(72, 72, 72); cursor:pointer;">
+                              <i class="fas fa-trash-alt"></i>
+                          </button>
+                      </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
             <!-- Barra de separação colocada ao final do painel -->
             <div class="horizontal-bar"></div>
         </div>
@@ -197,8 +232,8 @@
 
     <script>
         const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-        let currentMonth = 3; 
-        let currentYear = 2025;
+        let currentMonth = {{ $month - 1 }};
+        let currentYear = {{ $year }};
 
         function changeMonth(direction) {
             currentMonth += direction;
@@ -209,7 +244,9 @@
                 currentMonth = 0;
                 currentYear++;
             }
-            document.getElementById("month").innerHTML = `<b>${months[currentMonth]}</b> ${currentYear}`;
+
+            let selectedMonth = currentMonth + 1; // Laravel espera 1-12
+            window.location.href = `?month=${selectedMonth}&year=${currentYear}`;
         }
     </script>
 </main>

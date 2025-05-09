@@ -40,8 +40,18 @@ Route::get('/', function () {
 
 /* Transação*/
 Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction.index');
+// Listar Receita
 Route::get('/transaction/receita', [TransactionController::class, 'receita'])->name('transaction.receita');
 Route::get('/transaction/despesa', [TransactionController::class, 'despesa'])->name('transaction.despesa');
+
+// Rota para editar
+Route::get('/transaction/edit/{id}', [TransactionController::class, 'edit'])->name('transaction.edit');
+
+// Rota para excluir
+Route::delete('/transaction/destroy/{transaction}', [TransactionController::class, 'destroy'])->name('transaction.destroy');
+
+
+
 
 /* Metas*/
 Route::get('/goals', [GoalsController::class, 'index'])->name('goals.index');

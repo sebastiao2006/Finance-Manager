@@ -19,8 +19,11 @@ class TransactionController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
     
-        return view('transaction.receita', compact('transactions', 'month', 'year'));
+        $months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    
+        return view('transaction.receita', compact('transactions', 'month', 'year', 'months'));
     }
+    
     
     public function despesa(Request $request)
     {
@@ -32,8 +35,9 @@ class TransactionController extends Controller
             ->whereYear('created_at', $year)
             ->orderBy('created_at', 'desc')
             ->get();
+            $months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
     
-        return view('transaction.despesa', compact('transactions', 'month', 'year'));
+            return view('transaction.despesa', compact('transactions', 'month', 'year', 'months'));
     }
     
 

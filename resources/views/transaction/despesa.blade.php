@@ -161,7 +161,7 @@
         <div class="left-panel">
             <div class="month-selector">
                 <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
-                <span id="month"><b>Abril</b> 2025</span> <!-- Apenas o mês em negrito -->
+                <span id="month"><b>{{ $months[$month - 1] }}</b> {{ $year }}</span>
                 <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
             

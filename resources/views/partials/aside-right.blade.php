@@ -68,6 +68,17 @@
             window.location.href = "{{ route('dashboard.index') }}" + "?month=" + mes;
         });
     </script>
+    <script>
+      function salvarSaldoLocal() {
+          const saldoValor = document.getElementById('saldoValor').innerText.replace(/\./g, '').replace(',', '.');
+          const mesSelecionado = document.getElementById('mesSelect').value;
+          localStorage.setItem('mesSelecionado', mesSelecionado);
+          localStorage.setItem(mesSelecionado, saldoValor);
+      }
+  
+      document.addEventListener('DOMContentLoaded', salvarSaldoLocal);
+  </script>
+  
     
 
   

@@ -130,15 +130,19 @@
 
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
-                  const saldoAtual = document.querySelector('.info-box strong');
-                  const mesSelecionado = localStorage.getItem('mesSelecionado') || 'janeiro';
-                  const valorSalvo = localStorage.getItem(mesSelecionado) || '0,00';
-              
-                  if (saldoAtual) {
-                    saldoAtual.textContent = `€ ${valorSalvo}`;
-                  }
+                    const saldoAtual = document.querySelector('.info-box strong');
+                    const mesSelecionado = localStorage.getItem('mesSelecionado') || 'janeiro';
+                    let valorSalvo = localStorage.getItem(mesSelecionado) || '0.00';
+            
+                    // Converte para formato "0,00"
+                    valorSalvo = parseFloat(valorSalvo).toFixed(2).replace('.', ',');
+            
+                    if (saldoAtual) {
+                        saldoAtual.textContent = `€ ${valorSalvo}`;
+                    }
                 });
-              </script>
+            </script>
+            
               
 
         

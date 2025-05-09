@@ -78,6 +78,10 @@ Route::delete('/account/{id}', [AccountController::class, 'destroy'])->name('acc
 
 /* Planejamento*/
 Route::get('/planning', [PlanningController::class, 'index'])->name('planning.index');
+
+Route::get('/planning/list', [App\Http\Controllers\PlanningController::class, 'list'])->name('planning.list');
+Route::post('/planning/store', [App\Http\Controllers\PlanningController::class, 'store'])->name('planning.store');
+
 /* Novo Planejamento*/
 Route::get('/newplanning', [NewplanningController::class, 'index'])->name('newplanning.index');
 /* Relatorio*/

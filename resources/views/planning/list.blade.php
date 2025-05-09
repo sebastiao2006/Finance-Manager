@@ -226,13 +226,3 @@
 
     </main>
 @endsection
-
-
-
-
-
-
-
-
-
-

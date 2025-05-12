@@ -44,4 +44,17 @@ class PlanningController extends Controller
     
             return redirect()->route('planning.index')->with('success', 'Planejamento salvo com sucesso!');
         }
+
+                public function destroy($id)
+        {
+            // Encontrar o planejamento a ser apagado
+            $planning = Planning::findOrFail($id);
+
+            // Apagar o planejamento
+            $planning->delete();
+
+            // Redirecionar de volta com uma mensagem de sucesso
+            return redirect()->route('planning.index')->with('success', 'Planejamento excluído com sucesso!');
+        }
+
 }

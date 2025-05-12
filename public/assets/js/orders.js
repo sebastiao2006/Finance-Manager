@@ -1,4 +1,4 @@
-const Orders = [
+/* const Orders = [
     {
         productName: 'JavaScript Tutorial',
         productNumber: '85743',
@@ -17,4 +17,4 @@ const Orders = [
         paymentStatus: 'Paid',
         status: 'Active'
     },
-]
+] */

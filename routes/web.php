@@ -81,6 +81,7 @@ Route::get('/planning', [PlanningController::class, 'index'])->name('planning.in
 
 Route::get('/planning/list', [App\Http\Controllers\PlanningController::class, 'list'])->name('planning.list');
 Route::post('/planning/store', [App\Http\Controllers\PlanningController::class, 'store'])->name('planning.store');
+Route::delete('/planning/{id}', [PlanningController::class, 'destroy'])->name('planning.destroy');
 
 /* Novo Planejamento*/
 Route::get('/newplanning', [NewplanningController::class, 'index'])->name('newplanning.index');

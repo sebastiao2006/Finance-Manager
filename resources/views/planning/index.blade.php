@@ -151,78 +151,85 @@
             }
         </style>
 
-        <div class="painel">
-            <button id="transacoes-btn"><i class="fas fa-chevron-down"></i> Planejamento Mensal
-                <div class="dropdown-content">
-                    <a href="#">Planejamento Personalizado</a>
-                </div>
-            </button>
-            <div class="left-panel">
-                <div class="month-selector">
-                    <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <span id="month"><b>Abril</b> 2025</span>
-                    <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
-                </div>
+<div class="painel">
+  <button id="transacoes-btn"><i class="fas fa-chevron-down"></i> Planejamento Mensal
+      <div class="dropdown-content">
+          <a href="#">Planejamento Personalizado</a>
+      </div>
+  </button>
+  <div class="left-panel">
+      <div class="month-selector">
+          <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+          <span id="month"><b>Abril</b> 2025</span>
+          <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
 
-                @if($plannings->isEmpty())
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td colspan="7" class="no-results">
-                                    <div class="image-placeholder">
-                                        <img src="assets/img/result.svg" alt="Imagem de placeholder" />
-                                    </div>
-                                    <a>Nenhum Planejamento</a>
-                                    <a href="#" class="no-results-button" class="btn-open" onclick="abrirModal()">Adicionar Novo Planejamento</a>
-                                    <a href=""><p style="margin-top: 10px">Copiar Planejamento do mês anterior</p></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                @else
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Categorias</th>
-                                <th>Valor</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($plannings as $planning)
-                                <tr>
-                                    <td>{{ $planning->category }}</td>
-                                    <td>€ {{ number_format($planning->amount, 2, ',', '.') }}</td>
-                                    <td>
-                                        <!-- Adicione ações aqui, por exemplo, editar ou excluir -->
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @endif
+      @if($plannings->isEmpty())
+          <table>
+              <tbody>
+                  <tr>
+                      <td colspan="7" class="no-results">
+                          <div class="image-placeholder">
+                              <img src="assets/img/result.svg" alt="Imagem de placeholder" />
+                          </div>
+                          <a>Nenhum Planejamento</a>
+                          <a href="{{ route('newplanning.index') }}" class="no-results-button" class="btn-open" onclick="abrirModal()">Adicionar Novo Planejamento</a>
+                          <a href=""><p style="margin-top: 10px">Copiar Planejamento do mês anterior</p></a>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      @else
+          <table>
+              <thead>
+                  <tr>
+                      <th>Categorias</th>
+                      <th>Valor</th>
+                      <th>Status</th> <!-- Nova coluna -->
+                      <th>Ações</th>  <!-- Coluna de Ações -->
+                  </tr>
+              </thead>
+              <tbody>
+                  @foreach($plannings as $planning)
+                      <tr>
+                          <td>{{ $planning->category }}</td>
+                          <td>€ {{ number_format($planning->amount, 2, ',', '.') }}</td>
+                          <td>{{ $planning->status ?? 'pago' }}</td> <!-- Status com valor default -->
+                          <td>
+                              <!-- Ação de Apagar -->
+                              <form action="{{ route('planning.destroy', $planning->id) }}" method="POST" style="display:inline;">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este planejamento?')" class="btn btn-danger">Excluir</button>
+                              </form>
+                          </td>
+                      </tr>
+                  @endforeach
+              </tbody>
+          </table>
+      @endif
 
-                <div class="horizontal-bar"></div>
-            </div>
-        </div>
+      <div class="horizontal-bar"></div>
+  </div>
+</div>
 
-        <script>
-            const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-            let currentMonth = 3;
-            let currentYear = 2025;
+<script>
+  const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+  let currentMonth = 3;
+  let currentYear = 2025;
 
-            function changeMonth(direction) {
-                currentMonth += direction;
-                if (currentMonth < 0) {
-                    currentMonth = 11;
-                    currentYear--;
-                } else if (currentMonth > 11) {
-                    currentMonth = 0;
-                    currentYear++;
-                }
-                document.getElementById("month").innerHTML = `<b>${months[currentMonth]}</b> ${currentYear}`;
-            }
-        </script>
+  function changeMonth(direction) {
+      currentMonth += direction;
+      if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear--;
+      } else if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear++;
+      }
+      document.getElementById("month").innerHTML = `<b>${months[currentMonth]}</b> ${currentYear}`;
+  }
+</script>
 
     </main>
 @endsection

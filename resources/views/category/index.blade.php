@@ -6,7 +6,7 @@
     <style>
         table {
             margin-top: 50px;
-            width: 145%;
+            width: 100%;
             border-collapse: collapse;
             background: white;
             border-radius: 10px;
@@ -39,20 +39,19 @@
         .actions .delete {
             color: red;
         }
-        
+
         #transacoes-btn {
             background-color: #0f62e4;
-            margin-top: 10px; /* Reduzi a margem superior para aproximar o botão do painel */
+            margin-top: 10px;
             color: white;
-            padding: 15px 30px; /* Aumentei o tamanho do botão */
-            border-radius: 25px; /* Aumentei o arredondamento */
+            padding: 15px 30px;
+            border-radius: 25px;
             display: inline-block;
             border: none;
             cursor: pointer;
-            font-size: 16px; /* Aumentei o tamanho da fonte */
+            font-size: 16px;
         }
 
-        /* Menu suspenso */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -65,7 +64,7 @@
         }
 
         .dropdown-content a {
-            color: black; /* Texto preto */
+            color: black;
             padding: 10px;
             text-decoration: none;
             display: flex;
@@ -97,9 +96,40 @@
             background-color: blue;
         }
 
-        /* Mostrar o menu suspenso quando o botão for clicado */
         #transacoes-btn:hover .dropdown-content {
             display: block;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                display: none;
+            }
+            tr {
+                margin-bottom: 15px;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                padding: 10px;
+            }
+            td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+            }
         }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -122,10 +152,10 @@
         </thead>
         <tbody>
             <tr>
-                <td>Alimentação</td>
-                <td class="icon"><i class="fas fa-utensils"></i></td>
-                <td><span class="color-circle" style="background: red;"></span></td>
-                <td class="actions">
+                <td data-label="Nome">Alimentação</td>
+                <td data-label="Ícone" class="icon"><i class="fas fa-utensils"></i></td>
+                <td data-label="Cor"><span class="color-circle" style="background: red;"></span></td>
+                <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
                     <i class="fas fa-archive"></i>
@@ -133,10 +163,10 @@
                 </td>
             </tr>
             <tr>
-                <td>Assinatura</td>
-                <td class="icon"><i class="fas fa-dollar-sign"></i></td>
-                <td><span class="color-circle" style="background: purple;"></span></td>
-                <td class="actions">
+                <td data-label="Nome">Assinatura</td>
+                <td data-label="Ícone" class="icon"><i class="fas fa-dollar-sign"></i></td>
+                <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
+                <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
                     <i class="fas fa-archive"></i>
@@ -144,10 +174,10 @@
                 </td>
             </tr>
             <tr>
-                <td>Casa</td>
-                <td class="icon"><i class="fas fa-home"></i></td>
-                <td><span class="color-circle" style="background: blue;"></span></td>
-                <td class="actions">
+                <td data-label="Nome">Casa</td>
+                <td data-label="Ícone" class="icon"><i class="fas fa-home"></i></td>
+                <td data-label="Cor"><span class="color-circle" style="background: blue;"></span></td>
+                <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
                     <i class="fas fa-archive"></i>
@@ -155,10 +185,10 @@
                 </td>
             </tr>
             <tr>
-                <td>Compras</td>
-                <td class="icon"><i class="fas fa-dollar-sign"></i></td>
-                <td><span class="color-circle" style="background: purple;"></span></td>
-                <td class="actions">
+                <td data-label="Nome">Compras</td>
+                <td data-label="Ícone" class="icon"><i class="fas fa-dollar-sign"></i></td>
+                <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
+                <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
                     <i class="fas fa-archive"></i>
@@ -166,10 +196,10 @@
                 </td>
             </tr>
             <tr>
-                <td>Educação</td>
-                <td class="icon"><i class="fas fa-book"></i></td>
-                <td><span class="color-circle" style="background: purple;"></span></td>
-                <td class="actions">
+                <td data-label="Nome">Educação</td>
+                <td data-label="Ícone" class="icon"><i class="fas fa-book"></i></td>
+                <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
+                <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
                     <i class="fas fa-archive"></i>
@@ -177,10 +207,10 @@
                 </td>
             </tr>
             <tr>
-                <td>Lazer</td>
-                <td class="icon"><i class="fas fa-umbrella-beach"></i></td>
-                <td><span class="color-circle" style="background: orange;"></span></td>
-                <td class="actions">
+                <td data-label="Nome">Lazer</td>
+                <td data-label="Ícone" class="icon"><i class="fas fa-umbrella-beach"></i></td>
+                <td data-label="Cor"><span class="color-circle" style="background: orange;"></span></td>
+                <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
                     <i class="fas fa-archive"></i>
@@ -188,10 +218,10 @@
                 </td>
             </tr>
             <tr>
-                <td>Operação bancária</td>
-                <td class="icon"><i class="fas fa-dollar-sign"></i></td>
-                <td><span class="color-circle" style="background: purple;"></span></td>
-                <td class="actions">
+                <td data-label="Nome">Operação bancária</td>
+                <td data-label="Ícone" class="icon"><i class="fas fa-dollar-sign"></i></td>
+                <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
+                <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
                     <i class="fas fa-archive"></i>
@@ -199,20 +229,18 @@
                 </td>
             </tr>
             <tr>
-                <td>Outros</td>
-                <td class="icon"><i class="fas fa-ellipsis-h"></i></td>
-                <td><span class="color-circle" style="background: gray;"></span></td>
-                <td class="actions">
+                <td data-label="Nome">Outros</td>
+                <td data-label="Ícone" class="icon"><i class="fas fa-ellipsis-h"></i></td>
+                <td data-label="Cor"><span class="color-circle" style="background: gray;"></span></td>
+                <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
                     <i class="fas fa-archive"></i>
                     <i class="fas fa-plus-circle delete"></i>
                 </td>
             </tr>
-
         </tbody>
     </table>
-
 </main>
 
 @endsection

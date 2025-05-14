@@ -249,6 +249,41 @@
           margin: 5px 0;
           color: #003087;
         }
+
+        @media (max-width: 768px) {
+  .simulator .row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .simulator .purpose {
+    flex-wrap: wrap;
+  }
+
+  .simulator .purpose div {
+    flex: 1 1 45%;
+    margin: 5px;
+  }
+
+  .simulator .circle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .simulator .circle .amount {
+    font-size: 20px;
+  }
+
+  .simulator button {
+    width: 100%;
+  }
+
+  .simulator {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
       </style>
 
       

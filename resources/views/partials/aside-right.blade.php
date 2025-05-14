@@ -146,41 +146,94 @@
 
     <div class="reminders">
         <div class="header">
-          <h2>Lembretes</h2>
+          <h2>Dicas</h2>
           <span class="material-icons-sharp">notifications_none</span>
         </div>
       
-        <div class="notification">
+        <div class="finance-tip">
           <div class="icon">
-            <span class="material-icons-sharp">volume_up</span>
+            <span class="material-icons-sharp">savings</span>
           </div>
           <div class="content">
             <div class="info">
-              <h3>Tarefas</h3>
-              <small class="text_muted">08:00 AM - 12:00 PM</small>
+              <h3>Dica Financeira</h3>
+              <p class="tip-text">Reserve pelo menos 10% da sua renda mensal para uma poupança de emergência.</p>
+              <small class="text-muted">Atualizado: 08:00 AM</small>
             </div>
-            <div class="actions">
-              <span class="material-icons-sharp edit-btn">edit</span>
-              <span class="material-icons-sharp delete-btn">delete</span>
-            </div>
+  
           </div>
         </div>
+<style>
+  .finance-tip {
+  display: flex;
+  align-items: center;
+  background-color: #f0f8ff;
+  border-left: 5px solid #4caf50;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.finance-tip .icon {
+  margin-right: 1rem;
+  color: #4caf50;
+}
+
+.finance-tip .content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.finance-tip .info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.finance-tip .tip-text {
+  margin: 0.3rem 0;
+  color: #555;
+}
+
+.text-muted {
+  color: #888;
+  font-size: 0.8rem;
+}
+
+.actions .material-icons-sharp {
+  cursor: pointer;
+  margin-left: 0.5rem;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.actions .material-icons-sharp:hover {
+  color: #000;
+}
+
+  </style>        
       
-        <div class="notification deactive">
-          <div class="icon">
-            <span class="material-icons-sharp">edit</span>
-          </div>
-          <div class="content">
-            <div class="info">
-              <h3>Metas</h3>
-              <small class="text_muted">08:00 AM - 12:00 PM</small>
-            </div>
-            <div class="actions">
-              <span class="material-icons-sharp edit-btn">edit</span>
-              <span class="material-icons-sharp delete-btn">delete</span>
-            </div>
+      <div class="finance-tip deactive">
+        <div class="icon">
+          <span class="material-icons-sharp">lightbulb</span>
+        </div>
+        <div class="content">
+          <div class="info">
+            <h3>Dica Arquivada</h3>
+            <p class="tip-text">Evite compras por impulso: espere 24 horas antes de decidir por uma aquisição não planejada.</p>
+            <small class="text-muted">Atualizado: 08:00 AM</small>
           </div>
         </div>
+      </div>
+      
+
+      
+      <style>
+        
+      </style>
       
         <div class="notification add-reminder">
           <div>

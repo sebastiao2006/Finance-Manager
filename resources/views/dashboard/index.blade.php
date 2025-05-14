@@ -186,8 +186,8 @@
             font-weight: bold;
         }
         .pizza {
-            width: 400px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
             padding: 15px;
             border-radius: 10px;
             display: flex;
@@ -220,30 +220,19 @@
 
     <!-- New Users Section -->
     <div class="new-users">
-        <h2>Despesas por Categoria</h2>
+        <h2>Despesas e Receitas</h2>
         <div class="user-list">
             <div class="pizza">
                 <canvas id="grafico"></canvas>
                 <div class="legenda">
-                    <div><span class="cor" style="background: rgb(0, 128, 32);"></span> Educação - 650,00 kz</div>
-                    <div><span class="cor" style="background: blue;"></span> Casa - 276,00 kz</div>
-                    <div><span class="cor" style="background: red;"></span> Alimentação - 220,00 kz</div>
-                    <div><span class="cor" style="background: gray;"></span> Outros - 290,00 kz</div>
+                    <div><span class="cor" style="background: #0a53d1;"></span> Receitas - {{ number_format($entradas, 2, ',', '.') }} Kz</div>
+                    <div><span class="cor" style="background: #fb573b;"></span> Despesas - {{ number_format($saidas, 2, ',', '.') }} Kz</div>
                 </div>
             </div>
-            <div class="user">
-                <img src="{{ asset('assets/img/bic.png') }}" alt="Profile Image">
-                <h2>BIC</h2>
-                <p>54 Min Ago</p>
-            </div>
-            <div class="user">
-                <img src="{{ asset('assets/img/bfa.png') }}" alt="Profile Image">
-                <h2>BAI</h2>
-                <p>3 Hours Ago</p>
-            </div>
         </div>
-        
     </div>
+
+    
     <!-- End of New Users Section -->
 
     <!-- Recent Orders Table -->
@@ -272,16 +261,15 @@
     new Chart(ctx, {
         type: 'doughnut',
         data: {
-            /* labels: ['Educação', 'Casa', 'Alimentação', 'Outros'], */
+            labels: ['Receitas', 'Despesas'], // Definindo os rótulos para receita e despesa
             datasets: [{
-                data: [650, 276, 220, 290],
-                backgroundColor: ['#0a53d1', '#00745c', '#c59e07', '#fb573b']
-
+                data: [{{ $entradas }}, {{ $saidas }}], // Dados de receitas e despesas
+                backgroundColor: ['#0a53d1', '#fb573b'] // Cores para cada categoria
             }]
         },
         options: {
-            responsive: false,
-            maintainAspectRatio: true
+            responsive: true, // Tornar o gráfico responsivo
+            maintainAspectRatio: false
         }
     });
 </script>

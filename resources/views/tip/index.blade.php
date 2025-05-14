@@ -65,6 +65,39 @@
       justify-content: flex-end;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .tabela-container {
+        padding: 15px;
+        margin: 30px 10px;
+      }
+
+      .tabela-container h2 {
+        font-size: 18px;
+      }
+
+      .periodo-info {
+        font-size: 14px;
+      }
+
+      .tabela th, .tabela td {
+        font-size: 12px;
+        padding: 10px;
+      }
+
+      .paginacao {
+        justify-content: center;
+        font-size: 12px;
+      }
+
+      .tabela {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
     }
   </style>
 
@@ -90,26 +123,23 @@
 
         @foreach($meses as $numMes => $nomeMes)
           @php
-            // Comparar se o mês é maior ou igual ao mês atual
-            $mesAtualTest = Carbon\Carbon::createFromFormat('Y-m', '2025-'.$numMes); // Cria o mês de 2025
+            $mesAtualTest = Carbon\Carbon::createFromFormat('Y-m', '2025-'.$numMes);
           @endphp
 
-          @if($mesAtualTest->gte($mesAtual) || $numMes == $mesAtual->month) {{-- Verifica se o mês é o atual ou futuro --}}
+          @if($mesAtualTest->gte($mesAtual) || $numMes == $mesAtual->month)
             @php
-              // Procurar receita do mês corrente
               $receitaDoMes = $receitasPorMes->firstWhere('mes', $numMes);
               $totalReceita = $receitaDoMes ? $receitaDoMes->total : 0;
 
-              // Procurar despesa do mês corrente
               $despesaDoMes = $despesasPorMes->firstWhere('mes', $numMes);
               $totalDespesa = $despesaDoMes ? $despesaDoMes->total : 0;
             @endphp
             <tr>
               <td>{{ $nomeMes }} 2025</td>
-              <td>kz 0,00</td> {{-- Transferências de entrada, caso queira adicionar esse dado --}}
-              <td>kz 0,00</td> {{-- Transferências de saída, caso queira adicionar esse dado --}}
-              <td>{{ number_format($totalReceita, 2, ',', '.') }} kz</td> {{-- RECEITA DINÂMICA AQUI --}}
-              <td>{{ number_format($totalDespesa, 2, ',', '.') }} kz</td> {{-- DESPESA DINÂMICA AQUI --}}
+              <td>kz 0,00</td>
+              <td>kz 0,00</td>
+              <td>{{ number_format($totalReceita, 2, ',', '.') }} kz</td>
+              <td>{{ number_format($totalDespesa, 2, ',', '.') }} kz</td>
             </tr>
           @endif
         @endforeach
@@ -123,6 +153,5 @@
       <button>❯</button>
     </div>
   </div>
-
 </main>
 @endsection

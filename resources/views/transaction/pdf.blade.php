@@ -83,7 +83,7 @@
         <img src="{{ public_path('img/bai.png') }}" class="logo" alt="">
         <div>
             <p><strong>EXTRACTO INTEGRADO</strong></p>
-            <p>ILUNGA DOS SANTOS NELUMBA</p>
+            <p><strong>Utilizador:</strong> {{ auth()->user()->name ?? 'Nome do Usuário' }}</p>
             <p>ANGOLA</p>
         </div>
     </div>

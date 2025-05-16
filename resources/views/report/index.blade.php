@@ -162,7 +162,7 @@
         }
 
         .toggle-button {
-            background: #5a1ed8;
+            background: #0f62e4;
             border: none;
             border-radius: 50px;
             padding: 10px 20px;
@@ -209,9 +209,9 @@
     
 
         <div class="left-panel">
-            <div class="month-selector">
+             <div class="month-selector">
                 <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
-                <span id="month"><b>Abril</b> 2025</span>
+                <span id="month"><b>{{ $months[$month - 1] }}</b> {{ $year }}</span>
                 <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
 
@@ -222,7 +222,7 @@
                             <div class="image-placeholder">
                                 <img src="assets/img/result1.svg" alt="Imagem de placeholder" />
                             </div>
-                            <a>Nenhum Planejamento</a>
+                            <a>Nenhum Relatorio</a>
  
                         </td>
                     </tr>
@@ -233,10 +233,11 @@
         </div>
     </div>
 
+ 
     <script>
         const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-        let currentMonth = 3;
-        let currentYear = 2025;
+        let currentMonth = {{ $month - 1 }};
+        let currentYear = {{ $year }};
 
         function changeMonth(direction) {
             currentMonth += direction;
@@ -247,7 +248,9 @@
                 currentMonth = 0;
                 currentYear++;
             }
-            document.getElementById("month").innerHTML = `<b>${months[currentMonth]}</b> ${currentYear}`;
+
+            let selectedMonth = currentMonth + 1; // Laravel espera 1-12
+            window.location.href = `?month=${selectedMonth}&year=${currentYear}`;
         }
     </script>
 </main>

@@ -102,8 +102,8 @@
             <td>{{ $transaction->type ?? 'Transferência Bancária' }}</td>
         </tr>
         <tr>
-            <td class="label">Destinatário</td>
-            <td>{{ strtoupper($transaction->recipient ?? 'Ilunga Nelumba') }}</td>
+            <td class="label">Emissor</td>
+            <td>{{ auth()->user()->name ?? 'Nome do Usuário' }}</td>
         </tr>
         <tr>
             <td class="label">IBAN</td>

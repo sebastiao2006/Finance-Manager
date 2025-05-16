@@ -8,14 +8,36 @@ use Illuminate\Http\Request;
 
 class PlanningController extends Controller
 {
-   public function index()
+public function index(Request $request)
 {
-    // Obtém todos os planejamentos
-    $plannings = Planning::all(); 
+    $month = $request->query('month', date('n')); // Mês numérico (1–12)
+    $year = $request->query('year', date('Y'));   // Ano
 
-    // Retorna a view 'planning.index' passando os planejamentos
-    return view('planning.index', compact('plannings'));
+    // Array de meses
+    $months = [
+        1 => 'janeiro',
+        2 => 'fevereiro',
+        3 => 'março',
+        4 => 'abril',
+        5 => 'maio',
+        6 => 'junho',
+        7 => 'julho',
+        8 => 'agosto',
+        9 => 'setembro',
+        10 => 'outubro',
+        11 => 'novembro',
+        12 => 'dezembro',
+    ];
+
+    // Filtra planejamentos pelo mês e ano
+    $plannings = Planning::whereMonth('created_at', $month)
+        ->whereYear('created_at', $year)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('planning.index', compact('plannings', 'months', 'month', 'year'));
 }
+
 
 
         // Exibe a lista de planejamentos
@@ -60,12 +82,36 @@ class PlanningController extends Controller
 
 
 
-        public function exportPdf()
-        {
-            $plannings = Planning::all(); // ou algum filtro, ex: do mês atual
+     public function exportPdf(Request $request)
+{
+    $month = $request->query('month', date('n')); // Mês numérico
+    $year = $request->query('year', date('Y'));   // Ano
 
-            $pdf = Pdf::loadView('planning.pdf', compact('plannings'));
-            return $pdf->download('planejamento.pdf');
-        }
+    // Filtra os planejamentos por mês e ano
+    $plannings = Planning::whereMonth('created_at', $month)
+        ->whereYear('created_at', $year)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    $months = [
+        1 => 'janeiro',
+        2 => 'fevereiro',
+        3 => 'março',
+        4 => 'abril',
+        5 => 'maio',
+        6 => 'junho',
+        7 => 'julho',
+        8 => 'agosto',
+        9 => 'setembro',
+        10 => 'outubro',
+        11 => 'novembro',
+        12 => 'dezembro',
+    ];
+
+    $monthName = $months[$month];
+
+    $pdf = Pdf::loadView('planning.pdf', compact('plannings', 'month', 'year', 'monthName'));
+    return $pdf->download("planejamento_{$month}_{$year}.pdf");
+}
 
 }

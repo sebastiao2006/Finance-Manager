@@ -87,6 +87,8 @@
         <h1>Planejamento Mensal</h1>
         <div style="text-align: right;">
             <p><strong>Data:</strong> {{ date('d/m/Y') }}</p>
+            <h3>Planejamento - {{ ucfirst($monthName) }} de {{ $year }}</h3>
+
         </div>
     </div>
 

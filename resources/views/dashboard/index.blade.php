@@ -5,6 +5,9 @@
 <!-- Main Content -->
 <main>
     <h1>Analytics</h1>
+
+
+
     <!-- Analyses -->
 
 {{--     <video autoplay loop muted playsinline id="background-video">
@@ -71,6 +74,7 @@
                 <img src="assets/img/income.svg" alt="Imagem de entradas" />
             </div>
         </div>
+        
 
         <!-- Formulário Receita -->
         <form method="POST" action="{{ route('transactions.store') }}">

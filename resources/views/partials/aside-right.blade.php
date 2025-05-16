@@ -23,9 +23,10 @@
     <!-- Perfil com clique -->
     <div class="profile" onclick="toggleUserMenu()" style="cursor: pointer;">
       <div class="info">
-          <p>Hey, <b>Reza</b></p>
-          <small class="text-muted">Admin</small>
-      </div>
+    <p>Olá, <b>{{ Auth::user()->name }}</b></p>
+    {{-- <small class="text-muted">Admin</small> --}}
+</div>
+
       <div class="profile-photo">
           <img src="images/profile-1.jpg">
       </div>
@@ -70,31 +71,59 @@
         
 
     <div class="user-profile">
-        <div class="saldo-container">
-            <div class="saldo-header">
-                <select id="mesSelect" style="font-size: 18px; font-weight: bold;">
-                    @php
-                        $meses = [
-                            'janeiro', 'fevereiro', 'marco', 'abril', 'maio', 'junho',
-                            'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
-                        ];
-                    @endphp
-                    @foreach ($meses as $mes)
-                        <option value="{{ $mes }}" {{ strtolower($month) == $mes ? 'selected' : '' }}>
-                            {{ ucfirst($mes) }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-    
-            <p class="saldo-descricao">Saldo até o fim de {{ ucfirst($month) }}</p>
-            <p class="saldo-valor">
-                <span id="saldoValor" contenteditable="true" inputmode="decimal">
-                    {{ number_format($saldo, 2, ',', '.') }}
-                </span>
-                <span> Kz</span>
-            </p>
+        <form method="GET" action="{{ route('dashboard.index') }}" id="filtroForm">
+    <div class="saldo-container">
+        <div class="saldo-header" style="display: flex; align-items: center; gap: 10px;">
+            @php
+                $meses = [
+                    1 => 'janeiro', 2 => 'fevereiro', 3 => 'março', 4 => 'abril',
+                    5 => 'maio', 6 => 'junho', 7 => 'julho', 8 => 'agosto',
+                    9 => 'setembro', 10 => 'outubro', 11 => 'novembro', 12 => 'dezembro'
+                ];
+            @endphp
+
+            <!-- Mês -->
+            <select name="month" id="mesSelect" style="font-size: 18px; font-weight: bold;">
+                @foreach ($meses as $num => $nome)
+                    <option value="{{ $num }}" {{ $num == $month ? 'selected' : '' }}>
+                        {{ ucfirst($nome) }}
+                    </option>
+                @endforeach
+            </select>
+
+            <!-- Ano -->
+            <select name="year" id="anoSelect" style="font-size: 18px; font-weight: bold;">
+                @foreach(range(date('Y') - 5, date('Y')) as $y)
+                    <option value="{{ $y }}" {{ $y == $year ? 'selected' : '' }}>
+                        {{ $y }}
+                    </option>
+                @endforeach
+            </select>
         </div>
+
+        <!-- Descrição -->
+        <p class="saldo-descricao">Saldo até o fim de {{ $meses[intval($month)] }}</p>
+
+        <!-- Valor -->
+        <p class="saldo-valor">
+            <span id="saldoValor" contenteditable="true" inputmode="decimal">
+                {{ number_format($saldo, 2, ',', '.') }}
+            </span>
+            <span> Kz</span>
+        </p>
+    </div>
+</form>
+
+<!-- JavaScript para envio automático do formulário -->
+<script>
+    document.getElementById('mesSelect').addEventListener('change', function () {
+        document.getElementById('filtroForm').submit();
+    });
+    document.getElementById('anoSelect').addEventListener('change', function () {
+        document.getElementById('filtroForm').submit();
+    });
+</script>
+
     </div>
     
     <script>

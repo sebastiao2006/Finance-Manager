@@ -183,15 +183,17 @@
                 <a href="#">Planejamento Personalizado</a>
             </div>
         </button>
+ 
 
-        <a href="{{ route('planning.export.pdf') }}" class="no-results-button" style="margin: 20px 10px 10px auto; padding: 8px 16px; font-size: 14px; width: fit-content; display: block;">Exportar PDF</a>
+        <a href="{{ route('planning.export.pdf', ['month' => $month, 'year' => $year]) }}" class="no-results-button" style="margin: 20px 10px 10px auto; padding: 8px 16px; font-size: 14px; width: fit-content; display: block;">Exportar PDF</a>
 
         <div class="left-panel">
             <div class="month-selector">
-                <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
-                <span id="month"><b>Abril</b> 2025</span>
-                <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
-            </div>
+    <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+    <span id="month"><b>{{ $months[$month] }}</b> {{ $year }}</span>
+    <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+</div>
+
 
             @if($plannings->isEmpty())
                 <table>
@@ -249,11 +251,10 @@
             <div class="horizontal-bar"></div>
         </div>
     </div>
-
-    <script>
+  <script>
         const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-        let currentMonth = 3;
-        let currentYear = 2025;
+        let currentMonth = {{ $month - 1 }};
+        let currentYear = {{ $year }};
 
         function changeMonth(direction) {
             currentMonth += direction;
@@ -264,7 +265,9 @@
                 currentMonth = 0;
                 currentYear++;
             }
-            document.getElementById("month").innerHTML = `<b>${months[currentMonth]}</b> ${currentYear}`;
+
+            let selectedMonth = currentMonth + 1; // Laravel espera 1-12
+            window.location.href = `?month=${selectedMonth}&year=${currentYear}`;
         }
     </script>
 </main>

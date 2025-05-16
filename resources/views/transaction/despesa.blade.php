@@ -209,18 +209,22 @@
                 <td>{{ $transaction->account ?? '-' }}</td>
                 <td>{{ number_format($transaction->value, 2, ',', '.') }} kz</td>
                 <td>
-                      <!-- Botão de Editar -->
-                      <a href="{{ route('transaction.edit', $transaction->id) }}"><i class="fas fa-edit"></i> </a>|
-                        
-                      <!-- Formulário de Exclusão -->
-                      <form action="{{ route('transaction.destroy', $transaction->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir?')">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" style="background:none; border:none; color:rgb(72, 72, 72); cursor:pointer;">
-                              <i class="fas fa-trash-alt"></i>
-                          </button>
-                      </form>
+                    <!-- Editar -->
+                    <a href="{{ route('transaction.edit', $transaction->id) }}"><i class="fas fa-edit"></i></a> |
+                
+                    <!-- Baixar PDF -->
+                    <a href="{{ route('transaction.download', $transaction->id) }}" title="Baixar PDF"><i class="fas fa-file-pdf" style="color: red;"></i></a> |
+                
+                    <!-- Excluir -->
+                    <form action="{{ route('transaction.destroy', $transaction->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" style="background:none; border:none; color:rgb(72, 72, 72); cursor:pointer;">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
                 </td>
+                
             </tr>
         @endforeach
     </tbody>

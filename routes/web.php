@@ -55,6 +55,10 @@ Route::get('/transaction/edit/{id}', [TransactionController::class, 'edit'])->na
 
 // Rota para excluir
 Route::delete('/transaction/destroy/{transaction}', [TransactionController::class, 'destroy'])->name('transaction.destroy');
+Route::get('/transactions/pdf', [TransactionController::class, 'exportPdf'])->name('transaction.pdf');
+Route::get('/transactions/{id}/pdf', [TransactionController::class, 'exportSinglePdf'])->name('transaction.pdf.single');
+Route::get('/transactions/{id}/download', [TransactionController::class, 'downloadPdf'])->name('transaction.download');
+
 
 
 

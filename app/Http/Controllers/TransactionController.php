@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+
 
 
 class TransactionController extends Controller
@@ -101,6 +104,38 @@ public function destroy(Transaction $transaction)
         return redirect()->route('transaction.despesa')->with('success', 'Transação excluída com sucesso.');
     }
 }
+
+public function exportPdf()
+{
+    $transactions = Transaction::all();
+
+    $pdf = Pdf::loadView('transaction.pdf', compact('transactions'));
+
+    return $pdf->download('transacoes.pdf');
+}
+
+public function exportSinglePdf($id)
+{
+    $transaction = Transaction::findOrFail($id);
+
+    if ($transaction->type !== 'receita') {
+        abort(403, 'Apenas receitas podem ser exportadas.');
+    }
+
+    $pdf = Pdf::loadView('transaction.receita_pdf_single', compact('transaction'));
+    return $pdf->download('receita_' . $transaction->id . '.pdf');
+}
+
+
+public function downloadPdf($id)
+{
+    $transaction = Transaction::findOrFail($id);
+
+    $pdf = Pdf::loadView('transaction.despesa_pdf_single', compact('transaction'));
+
+    return $pdf->download('despesa_' . $transaction->id . '.pdf');
+}
+
 
 
 }

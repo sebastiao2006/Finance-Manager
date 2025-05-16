@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app6')
 @section('title', 'Kivula')
 @section('content')
 
@@ -348,6 +348,20 @@
                 <a href="{{ route('transaction.index') }}"><span class="blue"></span> Transferências</a>
             </div>
         </button>
+
+        <div style="text-align: right; margin-bottom: 20px;">
+            <a href="{{ route('transaction.pdf') }}" target="_blank" class="btn-pdf" style="
+                background-color: #e53935;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 20px;
+                text-decoration: none;
+                font-weight: bold;
+            ">
+                <i class="fas fa-file-pdf"></i> Baixar PDF
+            </a>
+        </div>
+        
 
         <div class="left-panel">
 

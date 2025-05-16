@@ -211,6 +211,12 @@
                     <td>
                         <!-- Botão de Editar -->
                         <a href="{{ route('transaction.edit', $transaction->id) }}"><i class="fas fa-edit"></i> </a>|
+                                  
+                        @if($transaction->type === 'receita')
+                        <a href="{{ route('transaction.pdf.single', $transaction->id) }}" target="_blank">
+                            <i class="fas fa-file-pdf" style="color: red;"></i>
+                        </a> |
+                    @endif
                         
                         <!-- Formulário de Exclusão -->
                         <form action="{{ route('transaction.destroy', $transaction->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir?')">
@@ -220,6 +226,8 @@
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </form>
+              
+
                         
                     </td>
                 </tr>

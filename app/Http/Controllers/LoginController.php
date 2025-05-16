@@ -7,47 +7,48 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
-    // Exibe o formulário de login
-    public function showLoginForm()
-    {
-        return view('login');
+
+public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        // Regenera a sessão por segurança
+        $request->session()->regenerate();
+
+        return redirect()->route('dashboard.index');
     }
 
-    // Processa o login
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+    return back()->withErrors([
+        'email' => 'Credenciais inválidas.',
+    ]);
+}
 
-        // Email e senha predefinidos
-        $validEmail = 'admin@example.com';
-        $validPassword = '123456'; // senha simples para exemplo
-
-        if ($request->email === $validEmail && $request->password === $validPassword) {
-            // Login bem-sucedido -> armazena na sessão
-            Session::put('user', $validEmail);
-            return redirect()->route('dashboard.index');
-        } else {
-            return back()->withErrors(['email' => 'Credenciais inválidas.']);
-        }
-    }
-
-    // Dashboard protegido
-    public function dashboard()
-    {
-        if (!Session::has('user')) {
-            return redirect()->route('login');
-        }
-
-        return view('dashboard.index');
-    }
-
-    // Logout
-    public function logout()
-    {
-        Session::forget('user');
+public function dashboard()
+{
+    if (!auth()->check()) {
         return redirect()->route('login');
     }
+
+    return view('dashboard.index');
+}
+
+public function logout(Request $request)
+{
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect()->route('login');
+}
+
+public function showLoginForm()
+{
+    return view('login'); // ou 'auth.login', dependendo do seu blade
+}
+
+
 }

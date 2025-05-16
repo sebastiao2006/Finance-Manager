@@ -43,7 +43,8 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -52,11 +53,13 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registration</span>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button type="button">Sign Up</button>
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
             </form>
+            
         </div>
 
         <div class="form-container sign-in">

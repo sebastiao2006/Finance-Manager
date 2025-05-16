@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\GoalsController;
@@ -15,6 +16,9 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\NewplanningController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingsController;
+
+
+
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\AboutController as AdminAboutController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
@@ -42,6 +46,8 @@ use App\Http\Controllers\Admin\PortfolioController as AdminPortfolioController;
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
+
 
 /* Dashboard*/
 Route::get('/dashboard', function () {

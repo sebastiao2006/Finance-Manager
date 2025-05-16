@@ -1,8 +1,10 @@
+
+   
 @extends('layouts.app2')
 @section('title', 'Kivula')
 @section('content')
 <main>
-    <style>
+   <style>
         .left-panel {
             flex: 3;
             background: white;
@@ -196,7 +198,6 @@
     </style>
 
     <div class="painel">
-        
         <div class="toggle-container" id="toggleContainer">
             <button class="toggle-button" onclick="toggleMenu()">
                 <i class="fas fa-chart-pie"></i>
@@ -206,34 +207,38 @@
                 <i class="fas fa-chart-bar"></i>
             </div>
         </div>
-    
 
         <div class="left-panel">
-             <div class="month-selector">
+            <div class="month-selector">
                 <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
-                <span id="month"><b>{{ $months[$month - 1] }}</b> {{ $year }}</span>
+                <span id="month"><b>{{ $months[$month] }}</b> {{ $year }}</span>
                 <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
 
-            <table>
-                <tbody>
-                    <tr>
-                        <td colspan="7" class="no-results">
-                            <div class="image-placeholder">
-                                <img src="assets/img/result1.svg" alt="Imagem de placeholder" />
-                            </div>
-                            <a>Nenhum Relatorio</a>
- 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            @if($planning->isEmpty())
+                <table>
+                    <tbody>
+                        <tr>
+                            <td colspan="7" class="no-results">
+                                <div class="image-placeholder">
+                                    <img src="assets/img/result1.svg" alt="Imagem de placeholder" />
+                                </div>
+                                <a>Nenhum Relatório</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            @else
+                <div style="max-width: 400px; margin: 40px auto;">
+                    <canvas id="planningChart"></canvas>
+                </div>
+
+            @endif
 
             <div class="horizontal-bar"></div>
         </div>
     </div>
 
- 
     <script>
         const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
         let currentMonth = {{ $month - 1 }};
@@ -248,12 +253,70 @@
                 currentMonth = 0;
                 currentYear++;
             }
-
-            let selectedMonth = currentMonth + 1; // Laravel espera 1-12
+            let selectedMonth = currentMonth + 1;
             window.location.href = `?month=${selectedMonth}&year=${currentYear}`;
         }
     </script>
+
+    {{-- Inclui o Chart.js (essencial) --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+    @if(!$planning->isEmpty())
+<script>
+    const planningData = {
+        labels: {!! json_encode($planning->pluck('category')) !!},
+        datasets: [{
+            label: 'Planejamento por Categoria',
+            data: {!! json_encode($planning->pluck('amount')) !!},
+            backgroundColor: [
+                '#4CAF50', '#FF9800', '#F44336', '#2196F3', '#9C27B0',
+                '#3F51B5', '#009688', '#CDDC39', '#FFC107', '#795548'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'pie',
+        data: planningData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        boxWidth: 20,
+                        padding: 15
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const value = context.raw;
+                            return `${context.label}: kz ${value.toLocaleString('pt-AO', { minimumFractionDigits: 2 })}`;
+                        }
+                    }
+                },
+                datalabels: {
+                    formatter: function(value) {
+                        return 'kz ' + value.toLocaleString('pt-AO', { minimumFractionDigits: 2 });
+                    },
+                    color: '#ffffff',
+                    font: {
+                        weight: 'bold',
+                        size: 7,
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    };
+
+    new Chart(document.getElementById('planningChart'), config);
+</script>
+
+
+    @endif
 </main>
-
-
 @endsection

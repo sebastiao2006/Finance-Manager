@@ -183,6 +183,9 @@
                 <a href="#">Planejamento Personalizado</a>
             </div>
         </button>
+
+        <a href="{{ route('planning.export.pdf') }}" class="no-results-button" style="margin: 20px 10px 10px auto; padding: 8px 16px; font-size: 14px; width: fit-content; display: block;">Exportar PDF</a>
+
         <div class="left-panel">
             <div class="month-selector">
                 <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
@@ -229,6 +232,8 @@
                                     </span>
                                 </td>
                                 <td>
+                                    
+
                                     <form action="{{ route('planning.destroy', $planning->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')

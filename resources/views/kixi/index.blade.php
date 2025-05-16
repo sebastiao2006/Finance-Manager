@@ -21,6 +21,40 @@
                 <div><i data-lucide="home" class="icon"></i> Habitação</div>
                 </div>
 
+                <style>
+                 /*  .purpose div {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 10px 16px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: background 0.3s, border-color 0.3s;
+                  } */
+
+                  .purpose div:hover {
+                    background-color: #f5f5f5;
+                  }
+
+                  .purpose .selected {
+                    background-color: #007bff;
+                    color: white;
+                    border-color: #007bff;
+                  }
+
+                </style>
+
+                  <script>
+                    document.querySelectorAll('.purpose div').forEach(item => {
+                      item.addEventListener('click', () => {
+                        document.querySelectorAll('.purpose div').forEach(i => i.classList.remove('selected'));
+                        item.classList.add('selected');
+                      });
+                    });
+                  </script>
+
+
                 <!-- Ative os ícones depois que o DOM carregar -->
                 <script>
                 lucide.createIcons();
@@ -42,6 +76,12 @@
               <input type="range" min="50000" max="2000000" step="10000" value="1699113" id="monthly">
             </div>
           </div>
+
+          <div class="slider-group">
+            <label>Quantas pessoas vão participar? <span class="value" id="peopleValue">5 pessoas</span></label>
+            <input type="range" min="2" max="50" step="1" value="5" id="people">
+          </div>
+          
       
           <div class="result">
            {{--  <p class="monthly-info">*Simulação de prestação com valores indicativos. Para uma simulação completa, deve imprimir o documento completo em faça download da sua simulação, para tomar conhecimento dos termos e condições integrais do financiamento.</p> --}}
@@ -286,30 +326,59 @@
 
       </style>
 
-      
-
 <script>
-    const amount = document.getElementById('amount');
-    const term = document.getElementById('term');
-    const monthly = document.getElementById('monthly');
-    const amountValue = document.getElementById('amountValue');
-    const termValue = document.getElementById('termValue');
-    const monthlyValue = document.getElementById('monthlyValue');
-    const monthlyDisplay = document.getElementById('monthlyDisplay');
-  
-    amount.addEventListener('input', () => {
-      amountValue.textContent = Number(amount.value).toLocaleString('pt-PT') + ' AKZ';
-    });
-  
-    term.addEventListener('input', () => {
-      termValue.textContent = term.value + ' meses';
-    });
-  
-    monthly.addEventListener('input', () => {
-      const formatted = Number(monthly.value).toLocaleString('pt-PT') + ' AKZ';
-      monthlyValue.textContent = formatted;
-      monthlyDisplay.textContent = formatted + '*';
-    });
-  </script>
+  const amount = document.getElementById('amount');
+  const term = document.getElementById('term');
+  const monthly = document.getElementById('monthly');
+  const people = document.getElementById('people');
+
+  const amountValue = document.getElementById('amountValue');
+  const termValue = document.getElementById('termValue');
+  const monthlyValue = document.getElementById('monthlyValue');
+  const monthlyDisplay = document.getElementById('monthlyDisplay');
+  const peopleValue = document.getElementById('peopleValue');
+
+  // Atualizar valor do input de "Quanto precisa?"
+  amount.addEventListener('input', () => {
+    amountValue.textContent = Number(amount.value).toLocaleString('pt-PT') + ' AKZ';
+    updateMonthly(); // recalcular com base na quantidade de pessoas
+  });
+
+  // Atualizar valor do input de "Prazo"
+  term.addEventListener('input', () => {
+    termValue.textContent = term.value + ' meses';
+  });
+
+  // Atualizar valor do input de "Número de pessoas"
+  people.addEventListener('input', () => {
+    const qtd = Number(people.value);
+    peopleValue.textContent = `${qtd} ${qtd === 1 ? 'pessoa' : 'pessoas'}`;
+    updateMonthly();
+  });
+
+  // Atualizar valor do input de "Mensalidade"
+  monthly.addEventListener('input', () => {
+    const formatted = Number(monthly.value).toLocaleString('pt-PT') + ' AKZ';
+    monthlyValue.textContent = formatted;
+    monthlyDisplay.textContent = formatted + '*';
+  });
+
+  function updateMonthly() {
+    const total = Number(amount.value);
+    const numPeople = Number(people.value);
+    const monthlyAmount = total / numPeople;
+    const rounded = Math.round(monthlyAmount);
+
+    monthly.value = rounded;
+    const formatted = rounded.toLocaleString('pt-PT') + ' AKZ';
+    monthlyValue.textContent = formatted;
+    monthlyDisplay.textContent = formatted + '*';
+  }
+
+  // Rodar cálculo inicial
+  updateMonthly();
+</script>
+
+
 </main>
 @endsection

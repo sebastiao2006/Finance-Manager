@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Planning; // Adicione esta linha
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Illuminate\Http\Request;
 
@@ -55,6 +56,16 @@ class PlanningController extends Controller
 
             // Redirecionar de volta com uma mensagem de sucesso
             return redirect()->route('planning.index')->with('success', 'Planejamento excluído com sucesso!');
+        }
+
+
+
+        public function exportPdf()
+        {
+            $plannings = Planning::all(); // ou algum filtro, ex: do mês atual
+
+            $pdf = Pdf::loadView('planning.pdf', compact('plannings'));
+            return $pdf->download('planejamento.pdf');
         }
 
 }

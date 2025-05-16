@@ -43,10 +43,10 @@
             <span class="material-icons-sharp"> category </span>
             <h3>Categoria</h3>
         </a>
-        <a href="{{ route('calendar.index') }}" class="{{ request()->routeIs('calendar.index') ? 'active' : '' }}">
+       {{--  <a href="{{ route('calendar.index') }}" class="{{ request()->routeIs('calendar.index') ? 'active' : '' }}">
             <span class="material-icons-sharp"> calendar_today </span>
             <h3>Calendário</h3>
-        </a>
+        </a> --}}
         <a href="{{ route('tip.index') }}" class="{{ request()->routeIs('tip.index') ? 'active' : '' }}">
             <span class="material-icons-sharp"> trending_up </span>
             <h3>Desempenho</h3>

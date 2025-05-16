@@ -4,32 +4,67 @@
         
 <!-- Right Section -->
 <div class="right-section">
-    <div class="nav">
-        <button id="menu-btn">
-            <span class="material-icons-sharp">
-                menu
-            </span>
-        </button>
-        <div class="dark-mode">
-            <span class="material-icons-sharp active">
-                light_mode
-            </span>
-            <span class="material-icons-sharp">
-                dark_mode
-            </span>
-        </div>
+  <div class="nav" style="position: relative;">
+    <button id="menu-btn">
+        <span class="material-icons-sharp">
+            menu
+        </span>
+    </button>
 
-        <div class="profile">
-            <div class="info">
-                <p>Hey, <b>Reza</b></p>
-                <small class="text-muted">Admin</small>
-            </div>
-            <div class="profile-photo">
-                <img src="images/profile-1.jpg">
-            </div>
-        </div>
-
+    <div class="dark-mode">
+        <span class="material-icons-sharp active">
+            light_mode
+        </span>
+        <span class="material-icons-sharp">
+            dark_mode
+        </span>
     </div>
+
+    <!-- Perfil com clique -->
+    <div class="profile" onclick="toggleUserMenu()" style="cursor: pointer;">
+      <div class="info">
+          <p>Hey, <b>Reza</b></p>
+          <small class="text-muted">Admin</small>
+      </div>
+      <div class="profile-photo">
+          <img src="images/profile-1.jpg">
+      </div>
+  </div>
+  
+  <div id="userDropdown" style="display: none; position: absolute; top: 60px; right: 20px; background-color: white; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); width: 180px; z-index: 999;">
+      <ul style="list-style: none; margin: 0; padding: 10px;">
+          <li><a href="/perfil" style="display: block; padding: 10px; color: #333; text-decoration: none;">Perfil</a></li>
+          <li><a href="/notificacoes" style="display: block; padding: 10px; color: #333; text-decoration: none;">Notificações</a></li>
+          <li>
+              <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button type="submit" style="background-color: transparent; border: none; display: block; width: 100%; padding: 10px; text-align: left; color: #333; cursor: pointer;">
+                      Logout
+                  </button>
+              </form>
+          </li>
+      </ul>
+  </div>
+  
+</div>
+
+<script>
+  function toggleUserMenu() {
+      const dropdown = document.getElementById('userDropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+
+  // Fecha o menu ao clicar fora
+  window.addEventListener('click', function (event) {
+      const dropdown = document.getElementById('userDropdown');
+      const profile = document.querySelector('.profile');
+
+      if (!profile.contains(event.target) && !dropdown.contains(event.target)) {
+          dropdown.style.display = 'none';
+      }
+  });
+</script>
+
     <!-- End of Nav -->
         
         

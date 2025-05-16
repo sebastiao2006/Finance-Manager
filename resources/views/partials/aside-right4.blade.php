@@ -520,23 +520,131 @@ background-color: #046c4e;
       <!-- Descrição -->
       <input type="text" class="input-line" placeholder="Descrição">
 
-      <!-- Categoria -->
-      <div class="select">
-        <div class="label">
-          <span class="material-icons" style="color: purple;">star_border</span>
-          <span class="badge">Bonificação</span>
-        </div>
-        <span class="material-icons">expand_more</span>
-      </div>
+    <!-- Categoria -->
+<div class="select" style="position: relative; cursor: pointer; user-select: none;" id="categoriaSelect">
+  <div class="label">
+    <span class="material-icons" style="color: purple;">category</span>
+    <span class="badge" id="categoriaSelecionada">Categoria</span>
+  </div>
+  <span class="material-icons">expand_more</span>
 
-      <!-- Conta -->
-      <div class="select">
-        <div class="label">
-          <span class="material-icons" style="color: red;">whatshot</span>
-          <span class="badge badge-red">wqqw</span>
-        </div>
-        <span class="material-icons">expand_more</span>
-      </div>
+  <!-- Opções de categoria -->
+  <ul class="category-options" style="
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    z-index: 10;
+  ">
+    <li class="categoria-item" style="padding: 10px 20px; cursor: pointer;">Alimentação</li>
+    <li class="categoria-item" style="padding: 10px 20px; cursor: pointer;">Transporte</li>
+    <li class="categoria-item" style="padding: 10px 20px; cursor: pointer;">Educação</li>
+    <li class="categoria-item" style="padding: 10px 20px; cursor: pointer;">Lazer</li>
+    <li class="categoria-item" style="padding: 10px 20px; cursor: pointer;">Casa</li>
+    <li class="categoria-item" style="padding: 10px 20px; cursor: pointer;">Saúde</li>
+    <li class="categoria-item" style="padding: 10px 20px; cursor: pointer;">Outros</li>
+  </ul>
+</div>
+
+<script>
+  const select = document.getElementById('categoriaSelect');
+  const options = select.querySelector('.category-options');
+  const displayText = document.getElementById('categoriaSelecionada');
+  const items = select.querySelectorAll('.categoria-item');
+
+  // Abrir/fechar dropdown
+  select.addEventListener('click', (e) => {
+    options.style.display = options.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Selecionar uma categoria
+  items.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation(); // evita reabrir o menu
+      displayText.textContent = item.textContent;
+      options.style.display = 'none';
+    });
+  });
+
+  // Fechar dropdown ao clicar fora
+  document.addEventListener('click', function (e) {
+    if (!select.contains(e.target)) {
+      options.style.display = 'none';
+    }
+  });
+</script>
+
+
+<!-- Conta / Banco -->
+<div class="select" style="position: relative; cursor: pointer; user-select: none;" id="bancoSelect">
+  <div class="label">
+    <span class="material-icons" style="color: red;">account_balance</span>
+    <span class="badge badge-red" id="bancoSelecionado">Banco</span>
+  </div>
+  <span class="material-icons">expand_more</span>
+
+  <!-- Opções de conta/banco -->
+  <ul class="banco-options" style="
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    z-index: 10;
+  ">
+    <li class="banco-item" style="padding: 10px 20px; cursor: pointer;">Caixa</li>
+    <li class="banco-item" style="padding: 10px 20px; cursor: pointer;">Banco do Brasil</li>
+    <li class="banco-item" style="padding: 10px 20px; cursor: pointer;">Nubank</li>
+    <li class="banco-item" style="padding: 10px 20px; cursor: pointer;">Itaú</li>
+    <li class="banco-item" style="padding: 10px 20px; cursor: pointer;">Santander</li>
+    <li class="banco-item" style="padding: 10px 20px; cursor: pointer;">Carteira</li>
+    <li class="banco-item" style="padding: 10px 20px; cursor: pointer;">Outros</li>
+  </ul>
+</div>
+
+<script>
+  const bancoSelect = document.getElementById('bancoSelect');
+  const bancoOptions = bancoSelect.querySelector('.banco-options');
+  const bancoTexto = document.getElementById('bancoSelecionado');
+  const bancoItems = bancoSelect.querySelectorAll('.banco-item');
+
+  // Abrir/fechar dropdown
+  bancoSelect.addEventListener('click', () => {
+    bancoOptions.style.display = bancoOptions.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Selecionar banco
+  bancoItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation(); // Evita reabrir o menu
+      bancoTexto.textContent = item.textContent;
+      bancoOptions.style.display = 'none';
+    });
+  });
+
+  // Fechar dropdown ao clicar fora
+  document.addEventListener('click', function (e) {
+    if (!bancoSelect.contains(e.target)) {
+      bancoOptions.style.display = 'none';
+    }
+  });
+</script>
+
 
       <!-- Anexar -->
       <div class="info-line">

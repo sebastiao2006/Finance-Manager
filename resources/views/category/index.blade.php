@@ -147,6 +147,7 @@
                 <th>Nome</th>
                 <th>Ícone</th>
                 <th>Cor</th>
+                <th>Valor</th> <!-- NOVO -->
                 <th>Ações</th>
             </tr>
         </thead>
@@ -155,6 +156,7 @@
                 <td data-label="Nome">Alimentação</td>
                 <td data-label="Ícone" class="icon"><i class="fas fa-utensils"></i></td>
                 <td data-label="Cor"><span class="color-circle" style="background: red;"></span></td>
+                <td data-label="Valor">kz 250,00</td> <!-- NOVO -->
                 <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
@@ -166,6 +168,7 @@
                 <td data-label="Nome">Assinatura</td>
                 <td data-label="Ícone" class="icon"><i class="fas fa-dollar-sign"></i></td>
                 <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
+                <td data-label="Valor">kz 89,90</td> <!-- NOVO -->
                 <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
@@ -177,6 +180,7 @@
                 <td data-label="Nome">Casa</td>
                 <td data-label="Ícone" class="icon"><i class="fas fa-home"></i></td>
                 <td data-label="Cor"><span class="color-circle" style="background: blue;"></span></td>
+                <td data-label="Valor">kz 1.200,00</td> <!-- NOVO -->
                 <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
@@ -188,6 +192,7 @@
                 <td data-label="Nome">Compras</td>
                 <td data-label="Ícone" class="icon"><i class="fas fa-dollar-sign"></i></td>
                 <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
+                <td data-label="Valor">kz 560,00</td> <!-- NOVO -->
                 <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
@@ -199,6 +204,7 @@
                 <td data-label="Nome">Educação</td>
                 <td data-label="Ícone" class="icon"><i class="fas fa-book"></i></td>
                 <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
+                <td data-label="Valor">kz 300,00</td> <!-- NOVO -->
                 <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
@@ -210,6 +216,7 @@
                 <td data-label="Nome">Lazer</td>
                 <td data-label="Ícone" class="icon"><i class="fas fa-umbrella-beach"></i></td>
                 <td data-label="Cor"><span class="color-circle" style="background: orange;"></span></td>
+                <td data-label="Valor">kz 150,00</td> <!-- NOVO -->
                 <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
@@ -221,6 +228,7 @@
                 <td data-label="Nome">Operação bancária</td>
                 <td data-label="Ícone" class="icon"><i class="fas fa-dollar-sign"></i></td>
                 <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
+                <td data-label="Valor">kz 45,00</td> <!-- NOVO -->
                 <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
@@ -232,6 +240,7 @@
                 <td data-label="Nome">Outros</td>
                 <td data-label="Ícone" class="icon"><i class="fas fa-ellipsis-h"></i></td>
                 <td data-label="Cor"><span class="color-circle" style="background: gray;"></span></td>
+                <td data-label="Valor">kz 99,00</td> <!-- NOVO -->
                 <td data-label="Ações" class="actions">
                     <i class="far fa-file"></i>
                     <i class="fas fa-pencil-alt"></i>
@@ -241,6 +250,7 @@
             </tr>
         </tbody>
     </table>
+    
 </main>
 
 @endsection

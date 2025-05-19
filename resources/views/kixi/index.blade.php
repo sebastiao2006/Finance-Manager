@@ -94,13 +94,142 @@
                 <div>TAEG<br><strong>38,02%</strong></div>
               </div>
             </div>
-            <button>Pedir Contacto</button>
+            <div style="margin-top: 20px;">
+              <button id="saveSimulation"> Salvar Simulação</button>
+              <button id="generatePdf"> Gerar PDF da Simulação</button>
+            </div>
+
+
+
             <div class="links">
               <div> Faça já download da sua simulação</div>
             </div>
           </div>
         </div>
       </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+ <script>
+  function formatCurrency(value) {
+    return new Intl.NumberFormat('pt-AO', {
+      style: 'currency',
+      currency: 'AOA'
+    }).format(value);
+  }
+
+  document.getElementById('generatePdf').addEventListener('click', async () => {
+    const data = JSON.parse(localStorage.getItem('kixikila_simulacao'));
+
+    if (!data) {
+      alert('Nenhuma simulação salva encontrada.');
+      return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const blue = [0, 102, 204];
+    const gray = [90, 90, 90];
+
+    // Cabeçalho azul
+    doc.setFillColor(...blue);
+    doc.rect(0, 0, 210, 20, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(14);
+    doc.text('SIMULAÇÃO KIXIKILA', 105, 13, { align: 'center' });
+
+    // Dados do cliente/simulação
+    doc.setFontSize(11);
+    doc.setTextColor(...gray);
+    doc.text(`Data: ${new Date().toLocaleDateString()}`, 15, 30);
+    doc.text(`Simulador: Sistema Kixikila`, 15, 36);
+    doc.text(`Referência: #${Math.floor(Math.random() * 1000000)}`, 15, 42);
+
+    // RESUMO
+    doc.setFillColor(...blue);
+    doc.setTextColor(255, 255, 255);
+    doc.rect(0, 50, 210, 8, 'F');
+    doc.text('RESUMO', 15, 56);
+
+    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+    doc.text(`Finalidade: ${data.finalidade}`, 15, 65);
+    doc.text(`Valor Necessário: ${data.valor}`, 15, 72);
+    doc.text(`Prazo: ${data.prazo}`, 15, 79);
+    doc.text(`Mensalidade: ${data.mensalidade}`, 15, 86);
+    doc.text(`Participantes: ${data.participantes}`, 15, 93);
+
+    // DETALHE
+    doc.setFillColor(...blue);
+    doc.setTextColor(255, 255, 255);
+    doc.rect(0, 105, 210, 8, 'F');
+    doc.text('DETALHE', 15, 111);
+
+    // Tabela simples com campos simulados
+    const headers = ['Data', 'Descrição', 'Débito', 'Crédito', 'Saldo'];
+    const rows = [
+      ['2025-05-16', 'Valor Total', data.valor, '', data.valor],
+      ['2025-05-16', 'Mensalidade', data.mensalidade, '', data.mensalidade],
+      ['2025-05-16', 'Participantes', '', data.participantes, data.mensalidade],
+    ];
+
+    let startY = 120;
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+
+    // Cabeçalho da tabela
+    headers.forEach((h, i) => {
+      doc.text(h, 15 + i * 40, startY);
+    });
+
+    startY += 6;
+
+    // Linhas
+    rows.forEach((row) => {
+      row.forEach((cell, i) => {
+        doc.text(cell.toString(), 15 + i * 40, startY);
+      });
+      startY += 6;
+    });
+
+    // Rodapé
+    doc.setFontSize(8);
+    doc.setTextColor(100, 100, 100);
+    doc.text("*Esta simulação é apenas ilustrativa. Consulte os termos reais com a cooperativa.", 15, 280);
+
+    doc.save("simulacao_kixikila.pdf");
+  });
+</script>
+
+
+
+      <script>
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('pt-AO', { style: 'currency', currency: 'AOA' }).format(value);
+    }
+
+    document.getElementById('saveSimulation').addEventListener('click', () => {
+      const selectedPurpose = document.querySelector('.purpose .selected')?.innerText || '';
+      const amount = document.getElementById('amount').value;
+      const term = document.getElementById('term').value;
+      const monthly = document.getElementById('monthly').value;
+      const people = document.getElementById('people').value;
+
+      const simulationData = {
+        finalidade: selectedPurpose,
+        valor: formatCurrency(amount),
+        prazo: `${term} meses`,
+        mensalidade: formatCurrency(monthly),
+        participantes: `${people} pessoas`
+      };
+
+      localStorage.setItem('kixikila_simulacao', JSON.stringify(simulationData));
+      alert('Simulação salva com sucesso!');
+    });
+    </script>
+
 
       <style>
         .simulator {

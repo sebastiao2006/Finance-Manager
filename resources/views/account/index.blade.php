@@ -247,7 +247,7 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
     <div class="novaconta">
       <span class="close-btn" onclick="document.querySelector('.novaconta-overlay').classList.remove('active')">&times;</span>
       <h2>Nova conta</h2>
-      <input class="valor-input" type="text" value="€ 0,00">
+      <input class="valor-input" type="text" value="kz 0,00">
 
       <div class="form-group">
         <label>Instituição financeira</label>
@@ -293,169 +293,199 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
     </div>
   </div>
 
-   <style>
-   
-    .btn-nova-conta {
-      margin: 2rem;
-      padding: 10px 24px;
-      background-color: #7f3dff;
-      color: white;
-      border: none;
-      border-radius: 999px;
-      font-size: 16px;
-      cursor: pointer;
-    }
 
-    .novaconta-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: rgba(0, 0, 0, 0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
+<style>
+  .novaconta-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
 
-    .novaconta-overlay.active {
-      display: flex;
-    }
+  .novaconta-overlay.active {
+    display: flex;
+  }
 
-    .novaconta {
-      background-color: #fff;
-      border-radius: 20px;
-      width: 460px;
-      padding: 32px;
-      position: relative;
-      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
-    }
+  .novaconta {
+    background-color: #fff;
+    border-radius: 20px;
+    width: 460px;
+    padding: 32px;
+    position: relative;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', sans-serif;
+  }
 
-    .novaconta h2 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
+  .novaconta h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
 
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      font-size: 20px;
-      color: #555;
-      cursor: pointer;
-    }
+  .close-btn {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+  }
 
-    .valor-input {
-      font-size: 24px;
-      border: none;
-      border-bottom: 2px solid #7f3dff;
-      outline: none;
-      width: 100%;
-      margin-bottom: 24px;
-      color: #7f3dff;
-    }
+  .valor-input {
+    font-size: 28px;
+    border: none;
+    border-bottom: 2px solid #7f3dff;
+    outline: none;
+    width: 100%;
+    margin-bottom: 28px;
+    color: #7f3dff;
+    font-weight: 500;
+    padding-left: 0;
+    background: transparent;
+  }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+  .valor-input::placeholder {
+    color: #7f3dff;
+  }
 
-    .form-group label {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 6px;
-      color: #666;
-    }
+  .form-group {
+    margin-bottom: 24px;
+  }
 
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-bottom: 1px solid #ccc;
-      font-size: 16px;
-      outline: none;
-    }
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: #888;
+  }
 
-    .instituicao {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      cursor: pointer;
-    }
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    background: transparent;
+  }
 
-    .instituicao img {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-    }
+  .instituicao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+  }
 
-    .cores {
-      display: flex;
-      gap: 12px;
-      margin: 10px 0;
-    }
+  .instituicao img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
 
-    .cores .cor {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
+  .cores {
+    display: flex;
+    gap: 12px;
+    margin: 10px 0;
+  }
 
-    .cor.ativa {
-      border-color: #000;
-    }
+  .cores .cor {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
 
-    .outros {
-      background: #f0f0f0;
-      border-radius: 999px;
-      padding: 4px 12px;
-      display: inline-block;
-      font-size: 12px;
-      margin-top: 8px;
-      color: #555;
-    }
+  .cor.ativa {
+    border-color: #000;
+  }
 
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 12px;
-    }
+  .outros {
+    background: #f0f0f0;
+    border-radius: 20px;
+    padding: 4px 12px;
+    display: inline-block;
+    font-size: 12px;
+    color: #555;
+    margin-top: 8px;
+  }
 
-    .checkbox-group input[type="checkbox"] {
-      accent-color: #7f3dff;
-      transform: scale(1.3);
-    }
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
 
-    .botoes {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 28px;
-    }
+  .checkbox-group input[type="checkbox"] {
+    appearance: none;
+    width: 32px;
+    height: 18px;
+    background-color: #ccc;
+    border-radius: 999px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-    .botoes button {
-      padding: 10px 20px;
-      border-radius: 999px;
-      font-size: 14px;
-      border: none;
-      cursor: pointer;
-    }
+  .checkbox-group input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
 
-    .botoes .salvar-novo {
-      background: transparent;
-      color: #bbb;
-    }
+  .checkbox-group input[type="checkbox"]:checked {
+    background-color: #7f3dff;
+  }
 
-    .botoes .salvar {
-      background: #dcdcdc;
-      color: #999;
-    }
+  .checkbox-group input[type="checkbox"]:checked::before {
+    transform: translateX(14px);
+  }
 
-    
-  </style>
+  .checkbox-group label {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .botoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+  }
+
+  .botoes button {
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .botoes .salvar-novo {
+    background: transparent;
+    color: #bbb;
+  }
+
+  .botoes .salvar {
+    background: #e0e0e0;
+    color: #999;
+  }
+</style>
+
     
     <script>
     document.querySelectorAll('.btn-nova-conta').forEach(item => {
@@ -473,6 +503,61 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
         });
     });
     </script>
+
+   <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.valor-input');
+
+    input.addEventListener('input', function (e) {
+      let value = e.target.value.replace(/[^\d]/g, '');
+
+      if (value.length === 0) {
+        e.target.value = 'kz 0,00';
+        return;
+      }
+
+      // Remove zeros à esquerda
+      value = value.replace(/^0+/, '');
+
+      // Garante pelo menos 3 dígitos para centavos
+      value = value.padStart(3, '0');
+
+      const euros = value.slice(0, -2);
+      const cents = value.slice(-2);
+
+      const formatted = euros.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + cents;
+
+      e.target.value = 'kz ' + formatted;
+    });
+
+    input.addEventListener('focus', function (e) {
+      // Remove € temporariamente se quiser editar
+      if (e.target.value === 'kz 0,00') {
+        e.target.value = '';
+      }
+    });
+
+    input.addEventListener('blur', function (e) {
+      if (e.target.value.trim() === '' || e.target.value === '€') {
+        e.target.value = 'kz 0,00';
+      }
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const cores = document.querySelectorAll('.cores .cor');
+
+    cores.forEach(cor => {
+      cor.addEventListener('click', function () {
+        cores.forEach(c => c.classList.remove('ativa'));
+        this.classList.add('ativa');
+      });
+    });
+  });
+</script>
+
 
 
 </main>

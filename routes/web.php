@@ -20,7 +20,7 @@ use App\Http\Controllers\SettingsController;
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
-use App\Http\Controllers\Admin\AboutController as AdminAboutController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
@@ -132,7 +132,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
     Route::get('/news', [AdminNewsController::class, 'index'])->name('admin.news.index');
     Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
-    Route::get('/about', [AdminAboutController::class, 'index'])->name('admin.about.index');
+    Route::get('/user', [AdminUserController::class, 'index'])->name('admin.user.index');
     Route::get('/service', [AdminServiceController::class, 'index'])->name('admin.service.index');
     Route::resource('partner', AdminPartnerController::class);
     Route::resource('portfolios',AdminPortfolioController::class);

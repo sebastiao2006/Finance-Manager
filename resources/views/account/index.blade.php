@@ -465,7 +465,7 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
 }
 
 .reajustar-saldo {
-  background-color: #6200ee;
+  background-color: #0049bf;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -475,7 +475,7 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
 }
 
 .editar-conta-link {
-  color: #6200ee;
+  color: #0049bf;
   text-decoration: none;
   font-weight: bold;
   display: block;
@@ -636,7 +636,7 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
 }
 
 .link-despesa {
-  color: purple;
+  color: #0049bf;
   font-weight: bold;
   font-size: 14px;
   text-decoration: none;
@@ -764,18 +764,18 @@ document.getElementById('form-nova-conta').addEventListener('submit', function(e
   .valor-input {
     font-size: 28px;
     border: none;
-    border-bottom: 2px solid #7f3dff;
+    border-bottom: 2px solid #0049bf;
     outline: none;
     width: 100%;
     margin-bottom: 28px;
-    color: #7f3dff;
+    color: #0049bf;
     font-weight: 500;
     padding-left: 0;
     background: transparent;
   }
 
   .valor-input::placeholder {
-    color: #7f3dff;
+    color: #0049bf;
   }
 
   .form-group {
@@ -874,7 +874,7 @@ document.getElementById('form-nova-conta').addEventListener('submit', function(e
   }
 
   .checkbox-group input[type="checkbox"]:checked {
-    background-color: #7f3dff;
+    background-color: #0049bf;
   }
 
   .checkbox-group input[type="checkbox"]:checked::before {

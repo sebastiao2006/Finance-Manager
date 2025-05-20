@@ -305,7 +305,7 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
 <h1> Suas Contas</h1>
 <div id="lista-contas" class="contas-grid">
   @foreach ($accounts as $account)
-    <div class="conta-card">
+      <div class="conta-card" onclick="abrirModalConta({{ $account->id }})">
       <div class="card-topo">
         <div class="circulo-icone" style="background: {{ $account->cor }}"></div>
         <span class="descricao">{{ $account->descricao }}</span>
@@ -335,7 +335,8 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
       </div>
 
       <div class="rodape">
-  <a href="#" class="link-despesa" onclick="mostrarFormularioDespesa({{ $account->id }})">ADICIONAR DESPESA</a>
+ <a href="#" class="link-despesa" onclick="event.stopPropagation(); mostrarFormularioDespesa({{ $account->id }})">ADICIONAR DESPESA</a>
+
 
   <form action="{{ route('account.adicionarDespesa', $account->id) }}" method="POST" class="form-despesa" id="form-despesa-{{ $account->id }}" style="display: none; margin-top: 10px;">
     @csrf
@@ -343,10 +344,53 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
     <button type="submit">Salvar</button>
   </form>
 </div>
+</div>
 
+    <!-- Modal de detalhes -->
+  <div class="modal-conta-overlay" id="modal-conta-{{ $account->id }}" style="display: none;">
+    <div class="modal-conta">
+      <span class="close-btn" onclick="fecharModalConta({{ $account->id }})">&times;</span>
+      <h2>Detalhes da conta</h2>
+
+      <div class="dropdown-wrapper">
+        <select>
+          <option selected>{{ $account->descricao }}</option>
+          {{-- Poderia ter outras contas aqui se quiser --}}
+        </select>
+      </div>
+
+      <div class="saldo-atual">
+        <p>Saldo atual</p>
+        <h3>{{ number_format($account->valor, 2, ',', '.') }} kz</h3>
+        <button class="reajustar-saldo">REAJUSTE DE SALDO</button>
+      </div>
+
+      <ul class="detalhes-lista">
+        <li><strong>Tipo de conta:</strong> {{ ucfirst($account->tipo) }}</li>
+        <li><strong>Saldo inicial:</strong> {{ number_format($account->saldo_inicial, 2, ',', '.') }} kz</li>
+        <li><strong>Quantidade de despesas:</strong> <span style="color:red;">{{ $account->despesas_count }} despesas</span></li>
+        <li><strong>Quantidade de receitas:</strong> <span style="color:green;">0 receitas</span></li>
+        <li><strong>Quantidade de transferências:</strong> 0 transferências</li>
+        <li>
+          <strong>Incluir na soma da tela inicial:</strong>
+          <input type="checkbox" {{ $account->incluir_soma ? 'checked' : '' }} disabled>
+        </li>
+      </ul>
+
+      <a href="#" class="editar-conta-link">EDITAR CONTA</a>
     </div>
+  </div>
   @endforeach
 </div>
+
+<script>
+  document.querySelectorAll('.form-despesa').forEach(form => {
+    form.addEventListener('click', function(event) {
+      event.stopPropagation(); // Para o clique de subir para a div conta-card
+    });
+  });
+</script>
+
 
 <script>
   function mostrarFormularioDespesa(accountId) {
@@ -355,6 +399,21 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
   }
 </script>
 
+<script>
+  function abrirModalConta(accountId) {
+    const modal = document.getElementById('modal-conta-' + accountId);
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+  function fecharModalConta(accountId) {
+    const modal = document.getElementById('modal-conta-' + accountId);
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+</script>
 
 
 <script>
@@ -368,6 +427,68 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
     }, 100); // tempo mínimo só pra garantir transição
   }
 </script>
+
+<style>
+.modal-conta-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  /* Remove o flexbox para este teste */
+  display: block;
+}
+
+.modal-conta {
+  background: #fff;
+  padding: 20px;
+  width: 400px;
+  max-width: 95%;
+  border-radius: 12px;
+  position: fixed; /* fixo na tela */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.reajustar-saldo {
+  background-color: #6200ee;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.editar-conta-link {
+  color: #6200ee;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  margin-top: 20px;
+  text-align: right;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>
+
 
 
 <style>

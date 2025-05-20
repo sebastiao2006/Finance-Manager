@@ -92,7 +92,9 @@ Route::get('/kixi', [KixiController::class, 'index'])->name('kixi.index');
 /* contas */
 Route::get('/account', [AccountController::class, 'index'])->name('account.index');
 Route::post('/account', [AccountController::class, 'store'])->name('account.store');
-Route::delete('/account/{id}', [AccountController::class, 'destroy'])->name('account.destroy');  // Corrigido para usar AccountController
+Route::delete('/account/{id}', [AccountController::class, 'destroy'])->name('account.destroy');
+Route::post('/account/{id}/despesa', [AccountController::class, 'adicionarDespesa'])->name('account.adicionarDespesa');
+// Corrigido para usar AccountController
 
 /* Planejamento*/
 Route::get('/planning', [PlanningController::class, 'index'])->name('planning.index');

@@ -43,7 +43,24 @@ private function sanitizeMoney($value)
     return floatval(preg_replace('/[^\d,]/', '', str_replace(',', '.', $value)));
 }
 
- 
+ public function destroy($id)
+{
+    $account = Account::findOrFail($id);
+    $account->delete();
 
+    return redirect()->route('account.index')->with('success', 'Conta deletada com sucesso.');
+}
+public function adicionarDespesa(Request $request, $id)
+{
+    $request->validate([
+        'valor_despesa' => 'required|numeric|min:0.01',
+    ]);
+
+    $account = Account::findOrFail($id);
+    $account->valor -= $request->valor_despesa;
+    $account->save();
+
+    return redirect()->back()->with('success', 'Despesa adicionada com sucesso.');
+}
 
 }

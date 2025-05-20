@@ -245,7 +245,8 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
 
   {{-- <button class="btn-nova-conta" onclick="document.querySelector('.novaconta-overlay').classList.add('active')">Nova conta</button>
  --}}
-<form id="form-nova-conta" method="POST" action="{{ route('account.store') }}">
+<form id="form-nova-conta" method="POST" action="{{ route('account.store') }}" onsubmit="handleSubmit()">
+
 
   @csrf
   <div class="novaconta-overlay">
@@ -301,6 +302,7 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
 </form>
 
 
+<h1> Suas Contas</h1>
 <div id="lista-contas" class="contas-grid">
   @foreach ($accounts as $account)
     <div class="conta-card">
@@ -311,7 +313,7 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
         <div class="menu-wrapper">
           <div class="menu">⋮</div>
           <div class="dropdown-menu">
-            <a href="{{ route('account.edit', $account->id) }}">Editar</a>
+        {{--     <a href="{{ route('account.edit', $account->id) }}">Editar</a> --}}
             <form action="{{ route('account.destroy', $account->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
               @csrf
               @method('DELETE')
@@ -333,13 +335,39 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
       </div>
 
       <div class="rodape">
-        <a href="#" class="link-despesa">ADICIONAR DESPESA</a>
-      </div>
+  <a href="#" class="link-despesa" onclick="mostrarFormularioDespesa({{ $account->id }})">ADICIONAR DESPESA</a>
+
+  <form action="{{ route('account.adicionarDespesa', $account->id) }}" method="POST" class="form-despesa" id="form-despesa-{{ $account->id }}" style="display: none; margin-top: 10px;">
+    @csrf
+    <input type="number" name="valor_despesa" step="0.01" min="0" placeholder="Valor da despesa" required>
+    <button type="submit">Salvar</button>
+  </form>
+</div>
+
     </div>
   @endforeach
 </div>
 
+<script>
+  function mostrarFormularioDespesa(accountId) {
+    const form = document.getElementById('form-despesa-' + accountId);
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+  }
+</script>
 
+
+
+<script>
+  function handleSubmit() {
+    // Esconde o modal para evitar bagunça visual
+    document.querySelector('.novaconta-overlay').classList.remove('active');
+
+    // Aguarda um pouco e força reload da página
+    setTimeout(() => {
+      location.reload();
+    }, 100); // tempo mínimo só pra garantir transição
+  }
+</script>
 
 
 <style>

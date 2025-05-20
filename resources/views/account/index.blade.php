@@ -239,59 +239,336 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
 
 </style>
 
+
+
   <!-- MODAL NOVA CONTA -->
 
   {{-- <button class="btn-nova-conta" onclick="document.querySelector('.novaconta-overlay').classList.add('active')">Nova conta</button>
  --}}
+<form id="form-nova-conta" method="POST" action="{{ route('account.store') }}">
+
+  @csrf
   <div class="novaconta-overlay">
     <div class="novaconta">
       <span class="close-btn" onclick="document.querySelector('.novaconta-overlay').classList.remove('active')">&times;</span>
       <h2>Nova conta</h2>
-      <input class="valor-input" type="text" value="kz 0,00">
+
+      <input class="valor-input" type="text" name="saldo_inicial" value="kz 0,00">
 
       <div class="form-group">
         <label>Instituição financeira</label>
         <div class="instituicao">
-            <img id="bancoSelecionadoImg" src="https://via.placeholder.com/24" alt="Banco">
-            <span id="bancoSelecionadoNome">Banco</span>
+          <img id="bancoSelecionadoImg" src="https://via.placeholder.com/24" alt="Banco">
+          <span id="bancoSelecionadoNome">Banco</span>
+          <input type="hidden" name="instituicao" value="Banco">
         </div>
-     </div>
-
+      </div>
 
       <div class="form-group">
-         <label>Descrição</label> 
-        <input type="text" placeholder="Descrição">
+        <label>Descrição</label>
+        <input type="text" name="descricao" placeholder="Descrição">
       </div>
 
       <div class="form-group">
         <label>Tipo</label>
-        <select>
-          <option>Conta corrente</option>
-          <option>Poupança</option>
+        <select name="tipo">
+          <option value="corrente">Conta corrente</option>
+          <option value="poupanca">Poupança</option>
         </select>
       </div>
 
       <div class="form-group">
         <label>Cor da conta</label>
         <div class="cores">
-          <div class="cor ativa" style="background: #00bcd4;"></div>
-          <div class="cor" style="background: #9c27b0;"></div>
-          <div class="cor" style="background: #ff9800;"></div>
+          <div class="cor ativa" style="background: #00bcd4;" data-cor="#00bcd4"></div>
+          <div class="cor" style="background: #9c27b0;" data-cor="#9c27b0"></div>
+          <div class="cor" style="background: #ff9800;" data-cor="#ff9800"></div>
         </div>
+        <input type="hidden" name="cor" value="#00bcd4">
         <div class="outros">OUTROS</div>
       </div>
 
       <div class="checkbox-group">
-        <input type="checkbox" id="soma">
+        <input type="checkbox" id="soma" name="incluir_soma" value="1">
         <label for="soma">Incluir na soma da tela inicial</label>
       </div>
 
       <div class="botoes">
-        <button class="salvar-novo">SALVAR E CRIAR NOVA</button>
-        <button class="salvar">SALVAR</button>
+        <button type="submit" class="salvar">SALVAR</button>
       </div>
     </div>
   </div>
+</form>
+
+
+<div id="lista-contas" class="contas-grid">
+  @foreach ($accounts as $account)
+    <div class="conta-card">
+      <div class="card-topo">
+        <div class="circulo-icone" style="background: {{ $account->cor }}"></div>
+        <span class="descricao">{{ $account->descricao }}</span>
+
+        <div class="menu-wrapper">
+          <div class="menu">⋮</div>
+          <div class="dropdown-menu">
+            <a href="{{ route('account.edit', $account->id) }}">Editar</a>
+            <form action="{{ route('account.destroy', $account->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+              @csrf
+              @method('DELETE')
+              <button type="submit">Excluir</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="saldos">
+        <div class="linha-saldo">
+          <span class="label">Saldo atual</span>
+          <span class="valor">{{ number_format($account->valor, 2, ',', '.') }} kz</span>
+        </div>
+        <div class="linha-saldo">
+          <span class="label">Saldo previsto <span title="Saldo estimado">ℹ️</span></span>
+          <span class="valor">{{ number_format($account->valor, 2, ',', '.') }} kz</span>
+        </div>
+      </div>
+
+      <div class="rodape">
+        <a href="#" class="link-despesa">ADICIONAR DESPESA</a>
+      </div>
+    </div>
+  @endforeach
+</div>
+
+
+
+
+<style>
+  .menu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.menu {
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 24px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+  min-width: 120px;
+  padding: 8px 0;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+  background-color: #f5f5f5;
+}
+
+/* Classe ativada via JS */
+.menu-wrapper.active .dropdown-menu {
+  display: block;
+}
+
+
+  .conta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.cor-indicador {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.detalhes {
+  display: flex;
+  flex-direction: column;
+}
+
+.contas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.conta-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+}
+
+.card-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.circulo-icone {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.descricao {
+  font-weight: bold;
+  color: #555;
+  margin-left: 8px;
+  flex: 1;
+}
+
+.menu {
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+}
+
+.saldos {
+  margin-top: 16px;
+}
+
+.linha-saldo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.label {
+  font-weight: 500;
+  color: #000;
+}
+
+.valor {
+  color: green;
+  font-weight: 500;
+}
+
+.rodape {
+  border-top: 1px solid #eee;
+  margin-top: 12px;
+  padding-top: 10px;
+  text-align: right;
+}
+
+.link-despesa {
+  color: purple;
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.link-despesa:hover {
+  text-decoration: underline;
+}
+
+
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.menu-wrapper .menu').forEach(menuBtn => {
+      menuBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        // Fecha outros menus abertos
+        document.querySelectorAll('.menu-wrapper').forEach(wrapper => {
+          if (wrapper !== this.parentElement) {
+            wrapper.classList.remove('active');
+          }
+        });
+
+        // Alterna o menu atual
+        this.parentElement.classList.toggle('active');
+      });
+    });
+
+    // Fecha menu se clicar fora
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.menu-wrapper').forEach(wrapper => {
+        wrapper.classList.remove('active');
+      });
+    });
+  });
+</script>
+
+
+<script>
+document.querySelectorAll('.cor').forEach(el => {
+  el.addEventListener('click', function() {
+    document.querySelectorAll('.cor').forEach(c => c.classList.remove('ativa'));
+    this.classList.add('ativa');
+    document.querySelector('input[name="cor"]').value = this.dataset.cor;
+  });
+});
+
+document.getElementById('form-nova-conta').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  const formData = new FormData(form);
+
+  fetch("{{ route('account.store') }}", {
+    method: 'POST',
+    headers: {
+      'X-CSRF-TOKEN': form.querySelector('input[name="_token"]').value
+    },
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      document.querySelector('.novaconta-overlay').classList.remove('active');
+      form.reset();
+
+      const novaConta = document.createElement('div');
+      novaConta.classList.add('conta-item');
+      novaConta.innerHTML = `
+        <div style="background:${data.account.cor}" class="cor-indicador"></div>
+        <strong>${data.account.descricao}</strong>
+        <span>${Number(data.account.saldo_inicial).toLocaleString('pt-AO', { style: 'currency', currency: 'AOA' })}</span>
+      `;
+      document.getElementById('lista-contas').appendChild(novaConta);
+    }
+  });
+});
+</script>
+
+
 
 
 <style>
@@ -481,8 +758,8 @@ document.querySelectorAll('.js-nova-conta').forEach(item => {
   }
 
   .botoes .salvar {
-    background: #e0e0e0;
-    color: #999;
+    background: #4d44f5;
+    color: #ffffff;
   }
 </style>
 

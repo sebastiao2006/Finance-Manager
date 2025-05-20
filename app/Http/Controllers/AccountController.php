@@ -4,62 +4,46 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Conta;
+use App\Models\Account;
 use Log;
 
 class AccountController extends Controller
 {
     public function index()
-    {
-        $contas = Conta::all();
-        return view('account.index', compact('contas'));
-    }
+{
+    $accounts = Account::all();
+    return view('account.index', compact('accounts'));
+}
+
+
 
     public function store(Request $request)
-    {
-        $data = $request->validate([
-            'valor' => 'required|numeric',
-            'instituicao' => 'required|string',
-            'descricao' => 'nullable|string',
-            'tipoConta' => 'required|string',
-            'cor' => 'nullable|string',
-            'incluir' => 'required|boolean',
-        ]);
+{
+    $account = Account::create([
+        'valor' => $this->sanitizeMoney($request->input('saldo_inicial')),
+        'instituicao' => $request->input('instituicao'),
+        'descricao' => $request->input('descricao'),
+        'tipo' => $request->input('tipo'),
+        'cor' => $request->input('cor'),
+        'incluir' => $request->has('incluir_soma') ? 1 : 0,
+    ]);
 
-        $conta = Conta::create([
-            'valor' => $data['valor'],
-            'instituicao' => $data['instituicao'],
-            'descricao' => $data['descricao'],
-            'tipo' => $data['tipoConta'],
-            'cor' => $data['cor'],
-            'incluir' => $data['incluir'],
-        ]);
+    return response()->json([
+        'success' => true,
+        'account' => [
+            'descricao' => $account->descricao,
+            'cor' => $account->cor,
+            'saldo_inicial' => $account->valor,
+        ]
+    ]);
+}
 
-        return response()->json([
-            'message' => 'Conta salva com sucesso!',
-            'conta' => $conta
-        ]);
-    }
+private function sanitizeMoney($value)
+{
+    return floatval(preg_replace('/[^\d,]/', '', str_replace(',', '.', $value)));
+}
 
-    public function destroy($id)
-    {
-        // Adicionando log para depuração
-        Log::info("Tentando excluir a conta com ID: $id");
-    
-        $conta = Conta::find($id); // Encontre a conta pelo ID
-    
-        if (!$conta) {
-            Log::error("Conta com ID $id não encontrada");
-            return response()->json(['message' => 'Conta não encontrada.'], 404);
-        }
-    
-        // Exclui a conta
-        $conta->delete();
-    
-        Log::info("Conta com ID $id excluída com sucesso");
-    
-        return response()->json(['message' => 'Conta excluída com sucesso.']);
-    }
-
+ 
 
 
 }

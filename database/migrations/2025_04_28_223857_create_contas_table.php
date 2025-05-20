@@ -6,14 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateContasTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('contas', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->decimal('valor', 15, 2);
             $table->string('instituicao');
@@ -24,15 +19,9 @@ class CreateContasTable extends Migration
             $table->timestamps();
         });
     }
-    
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('contas');
+        Schema::dropIfExists('accounts'); // Corrigido aqui
     }
 }

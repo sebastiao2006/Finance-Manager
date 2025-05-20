@@ -126,10 +126,10 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="{{ route('admin.user.index') }}">Users-01</a>
+                            <a href="{{ route('admin.user.index') }}">Registro</a>
                         </li>
                         <li>
-                            <a href="users-02.html">Users-02</a>
+                            <a href="users-02.html">Inicio de sessão</a>
                         </li>
                     </ul>
                 </li>

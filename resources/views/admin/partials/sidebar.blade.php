@@ -126,7 +126,7 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="users-01.html">Users-01</a>
+                            <a href="{{ route('admin.user.index') }}">Users-01</a>
                         </li>
                         <li>
                             <a href="users-02.html">Users-02</a>

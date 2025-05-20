@@ -16,10 +16,13 @@ public function login(Request $request)
     ]);
 
     if (Auth::attempt($credentials)) {
-        // Regenera a sessão por segurança
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard.index');
+        if (Auth::user()->is_admin) {
+            return redirect()->route('admin.dashboard.index');
+        } else {
+            return redirect()->route('dashboard.index');
+        }
     }
 
     return back()->withErrors([
@@ -49,6 +52,7 @@ public function showLoginForm()
 {
     return view('login'); // ou 'auth.login', dependendo do seu blade
 }
+
 
 
 }

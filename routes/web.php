@@ -127,17 +127,14 @@ Route::post('/transactions', [TransactionController::class, 'store'])->name('tra
 Route::get('/home', [HomeController::class, 'index'])->name('sitehome.index');
 
 
-/* Admin*/
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
-    Route::get('/news', [AdminNewsController::class, 'index'])->name('admin.news.index');
-    Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
-    Route::get('/user', [AdminUserController::class, 'index'])->name('admin.user.index');
-    Route::get('/service', [AdminServiceController::class, 'index'])->name('admin.service.index');
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/news', [AdminNewsController::class, 'index'])->name('news.index');
+    Route::get('/contact', [AdminContactController::class, 'index'])->name('contact.index');
+    Route::get('/user', [AdminUserController::class, 'index'])->name('user.index');
+    Route::get('/service', [AdminServiceController::class, 'index'])->name('service.index');
     Route::resource('partner', AdminPartnerController::class);
-    Route::resource('portfolios',AdminPortfolioController::class);
+    Route::resource('portfolios', AdminPortfolioController::class);
     Route::resource('plans', PlanController::class);
-
-
-
 });
+

@@ -103,7 +103,7 @@
 
                 <li>
                     <a class="show-cat-btn" href="##">
-                        <span class="icon category" aria-hidden="true"></span>Produtos
+                        <span class="icon category" aria-hidden="true"></span>Dicas
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -111,7 +111,7 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="extention-01.html">Ver todos</a>
+                            <a href="{{ route('admin.tip.index') }}">Dicas</a>
                         </li>
                         <li>
                             <a href="extention-02.html">Adicionar</a>

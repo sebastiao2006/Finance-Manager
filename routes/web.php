@@ -22,7 +22,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
-use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\TipController as AdminTipController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
@@ -131,6 +131,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/news', [AdminNewsController::class, 'index'])->name('news.index');
     Route::get('/contact', [AdminContactController::class, 'index'])->name('contact.index');
+    Route::get('/tip', [AdminTipController::class, 'index'])->name('tip.index');
+
+
+Route::put('/tip/{id}', [AdminTipController::class, 'update'])->name('tip.update');
+Route::get('/tip/create', [AdminTipController::class, 'create'])->name('tip.create');
+Route::post('/tip/store', [AdminTipController::class, 'store'])->name('tip.store');
+
+Route::get('/tip/{id}/edit', [AdminTipController::class, 'edit'])->name('tip.edit');
+Route::delete('/tip/{id}', [AdminTipController::class, 'destroy'])->name('tip.destroy');
+
+
+
     Route::get('/user', [AdminUserController::class, 'index'])->name('user.index');
     Route::get('/service', [AdminServiceController::class, 'index'])->name('service.index');
     Route::resource('partner', AdminPartnerController::class);

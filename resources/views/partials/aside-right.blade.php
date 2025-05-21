@@ -214,19 +214,25 @@
           <span class="material-icons-sharp">notifications_none</span>
         </div>
       
-        <div class="finance-tip">
-          <div class="icon">
-            <span class="material-icons-sharp">savings</span>
-          </div>
-          <div class="content">
-            <div class="info">
-              <h3>Dica Financeira</h3>
-              <p class="tip-text">Reserve pelo menos 10% da sua renda mensal para uma poupança de emergência.</p>
-              <small class="text-muted">Atualizado: 08:00 AM</small>
-            </div>
-  
-          </div>
-        </div>
+    @php
+  $tip = \App\Models\Tip::first();
+@endphp
+
+@if($tip)
+<div class="finance-tip">
+  <div class="icon">
+    <span class="material-icons-sharp">savings</span>
+  </div>
+  <div class="content">
+    <div class="info">
+      <h3>{{ $tip->title }}</h3>
+      <p class="tip-text">{{ $tip->text }}</p>
+      <small class="text-muted">Atualizado: {{ $tip->updated_at_time }}</small>
+    </div>
+  </div>
+</div>
+@endif
+
 <style>
   .finance-tip {
   display: flex;

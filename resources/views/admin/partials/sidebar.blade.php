@@ -1,12 +1,14 @@
   <!-- ! Sidebar -->
-  <aside class="sidebar">
+<aside class="sidebar" style="background-color: #0f62e4 !important;">
+
+
     <div class="sidebar-start">
         <div class="sidebar-head">
             <a href="/" class="logo-wrapper" title="Home">
                 <span class="sr-only">Home</span>
                 <span class="icon logo" aria-hidden="true"></span>
                 <div class="logo-text">
-                    <span class="logo-title">Elegant</span>
+                    <span class="logo-title">Meu Kumbu</span>
                     <span class="logo-subtitle">Dashboard</span>
                 </div>
 

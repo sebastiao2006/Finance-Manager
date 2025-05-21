@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
 @extends('layouts.app2')
 @section('title', 'Kivula')
 @section('content')
@@ -16,120 +8,120 @@
 
 
 <style>
-  .card-goals-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 20px;
-}
+      .card-goals-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
 
-.goal-card {
-  width: 360px;
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  font-family: sans-serif;
-}
+    .goal-card {
+      width: 360px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      font-family: sans-serif;
+    }
 
-.new-goal-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  text-align: center;
-  font-size: 14px;
-  color: #333;
-  height: 200px;
-}
+    .new-goal-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+      height: 200px;
+    }
 
-.new-goal-card i {
-  font-size: 32px;
-  color: #000;
-  margin-bottom: 10px;
-}
+    .new-goal-card i {
+      font-size: 32px;
+      color: #000;
+      margin-bottom: 10px;
+    }
 
-.goal-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+    .goal-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.goal-icon {
-  width: 32px;
-  height: 32px;
-  background-color: #7c3aed;
-  border-radius: 50%;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .goal-icon {
+      width: 32px;
+      height: 32px;
+      background-color: #7c3aed;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.goal-header h3 {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0;
-}
+    .goal-header h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
 
-.goal-body {
-  margin-top: 16px;
-  position: relative;
-}
+    .goal-body {
+      margin-top: 16px;
+      position: relative;
+    }
 
-.goal-label {
-  font-size: 14px;
-  color: #4b5563;
-  margin: 0;
-}
+    .goal-label {
+      font-size: 14px;
+      color: #4b5563;
+      margin: 0;
+    }
 
-.goal-date {
-  font-size: 14px;
-  color: #4b5563;
-  margin-bottom: 4px;
-}
+    .goal-date {
+      font-size: 14px;
+      color: #4b5563;
+      margin-bottom: 4px;
+    }
 
-.goal-percentage {
-  position: absolute;
-  right: 0;
-  top: 0;
-  font-weight: bold;
-  color: #333;
-}
+    .goal-percentage {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-weight: bold;
+      color: #333;
+    }
 
-.progress-bar {
-  height: 8px;
-  border-radius: 4px;
-  background-color: #e5e7eb;
-  margin: 10px 0;
-  overflow: hidden;
-}
+    .progress-bar {
+      height: 8px;
+      border-radius: 4px;
+      background-color: #e5e7eb;
+      margin: 10px 0;
+      overflow: hidden;
+    }
 
-.progress-fill {
-  height: 100%;
-  background-color: #7c3aed;
-  border-radius: 4px 0 0 4px;
-}
+    .progress-fill {
+      height: 100%;
+      background-color: #7c3aed;
+      border-radius: 4px 0 0 4px;
+    }
 
-.goal-values {
-  font-size: 14px;
-  color: #4b5563;
-  margin-bottom: 10px;
-}
+    .goal-values {
+      font-size: 14px;
+      color: #4b5563;
+      margin-bottom: 10px;
+    }
 
-.goal-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  color: #4b5563;
-}
+    .goal-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      color: #4b5563;
+    }
 </style>  
 
   
     <h1>Objetivos</h1>
-    <div class="dropdown-container">
+     <div class="dropdown-container">
         <button class="dropdown-button" onclick="toggleDropdown()">
             <i class="fas fa-chevron-down"></i>
             OBJETIVOS ATIVOS
@@ -139,7 +131,7 @@
             <a href="#">Objetivos Parados</a>
             <a href="#">Objetivos Ativos</a>
         </div>
-    </div>
+      </div>
     <div class="card-goals-list">
       <!-- Card "Novo objetivo" -->
       <div class="goal-card new-goal-card" onclick="openModal()">
@@ -150,7 +142,7 @@
       <div class="goals-container">
         @foreach($goals as $goal)
           @php
-            $percent = $goal->valor_total != 0 ? ($goal->valor_atual / $goal->valor_total) * 100 : 0;
+            $percent = $goal->valor_total != 0 ? ($goal->valor_inicial / $goal->valor_total) * 100 : 0;
           @endphp
           <div class="goal-card">
             <div class="goal-header">
@@ -166,10 +158,19 @@
               <div class="progress-bar">
                 <div class="progress-fill" style="width: {{ $percent }}%;"></div>
               </div>
-              <div class="goal-values">€ {{ number_format($goal->valor_atual, 2, ',', '.') }} / € {{ number_format($goal->valor_total, 2, ',', '.') }}</div>
+              <div class="goal-values">€ {{ number_format($goal->valor_inicial, 2, ',', '.') }} / € {{ number_format($goal->valor_total, 2, ',', '.') }}</div>
               <div class="goal-actions">
                 <i class="fas fa-pause"></i>
-                <i class="fas fa-pen"></i>
+                <!-- Editar valor_inicial -->
+<form action="{{ route('goals.update', $goal->id) }}" method="POST" style="display: inline-flex; align-items: center; gap: 5px;">
+  @csrf
+  @method('PUT')
+  <input type="number" name="valor_inicial" value="{{ $goal->valor_inicial }}" step="0.01" style="width: 80px; padding: 2px;">
+  <button type="submit" style="border: none; background: none; cursor: pointer;">
+    <i class="fas fa-check" style="color: green;"></i>
+  </button>
+</form>
+
                 <form action="{{ route('goals.destroy', $goal->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Eliminar este objetivo?')">
                   @csrf
                   @method('DELETE')

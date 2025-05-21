@@ -81,6 +81,8 @@ Route::get('/transactions/{id}/download', [TransactionController::class, 'downlo
 Route::get('/goals', [GoalsController::class, 'index'])->name('goals.index');
 Route::post('/goals', [GoalsController::class, 'store'])->name('goals.store');
 Route::delete('/goals/{goal}', [GoalsController::class, 'destroy'])->name('goals.destroy');
+Route::put('/goals/{goal}', [GoalsController::class, 'update'])->name('goals.update');
+
 
 
 

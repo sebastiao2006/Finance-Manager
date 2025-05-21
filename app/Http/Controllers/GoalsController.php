@@ -16,6 +16,7 @@ class GoalsController extends Controller
 
     public function store(Request $request)
     {
+        
         $request->validate([
             'nome' => 'required|string',
             'data' => 'required|date',
@@ -35,4 +36,17 @@ class GoalsController extends Controller
         $goal->delete();
         return redirect()->back()->with('success', 'Objetivo deletado com sucesso!');
     }
+
+    public function update(Request $request, Goal $goal)
+{
+    $request->validate([
+        'valor_inicial' => 'required|numeric|min:0',
+    ]);
+
+    $goal->valor_inicial = $request->valor_inicial;
+    $goal->save();
+
+    return redirect()->back()->with('success', 'Valor atualizado com sucesso!');
+}
+
 }

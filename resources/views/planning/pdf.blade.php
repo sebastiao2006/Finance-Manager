@@ -16,13 +16,13 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            border-bottom: 2px solid #004080;
+            border-bottom: 2px solid #0f62e4;
             padding-bottom: 10px;
         }
 
         .header h1 {
             font-size: 18px;
-            color: #004080;
+            color: #0f62e4;
             margin: 0;
         }
 
@@ -35,7 +35,7 @@
         }
 
         .section-title {
-            background-color: #004080;
+            background-color: #0f62e4;
             color: white;
             padding: 8px 12px;
             font-weight: bold;

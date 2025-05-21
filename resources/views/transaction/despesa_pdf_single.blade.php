@@ -19,7 +19,7 @@
         }
 
         .header h2 {
-            color: #d10000;
+            color: #0f62e4;
             margin: 0;
         }
 

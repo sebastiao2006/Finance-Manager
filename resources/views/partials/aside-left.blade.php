@@ -31,10 +31,10 @@
             <span class="material-icons-sharp"> assessment </span>
             <h3>Relatórios</h3>
         </a>
-        <a href="#" class="{{ request()->routeIs/* ('settings.index')  */? 'active' : '' }}">
+   {{--      <a href="#" class="{{ request()->routeIs/* ('settings.index')  */? 'active' : '' }}">
             <span class="material-icons-sharp"> lightbulb </span>
             <h3>Escola de Finanças</h3>
-        </a>
+        </a> --}}
         <a href="{{ route('goals.index') }}" class="{{ request()->routeIs('goals.index') ? 'active' : '' }}">
             <span class="material-icons-sharp"> track_changes </span>
             <h3>Metas</h3>

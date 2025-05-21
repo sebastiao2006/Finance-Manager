@@ -37,7 +37,7 @@
         }
 
         .section-title {
-            background-color: #0073e6;
+            background-color: #0f62e4;
             color: white;
             text-align: center;
             padding: 6px;

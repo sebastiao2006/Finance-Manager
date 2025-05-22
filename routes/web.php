@@ -27,10 +27,22 @@ use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\Admin\PortfolioController as AdminPortfolioController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 
+Route::get('/test-email', function () {
+    $user = (object)[
+        'name' => 'Fulano Teste',
+        'email' => 'seuemail@gmail.com' // Coloque seu próprio e-mail aqui para testar
+    ];
 
-
-
+    try {
+        Mail::to($user->email)->send(new WelcomeMail($user));
+        return '✅ E-mail de teste enviado com sucesso!';
+    } catch (\Exception $e) {
+        return '❌ Erro ao enviar e-mail: ' . $e->getMessage();
+    }
+});
 
 /*
 |--------------------------------------------------------------------------

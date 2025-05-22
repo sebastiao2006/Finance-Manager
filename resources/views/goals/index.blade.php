@@ -140,6 +140,9 @@
       </div>
   
       <div class="goals-container">
+        
+        
+
         @foreach($goals as $goal)
           @php
             $percent = $goal->valor_total != 0 ? ($goal->valor_inicial / $goal->valor_total) * 100 : 0;
@@ -162,14 +165,14 @@
               <div class="goal-actions">
                 <i class="fas fa-pause"></i>
                 <!-- Editar valor_inicial -->
-<form action="{{ route('goals.update', $goal->id) }}" method="POST" style="display: inline-flex; align-items: center; gap: 5px;">
-  @csrf
-  @method('PUT')
-  <input type="number" name="valor_inicial" value="{{ $goal->valor_inicial }}" step="0.01" style="width: 80px; padding: 2px;">
-  <button type="submit" style="border: none; background: none; cursor: pointer;">
-    <i class="fas fa-check" style="color: green;"></i>
-  </button>
-</form>
+          <form action="{{ route('goals.update', $goal->id) }}" method="POST" style="display: inline-flex; align-items: center; gap: 5px;">
+            @csrf
+            @method('PUT')
+            <input type="number" name="valor_inicial" value="{{ $goal->valor_inicial }}" step="0.01" style="width: 80px; padding: 2px;">
+            <button type="submit" style="border: none; background: none; cursor: pointer;">
+              <i class="fas fa-check" style="color: green;"></i>
+            </button>
+          </form>
 
                 <form action="{{ route('goals.destroy', $goal->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Eliminar este objetivo?')">
                   @csrf

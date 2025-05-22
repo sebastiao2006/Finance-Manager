@@ -37,16 +37,23 @@ class GoalsController extends Controller
         return redirect()->back()->with('success', 'Objetivo deletado com sucesso!');
     }
 
-    public function update(Request $request, Goal $goal)
+public function update(Request $request, Goal $goal)
 {
     $request->validate([
         'valor_inicial' => 'required|numeric|min:0',
     ]);
 
-    $goal->valor_inicial = $request->valor_inicial;
+    $novoValor = $goal->valor_inicial + $request->valor_inicial;
+
+    if ($novoValor > $goal->valor_total) {
+        return redirect()->back()->with('error', 'O valor inicial não pode ultrapassar o valor total do objetivo.');
+    }
+
+    $goal->valor_inicial = $novoValor;
     $goal->save();
 
-    return redirect()->back()->with('success', 'Valor atualizado com sucesso!');
+    return redirect()->back()->with('success', 'Valor adicionado com sucesso!');
 }
+
 
 }

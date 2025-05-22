@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   

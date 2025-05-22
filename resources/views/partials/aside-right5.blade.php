@@ -17,11 +17,13 @@
             </span>
         </div>
     <!-- Perfil com clique -->
+    <!-- Perfil com clique -->
     <div class="profile" onclick="toggleUserMenu()" style="cursor: pointer;">
       <div class="info">
-          <p>Hey, <b>Reza</b></p>
-          <small class="text-muted">Admin</small>
-      </div>
+    <p>Olá, <b>{{ Auth::user()->name }}</b></p>
+    {{-- <small class="text-muted">Admin</small> --}}
+</div>
+
       <div class="profile-photo">
           <img src="images/profile-1.jpg">
       </div>

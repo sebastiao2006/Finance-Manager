@@ -19,7 +19,7 @@ use App\Http\Controllers\SettingsController;
 
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\KixiController as AdminKixiController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\TipController as AdminTipController;
@@ -102,6 +102,8 @@ Route::put('/goals/{goal}', [GoalsController::class, 'update'])->name('goals.upd
 Route::get('/tip', [tipController::class, 'index'])->name('tip.index');
 /* Definição*/
 Route::get('/kixi', [KixiController::class, 'index'])->name('kixi.index');
+Route::post('/kixi/store', [KixiController::class, 'store'])->name('kixi.store');
+
 
 /* contas */
 Route::get('/account', [AccountController::class, 'index'])->name('account.index');
@@ -143,7 +145,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('sitehome.index');
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
-    Route::get('/news', [AdminNewsController::class, 'index'])->name('news.index');
+    Route::get('/kixi', [AdminKixiController::class, 'index'])->name('kixi.index');
     Route::get('/contact', [AdminContactController::class, 'index'])->name('contact.index');
     Route::get('/tip', [AdminTipController::class, 'index'])->name('tip.index');
 

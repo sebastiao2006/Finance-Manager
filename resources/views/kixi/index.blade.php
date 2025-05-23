@@ -210,24 +210,38 @@
       return new Intl.NumberFormat('pt-AO', { style: 'currency', currency: 'AOA' }).format(value);
     }
 
-    document.getElementById('saveSimulation').addEventListener('click', () => {
-      const selectedPurpose = document.querySelector('.purpose .selected')?.innerText || '';
-      const amount = document.getElementById('amount').value;
-      const term = document.getElementById('term').value;
-      const monthly = document.getElementById('monthly').value;
-      const people = document.getElementById('people').value;
+document.getElementById('saveSimulation').addEventListener('click', async () => {
+  const selectedPurpose = document.querySelector('.purpose .selected')?.innerText || '';
+  const amount = document.getElementById('amount').value;
+  const term = document.getElementById('term').value;
+  const monthly = document.getElementById('monthly').value;
+  const people = document.getElementById('people').value;
 
-      const simulationData = {
+  try {
+    const response = await fetch('/kixi/store', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+      },
+      body: JSON.stringify({
         finalidade: selectedPurpose,
-        valor: formatCurrency(amount),
-        prazo: `${term} meses`,
-        mensalidade: formatCurrency(monthly),
-        participantes: `${people} pessoas`
-      };
-
-      localStorage.setItem('kixikila_simulacao', JSON.stringify(simulationData));
-      alert('Simulação salva com sucesso!');
+        valor: amount,
+        prazo: term,
+        mensalidade: monthly,
+        participantes: people
+      })
     });
+
+    const data = await response.json();
+    if (data.success) {
+      alert('Simulação salva com sucesso no servidor!');
+    }
+  } catch (error) {
+    alert('Erro ao salvar simulação.');
+    console.error(error);
+  }
+});
     </script>
 
 

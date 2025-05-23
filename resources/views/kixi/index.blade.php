@@ -77,10 +77,44 @@
             </div>
           </div>
 
+          
+
           <div class="slider-group">
             <label>Quantas pessoas vão participar? <span class="value" id="peopleValue">5 pessoas</span></label>
             <input type="range" min="2" max="50" step="1" value="5" id="people">
           </div>
+
+
+
+<style>
+  .iban-container {
+  margin-top: 20px;
+  font-family: sans-serif;
+}
+
+.iban-container label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.iban-container input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.iban-container input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+</style>
           
       
           <div class="result">
@@ -94,15 +128,24 @@
                 <div>TAEG<br><strong>38,02%</strong></div>
               </div>
             </div>
+
+                     <div class="iban-container">
+  <label for="ibanInput">Seu IBAN:</label><br>
+  <input type="text" id="ibanInput" placeholder="Digite seu IBAN">
+</div>
             <div style="margin-top: 20px;">
               <button id="saveSimulation"> Salvar Simulação</button>
-              <button id="generatePdf"> Gerar PDF da Simulação</button>
+
+            <button id="generateInvitePdf" style="margin-top: 10px;">Gerar PDF de Convite</button>
+
+
+              {{-- <button id="generatePdf"> Gerar PDF da Simulação</button> --}}
             </div>
 
 
 
             <div class="links">
-              <div> Faça já download da sua simulação</div>
+              <div > Faça já download da sua simulação</div>
             </div>
           </div>
         </div>
@@ -201,6 +244,71 @@
 
     doc.save("simulacao_kixikila.pdf");
   });
+</script>
+
+<script>
+  window.loggedUser = {
+    name: "{{ Auth::user()->name }}"
+  };
+</script>
+
+<script>
+  document.getElementById('generateInvitePdf').addEventListener('click', async () => {
+  const data = JSON.parse(localStorage.getItem('kixikila_simulacao'));
+  const iban = document.getElementById('ibanInput').value.trim();
+  const userName = window.loggedUser?.name ?? 'Usuário Desconhecido';
+
+  if (!data) {
+    alert('Nenhuma simulação salva encontrada.');
+    return;
+  }
+
+  if (!iban) {
+    alert('Por favor, insira seu IBAN.');
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const blue = [0, 102, 204];
+  const gray = [90, 90, 90];
+
+  doc.setFillColor(...blue);
+  doc.rect(0, 0, 210, 20, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(14);
+  doc.text('CONVITE PARA PARTICIPAR NA KIXIKILA', 105, 13, { align: 'center' });
+
+  doc.setFontSize(11);
+  doc.setTextColor(...gray);
+  doc.text(`Data: ${new Date().toLocaleDateString()}`, 15, 30);
+  doc.text(`Convite enviado por: ${userName}`, 15, 36);
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
+  doc.text(`Finalidade: ${data.finalidade}`, 15, 50);
+  doc.text(`Valor a contribuir: ${data.valor}`, 15, 57);
+  doc.text(`Mensalidade: ${data.mensalidade}`, 15, 64);
+  doc.text(`Prazo: ${data.prazo} meses`, 15, 71);
+  doc.text(`Participantes esperados: ${data.participantes}`, 15, 78);
+
+  doc.setFontSize(11);
+  doc.setTextColor(...blue);
+  doc.text('INFORMAÇÕES DO PARTICIPANTE', 15, 95);
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
+  doc.text(`Nome: ${userName}`, 15, 105);
+  doc.text(`IBAN informado: ${iban}`, 15, 112);
+
+  doc.setFontSize(9);
+  doc.setTextColor(100, 100, 100);
+  doc.text("*Este é um convite para participar da Kixikila. Contate o organizador para mais detalhes.", 15, 280);
+
+  doc.save("convite_kixikila.pdf");
+});
+
 </script>
 
 

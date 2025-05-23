@@ -136,7 +136,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="appearance.html"><span class="icon edit" aria-hidden="true"></span>Contacto</a>
+                    <a href="{{ route('admin.kixi.index') }}"><span class="icon edit" aria-hidden="true"></span>Kixikila</a>
                 </li>
                 <li>
                     <a href="##"><span class="icon setting" aria-hidden="true"></span>Settings</a>

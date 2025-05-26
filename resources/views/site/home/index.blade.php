@@ -134,6 +134,87 @@
   </section><!-- /About Section -->
 
 
+  <section class="features">
+  <h1>Nossos principais recursos</h1>
+  <p>Conheça os recursos que vão revolucionar seu controle financeiro.</p>
+
+  <div class="features-grid">
+    <div class="features-left">
+      <div class="feature-item">
+        <span class="icon"><i class="fas fa-link"></i></span>
+        <div>
+          <h3>Conexão Bancária <span class="badge">NOVO</span></h3>
+          <p>Conecte contas e cartões para importar lançamentos direto do banco.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <span class="icon"><i class="fas fa-building-columns"></i></span>
+        <div>
+          <h3>Controle de contas</h3>
+          <p>Conta corrente, digital ou PJ? Gerencie todas no Organizze!</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <span class="icon"><i class="fas fa-bullseye"></i></span>
+        <div>
+          <h3>Limite de gastos</h3>
+          <p>Defina o quanto gastar em cada categoria e economize sem esforço.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <span class="icon"><i class="fas fa-bell"></i></span>
+        <div>
+          <h3>Alertas</h3>
+          <p>Receba alertas de todas as suas contas a pagar e dê adeus aos juros!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-center">
+      <img src="site/assets/img/pc.png" alt="App preview">
+    </div>
+
+    <div class="features-right">
+      <div class="feature-item">
+        <span class="icon"><i class="fas fa-chart-pie"></i></span>
+        <div>
+          <h3>Relatórios</h3>
+          <p>Resumos incríveis, com gráficos simples e completos.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <span class="icon"><i class="fas fa-layer-group"></i></span>
+        <div>
+          <h3>Criação de categorias</h3>
+          <p>Crie suas próprias categorias de acordo com a sua necessidade.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <span class="icon"><i class="fas fa-credit-card"></i></span>
+        <div>
+          <h3>Controle de cartões</h3>
+          <p>O roxinho, o gold, o black… controle todos seus cartões em um único lugar.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <span class="icon"><i class="fas fa-desktop"></i> </span>
+        <div>
+          <h3>Multiplataforma</h3>
+          <p>Acesse seu controle financeiro de onde estiver, do celular ou computador.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
   <section id="about" class="about section light-background">
     <div class="container">
 
@@ -175,8 +256,157 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
 
   </section>
 
+
+  <section class="success-section">
+  <div class="container">
+    <div class="image">
+      <img src="site/assets/img/img1.png" alt="App mockup">
+    </div>
+
+    <div class="content">
+      <p class="subtitle">Organize suas finanças</p>
+      <h2>O guia para o seu sucesso financeiro</h2>
+
+      <div class="grid">
+        <div class="item">
+          <span class="number">01</span>
+          <h3>Suas contas e cartões num só lugar</h3>
+          <p>Comece cadastrando suas contas e cartões para ter uma visão mais clara das suas finanças.</p>
+        </div>
+
+        <div class="item">
+          <span class="number">02</span>
+          <h3>Cadastre todos os seus gastos</h3>
+          <p>Garanta uma previsibilidade financeira poderosa cadastrando suas despesas em tempo real, de onde você estiver.</p>
+        </div>
+
+        <div class="item">
+          <span class="number">03</span>
+          <h3>Saiba o destino de cada centavo</h3>
+          <p>Mantenha tudo sob controle informando sua renda e ganhos extras para ter um ponto de partida.</p>
+        </div>
+
+        <div class="item">
+          <span class="number">04</span>
+          <h3>Transformando em hábito</h3>
+          <p>Lance os gastos do dia a dia, acompanhe os relatórios sempre que possível e assuma o controle do seu dinheiro.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .success-section {
+    padding: 60px 20px;
+    background: #fefefc;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .image {
+    flex: 0 0 400px;
+  }
+
+  .image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); */
+  }
+
+  .content {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .subtitle {
+    color: #0a53d1;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .content h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 30px;
+    max-width: 500px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .number {
+    background: #8cb6ff;
+    color: #0a53d1;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 6px 12px;
+    display: inline-block;
+  }
+
+  .item h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+  }
+
+  .item p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .image {
+      margin-bottom: 40px;
+    }
+
+    .content h2 {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>
+
+
+
+
 <!-- Skills Section -->
-<section id="skills" class="skills section">
+{{-- <section id="skills" class="skills section">
 
   <div class="container" data-aos-delay="100">
 
@@ -254,7 +484,7 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
 
   </div>
 
-</section><!-- /Skills Section -->
+</section> --}}<!-- /Skills Section -->
 
 
   <!-- Stats Section -->
@@ -301,12 +531,12 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="services section">
+   {{--<section id="services" class="services section">
 
-    <!-- Section Title -->
-    <div class="container section-title" {{-- data-aos="fade-up" --}}>
+
+    <div class="container section-title" >
       <h2>Dicas Financeiras</h2>
-    </div><!-- End Section Title -->
+    </div>
 
   <div class="container">
   <div class="row gy-4">
@@ -314,7 +544,7 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
     <div class="col-lg-4 col-md-6" data-aos-delay="100">
       <div class="service-item position-relative">
         <div class="icon">
-          <i class="bi bi-wallet2"></i> <!-- Controle de Gastos -->
+          <i class="bi bi-wallet2"></i> 
         </div>
         <a href="#" class="stretched-link">
           <h3>Controle de Gastos</h3>
@@ -326,7 +556,7 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
     <div class="col-lg-4 col-md-6" data-aos-delay="200">
       <div class="service-item position-relative">
         <div class="icon">
-          <i class="bi bi-graph-up-arrow"></i> <!-- Investimentos -->
+          <i class="bi bi-graph-up-arrow"></i> 
         </div>
         <a href="#" class="stretched-link">
           <h3>Investimentos Inteligentes</h3>
@@ -338,7 +568,7 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
     <div class="col-lg-4 col-md-6" data-aos-delay="300">
       <div class="service-item position-relative">
         <div class="icon">
-          <i class="bi bi-journal-check"></i> <!-- Planejamento -->
+          <i class="bi bi-journal-check"></i> 
         </div>
         <a href="#" class="stretched-link">
           <h3>Planejamento Financeiro</h3>
@@ -350,7 +580,7 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
     <div class="col-lg-4 col-md-6" data-aos-delay="400">
       <div class="service-item position-relative">
         <div class="icon">
-          <i class="bi bi-shield-check"></i> <!-- Reserva de Emergência -->
+          <i class="bi bi-shield-check"></i> 
         </div>
         <a href="#" class="stretched-link">
           <h3>Reserva de Emergência</h3>
@@ -362,7 +592,7 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
     <div class="col-lg-4 col-md-6" data-aos-delay="500">
       <div class="service-item position-relative">
         <div class="icon">
-          <i class="bi bi-bar-chart-line"></i> <!-- Acompanhar Rendimento -->
+          <i class="bi bi-bar-chart-line"></i> 
         </div>
         <a href="#" class="stretched-link">
           <h3>Acompanhe Seus Rendimentos</h3>
@@ -374,7 +604,7 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
     <div class="col-lg-4 col-md-6" data-aos-delay="600">
       <div class="service-item position-relative">
         <div class="icon">
-          <i class="bi bi-mortarboard"></i> <!-- Educação Financeira -->
+          <i class="bi bi-mortarboard"></i> 
         </div>
         <a href="#" class="stretched-link">
           <h3>Educação Financeira</h3>
@@ -386,16 +616,108 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
   </div>
 </div>
 
-        </div><!-- End Service Item -->
+        </div>
 
       </div>
 
     </div>
 
-  </section><!-- /Services Section -->
+  </section>
 
-
+ --}}
   <!-- Portfolio Section -->
+
+
+
+
+  <style>
+.icon i {
+  font-size: 20px;
+  color: #0a53d1;
+}
+
+
+.features {
+  padding: 40px 20px;
+  text-align: center;
+  max-width: 1200px;
+  height: 700px;
+  margin: auto;
+}
+
+.features h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.features p {
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.features-left,
+.features-right {
+  flex: 1;
+  min-width: 250px;
+}
+
+.features-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.features-center img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.icon {
+  font-size: 24px;
+  color: #0a53d1;
+  margin-right: 12px;
+  margin-top: 4px;
+}
+
+.feature-item h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+}
+
+.feature-item p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.badge {
+  background-color: #0f9d58;
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-left: 5px;
+}
+
+  </style>
 
 <style>
   .faq-container {

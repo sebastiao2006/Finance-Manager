@@ -23,7 +23,8 @@
 {{--   <link href="/site/assets/vendor/aos/aos.css" rel="stylesheet"> --}}
   <link href="/site/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="/site/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
   <!-- Main CSS File -->
   <link href="/site/assets/css/main.css" rel="stylesheet">
 </head>

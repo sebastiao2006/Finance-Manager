@@ -166,3 +166,10 @@ Route::delete('/tip/{id}', [AdminTipController::class, 'destroy'])->name('tip.de
     Route::resource('plans', PlanController::class);
 });
 
+// routes/web.php
+Route::get('/password/forgot', [App\Http\Controllers\ForgotPasswordController::class, 'showForgotForm'])->name('password.request');
+Route::post('/password/forgot', [App\Http\Controllers\ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+
+// routes/web.php
+Route::get('/password/reset/{token}', [App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('password.update');

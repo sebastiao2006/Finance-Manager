@@ -118,7 +118,7 @@
                 <span>ou use seu e-mail e senha</span>
                 <input type="email" name="email" placeholder="E-mail" required>
                 <input type="password" name="password" placeholder="Senha" required>
-                <a href="#">Esqueceu sua senha?</a>
+                <a href="{{ route('password.request') }}">Esqueceu sua senha?</a>
                 <button type="submit">Entrar</button>
             </form>
         </div>

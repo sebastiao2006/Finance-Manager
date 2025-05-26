@@ -10,7 +10,18 @@
         /* Todo o CSS que você enviou (já está correto) */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-        body { background-color: #c9d6ff; background: linear-gradient(to right, #e2e2e2, #c9d6ff); display: flex; align-items: center; justify-content: center; flex-direction: column; height: 100vh; }
+        body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: none; /* remove gradient */
+}
         .container { background-color: #fff; border-radius: 30px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); position: relative; overflow: hidden; width: 768px; max-width: 100%; min-height: 480px; }
         .container p { font-size: 14px; line-height: 20px; letter-spacing: 0.3px; margin: 20px 0; }
         .container span { font-size: 12px; }
@@ -36,10 +47,35 @@
         .container.active .toggle-left { transform: translateX(0); }
         .toggle-right { right: 0; transform: translateX(0); }
         .container.active .toggle-right { transform: translateX(200%); }
+
+        /* Remove o background antigo */
+        .video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-bg video {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+
     </style>
 </head>
 
 <body>
+      <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="assets/img/Luanda   -  Angola 4k ULTRA HD.mp4" type="video/mp4">
+      Seu navegador não suporta vídeo em HTML5.
+    </video>
+  </div>
 
     <div class="container" id="container">
         <div class="form-container sign-up">
@@ -95,7 +131,7 @@
                     <button class="hidden" id="login">Entrar</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Olá, Amigo!</h1>
+                    <h1>Olá, Kamba!</h1>
                     <p>Cadastre-se com seus dados pessoais para utilizar todos os recursos do site</p>
                     <button class="hidden" id="register">Cadastrar</button>
                 </div>
@@ -118,7 +154,12 @@
     </script>
 
 </body>
+{{-- <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="assets/img/Luanda   -  Angola 4k ULTRA HD.mp4" type="video/mp4">
+      Seu navegador não suporta vídeo em HTML5.
+    </video>
+  </div> --}}
 
 
 </html>
-kumbumeu123

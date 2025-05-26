@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Planning; // Adicione esta linha
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth; // no topo do arquivo
 
 use Illuminate\Http\Request;
 
@@ -30,10 +31,12 @@ public function index(Request $request)
     ];
 
     // Filtra planejamentos pelo mês e ano
-    $plannings = Planning::whereMonth('created_at', $month)
+    $plannings = Planning::where('user_id', Auth::id()) // <--- Aqui filtramos pelo usuário autenticado
+        ->whereMonth('created_at', $month)
         ->whereYear('created_at', $year)
         ->orderBy('created_at', 'desc')
         ->get();
+
 
     return view('planning.index', compact('plannings', 'months', 'month', 'year'));
 }
@@ -55,23 +58,27 @@ public function index(Request $request)
         public function store(Request $request)
         {
             $categories = $request->input('categories', []);
-    
+
             foreach ($categories as $category => $amount) {
-                if ($amount > 0) { // Salva apenas se o valor for maior que zero
+                if ($amount > 0) {
                     Planning::create([
                         'category' => $category,
                         'amount' => $amount,
+                        'user_id' => Auth::id(), // associa ao usuário autenticado
                     ]);
                 }
             }
-    
+
             return redirect()->route('planning.index')->with('success', 'Planejamento salvo com sucesso!');
         }
 
                 public function destroy($id)
         {
             // Encontrar o planejamento a ser apagado
-            $planning = Planning::findOrFail($id);
+            $planning = Planning::where('id', $id)
+            ->where('user_id', Auth::id()) // Garante que só apague se for do usuário logado
+            ->firstOrFail();
+
 
             // Apagar o planejamento
             $planning->delete();
@@ -88,10 +95,12 @@ public function index(Request $request)
     $year = $request->query('year', date('Y'));   // Ano
 
     // Filtra os planejamentos por mês e ano
-    $plannings = Planning::whereMonth('created_at', $month)
+    $plannings = Planning::where('user_id', Auth::id())
+        ->whereMonth('created_at', $month)
         ->whereYear('created_at', $year)
         ->orderBy('created_at', 'desc')
         ->get();
+
 
     $months = [
         1 => 'janeiro',

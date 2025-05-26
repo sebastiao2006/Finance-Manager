@@ -157,7 +157,7 @@
         <div class="info-box">
             <div class="info-text">
                 <span>Saldo atual ></span>
-                <strong>€ 0,00</strong> 
+                <strong>kz 0,00</strong> 
             </div>
             <div class="icon-circle blue">
                 <i class="fas fa-university"></i>
@@ -174,7 +174,7 @@
               valorSalvo = parseFloat(valorSalvo).toFixed(2).replace('.', ',');
       
               if (saldoAtual) {
-                  saldoAtual.textContent = `€ ${valorSalvo}`;
+                  saldoAtual.textContent = `kz ${valorSalvo}`;
               }
           });
       </script>
@@ -184,7 +184,7 @@
         <div class="info-box">
             <div class="info-text">
                 <span>Receitas ></span>
-                <strong>€ 0,00</strong> 
+                <strong>kz 0,00</strong> 
             </div>
             <div class="icon-circle green">
                 <i class="fas fa-arrow-up"></i>
@@ -194,7 +194,7 @@
         <div class="info-box">
             <div class="info-text">
                 <span>Despesas ></span>
-                <strong>€ 0,00</strong> 
+                <strong>kz 0,00</strong> 
             </div>
             <div class="icon-circle red">
                 <i class="fas fa-arrow-down"></i>
@@ -204,7 +204,7 @@
         <div class="info-box">
             <div class="info-text">
                 <span>Balanço mensal ></span>
-                <strong>€ 0,00</strong> 
+                <strong>kz 0,00</strong> 
             </div>
             <div class="icon-circle dark-green">
                 <i class="fas fa-balance-scale"></i>
@@ -530,7 +530,7 @@ background-color: #046c4e;
 
       <!-- Valor -->
       <div>
-        <input type="text" class="input-amount" placeholder="€ 0,00" value="€ 0,00" id="amountInput" inputmode="decimal">
+        <input type="text" class="input-amount" placeholder="kz 0,00" value="kz 0,00" id="amountInput" inputmode="decimal">
         <div class="error-text">Deve ter um valor maior que 0</div>
       </div>
 
@@ -629,7 +629,7 @@ const saveButtons = document.querySelectorAll('.btn-footer .btn');
 function formatMoney(value) {
   value = value.replace(/\D/g, ''); // remove não números
   value = (parseInt(value, 10) / 100).toFixed(2); // divide por 100 para decimal
-  return '€ ' + value.replace('.', ',');
+  return 'kz ' + value.replace('.', ',');
 }
 
 amountInput.addEventListener('input', (e) => {
@@ -642,7 +642,7 @@ amountInput.addEventListener('input', (e) => {
 descriptionInput.addEventListener('input', checkForm);
 
 function checkForm() {
-  const amountValid = amountInput.value !== '€ 0,00';
+  const amountValid = amountInput.value !== 'kz 0,00';
   const descriptionValid = descriptionInput.value.trim().length > 0;
 
   if (amountValid && descriptionValid) {

@@ -2,7 +2,7 @@
 <aside>
     <div class="toggle">
         <div class="logo">
-            <img src="/assets/img/logonovo.png" alt="Imagem de entradas">
+            <a href="{{ route('site.home.index') }}" ><img src="/assets/img/logonovo.png" alt="Imagem de entradas"></a>
             {{-- <h2>KUMBU<span class="danger">.KZ</span></h2> --}}
         </div>
         <div class="close" id="close-btn">

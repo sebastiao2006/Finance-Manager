@@ -10,13 +10,12 @@ class GoalsController extends Controller
 {
     public function index()
     {
-        $goals = Goal::all();
+        $goals = Goal::where('user_id', auth()->id())->get();
         return view('goals.index', compact('goals'));
     }
 
     public function store(Request $request)
     {
-        
         $request->validate([
             'nome' => 'required|string',
             'data' => 'required|date',
@@ -27,10 +26,20 @@ class GoalsController extends Controller
             'cor' => 'nullable|string',
         ]);
 
-        Goal::create($request->all());
+        Goal::create([
+            'nome' => $request->nome,
+            'data' => $request->data,
+            'icone' => $request->icone,
+            'descricao' => $request->descricao,
+            'valor_total' => $request->valor_total,
+            'valor_inicial' => $request->valor_inicial ?? 0,
+            'cor' => $request->cor,
+            'user_id' => auth()->id(), // 🔑 Associar ao usuário logado
+        ]);
 
         return redirect('/goals')->with('success', 'Goal salvo com sucesso!');
     }
+
     public function destroy(Goal $goal)
     {
         $goal->delete();

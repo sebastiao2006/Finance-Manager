@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Planning extends Model
 {
     use HasFactory;
-    protected $fillable = ['category', 'amount'];
+    protected $fillable = ['category', 'amount', 'user_id'];
+       
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
 }

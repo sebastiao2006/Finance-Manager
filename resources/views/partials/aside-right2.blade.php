@@ -158,7 +158,7 @@
             <div class="info-box">
                 <div class="info-text">
                     <span>Saldo atual ></span>
-                    <strong>€ 0,00</strong> 
+                    <strong>kz 0,00</strong> 
                 </div>
                 <div class="icon-circle blue">
                     <i class="fas fa-university"></i>
@@ -175,7 +175,7 @@
                     valorSalvo = parseFloat(valorSalvo).toFixed(2).replace('.', ',');
             
                     if (saldoAtual) {
-                        saldoAtual.textContent = `€ ${valorSalvo}`;
+                        saldoAtual.textContent = `kz ${valorSalvo}`;
                     }
                 });
             </script>
@@ -186,7 +186,7 @@
             <div class="info-box">
                 <div class="info-text">
                     <span>Receitas ></span>
-                    <strong>€ 0,00</strong> 
+                    <strong>kz 0,00</strong> 
                 </div>
                 <div class="icon-circle green">
                     <i class="fas fa-arrow-up"></i>
@@ -196,7 +196,7 @@
             <div class="info-box">
                 <div class="info-text">
                     <span>Despesas ></span>
-                    <strong>€ 0,00</strong> 
+                    <strong>kz 0,00</strong> 
                 </div>
                 <div class="icon-circle red">
                     <i class="fas fa-arrow-down"></i>
@@ -206,7 +206,7 @@
             <div class="info-box">
                 <div class="info-text">
                     <span>Balanço mensal ></span>
-                    <strong>€ 0,00</strong> 
+                    <strong>kz 0,00</strong> 
                 </div>
                 <div class="icon-circle dark-green">
                     <i class="fas fa-balance-scale"></i>

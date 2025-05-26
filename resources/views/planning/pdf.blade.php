@@ -22,10 +22,15 @@
 
         .header h1 {
             font-size: 18px;
-            color: #0f62e4;
+            color: #171717;
             margin: 0;
         }
-
+        
+        
+        .logo {
+            width: 100px;
+        }
+        
         .info {
             margin-bottom: 20px;
         }
@@ -84,6 +89,17 @@
 </head>
 <body>
     <div class="header">
+
+        @php
+    $logoPath = public_path('img/logonovo.png');
+@endphp
+
+@if (file_exists($logoPath))
+    <img src="data:image/png;base64,{{ base64_encode(file_get_contents($logoPath)) }}" class="logo" alt="Logotipo">
+@else
+    <p><strong>Logotipo não encontrado</strong></p>
+@endif
+
         <h1>Planejamento Mensal</h1>
         <div style="text-align: right;">
             <p><strong>Data:</strong> {{ date('d/m/Y') }}</p>

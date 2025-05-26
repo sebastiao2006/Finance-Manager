@@ -131,14 +131,17 @@
             </div>
 
             <div class="input-group">
-                <label>Nome</label>
-                <input type="text" value="SEBASTIÃO PAULO">
+                <label for="user-name">Nome</label>
+                <input type="text" id="user-name" name="name" 
+                    value="{{ Auth::user()->name ?? '' }}" required>
             </div>
+
 
             <div class="input-group">
                 <label>Email</label>
-                <input type="email" value="cardososebastian1024@gmail.com" disabled>
+                <input type="email" value="{{ Auth::user()->email ?? '' }}" disabled>
             </div>
+
 
             <button class="btn">ALTERAR E-MAIL</button>
 
@@ -202,14 +205,18 @@
                 </div>
 
                 <div class="input-group">
-                    <label>Como você gostaria de ser chamado?</label>
-                    <input type="text" value="SEBASTIÃO PAULO">
+                    <label for="user-name">Como você gostaria de ser chamado?</label>
+                    <input type="text" id="user-name" name="name" 
+                        value="{{ Auth::user()->name ?? '' }}" required>
                 </div>
 
+
                 <div class="input-group">
-                    <label>Email</label>
-                    <input type="email" value="cardososebastian1024@gmail.com">
+                    <label for="user-email">Email</label>
+                    <input type="email" id="user-email" name="email"
+                        value="{{ Auth::user()->email ?? '' }}" required>
                 </div>
+
 
                 <div class="input-group">
                     <label>Telefone</label>

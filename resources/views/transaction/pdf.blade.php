@@ -80,12 +80,24 @@
 <body>
 
     <div class="header">
-        <img src="{{ public_path('img/bai.png') }}" class="logo" alt="">
-        <div>
-            <p><strong>EXTRACTO INTEGRADO</strong></p>
-            <p><strong>Utilizador:</strong> {{ auth()->user()->name ?? 'Nome do Usuário' }}</p>
-            <p>ANGOLA</p>
-        </div>
+@php
+    $logoPath = public_path('img/logonovo.png');
+@endphp
+
+@if (file_exists($logoPath))
+    <img src="data:image/png;base64,{{ base64_encode(file_get_contents($logoPath)) }}" class="logo" alt="Logotipo">
+@else
+    <p><strong>Logotipo não encontrado</strong></p>
+@endif
+
+
+    <div>
+        <p><strong>EXTRACTO INTEGRADO</strong></p>
+        <p><strong>Utilizador:</strong> {{ auth()->user()->name ?? 'Nome do Usuário' }}</p>
+        <p>ANGOLA</p>
+    </div>
+</div>
+
     </div>
 
     <table class="info-table">

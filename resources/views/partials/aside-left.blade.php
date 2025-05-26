@@ -2,7 +2,7 @@
 <aside>
     <div class="toggle">
         <div class="logo">
-            <img src="/assets/img/logo.png" alt="Imagem de entradas">
+            <img src="/assets/img/logonovo.png" alt="Imagem de entradas">
             {{-- <h2>KUMBU<span class="danger">.KZ</span></h2> --}}
         </div>
         <div class="close" id="close-btn">

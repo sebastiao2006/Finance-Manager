@@ -14,14 +14,13 @@
   </video>
 
   <!-- Conteúdo por cima do vídeo -->
-  <div class="container text-center" style="position: relative; z-index: 1;">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 d-flex flex-column align-items-center justify-content-center">
-        <h1 style="color: white;">Bem-vindo ao Meu Kumbu</h1>
-        <p style="color: white;">Organiza e controla as tuas finanças com facilidade.</p>
-      </div>
-    </div>
+<div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
+  <div class="text-center">
+    <h1 style="color: white;">Bem-vindo ao Meu Kumbu</h1>
+    <p style="color: white;">Organiza e controla as tuas finanças com facilidade.</p>
   </div>
+</div>
+
 
 </section>
 
@@ -630,94 +629,97 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
 
 
 
-  <style>
-.icon i {
-  font-size: 20px;
-  color: #0a53d1;
-}
+<style>
+      .icon i {
+        font-size: 20px;
+        color: #0a53d1;
+      }
 
 
-.features {
-  padding: 40px 20px;
-  text-align: center;
-  max-width: 1200px;
-  height: 700px;
-  margin: auto;
-}
+      .features {
+        padding: 40px 20px;
+        text-align: center;
+        max-width: 1200px;
+        height: 700px;
+        margin: auto;
+      }
 
-.features h1 {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
+      .features h1 {
+          font-size: 48px;
+          font-weight: bold;
+          margin-bottom: 20px;
+          text-align: center
+      }
 
-.features p {
-  color: #666;
-  margin-bottom: 40px;
-}
+      .features p {
+        color: #666;
+        margin-bottom: 40px;
+      }
 
-.features-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 40px;
-}
+      .features-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px;
+      }
 
-.features-left,
-.features-right {
-  flex: 1;
-  min-width: 250px;
-}
+      .features-left,
+      .features-right {
+        flex: 1;
+        min-width: 250px;
+      }
 
-.features-center {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+      .features-center {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-.features-center img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
+      .features-center img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      }
 
-.feature-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 30px;
-  text-align: left;
-}
+      .feature-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 30px;
+        text-align: left;
+      }
 
-.icon {
-  font-size: 24px;
-  color: #0a53d1;
-  margin-right: 12px;
-  margin-top: 4px;
-}
+      .icon {
+        font-size: 24px;
+        color: #0a53d1;
+        margin-right: 12px;
+        margin-top: 4px;
+      }
 
-.feature-item h3 {
-  margin: 0 0 5px 0;
-  font-size: 18px;
-}
+      .feature-item h3 {
+        margin: 0 0 5px 0;
+        font-size: 18px;
+      }
 
-.feature-item p {
-  margin: 0;
-  font-size: 14px;
-  color: #555;
-}
+      .feature-item p {
+        margin: 0;
+        font-size: 14px;
+        color: #555;
+      }
 
-.badge {
-  background-color: #0f9d58;
-  color: #fff;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 8px;
-  margin-left: 5px;
-}
+      .badge {
+        background-color: #0f9d58;
+        color: #fff;
+        font-size: 10px;
+        padding: 2px 6px;
+        border-radius: 8px;
+        margin-left: 5px;
+      }
 
-  </style>
+</style>
+
+
 
 <style>
   .faq-container {

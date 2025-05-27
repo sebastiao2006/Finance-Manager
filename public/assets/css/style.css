@@ -12,6 +12,7 @@
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
 
+  --color-text: var(--color-dark); /* por padrão, cor escura */
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
     --border-radius-2: 1.2rem;
@@ -25,10 +26,11 @@
 .dark-mode-variables{
     --color-background: #181a1e;
     --color-white: #202528;
-    --color-dark: #edeffd;
+    --color-dark: #393939;
     --color-dark-variant: #a3bdcc;
     --color-light: rgba(0, 0, 0, 0.4);
     --box-shadow: 0 2rem 3rem var(--color-light);
+      --color-text: #fff; /* texto branco no modo escuro */
 }
 
 *{
@@ -45,18 +47,17 @@ html{
     font-size: 14px;
 }
 
-body{
+body {
     width: 100vw;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
     font-size: 0.88rem;
     user-select: none;
     overflow-x: hidden;
-    color: var(--color-dark);    
-  /*   background: url('/assets/img/capa12.png') center center no-repeat;
-    background-size: cover; */
-    background-color: #f6f6f9;
+  color: var(--color-text);
+    background: var(--color-background); /* <- ESSA LINHA É ESSENCIAL */
 }
+
 
 a{
     color: var(--color-dark);

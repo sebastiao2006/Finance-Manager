@@ -8,14 +8,14 @@
                 menu
             </span>
         </button>
-        <div class="dark-mode">
-            <span class="material-icons-sharp active">
-                light_mode
-            </span>
-            <span class="material-icons-sharp">
-                dark_mode
-            </span>
-        </div>
+    <div class="dark-mode">
+        <span class="material-icons-sharp active">
+            light_mode
+        </span>
+        <span class="material-icons-sharp">
+            dark_mode
+        </span>
+    </div>
 
            <!-- Perfil com clique -->
     <!-- Perfil com clique -->

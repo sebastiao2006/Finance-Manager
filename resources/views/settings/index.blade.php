@@ -124,38 +124,62 @@
     <!-- Visão geral -->
     <div id="overviewSection" class="principal">
         <!-- Dados da Conta -->
-        <div class="card">
-            <div class="profile-header">
-                <h2>Dados da Conta</h2>
-                <button class="btn" style="border-radius: 50%; padding: 10px;">✎</button>
-            </div>
+<div class="card">
+    <div class="profile-header">
+        <h2>Dados da Conta</h2>
+        <button class="btn" style="border-radius: 50%; padding: 10px;">✎</button>
+    </div>
 
-            <div class="input-group">
-                <label for="user-name">Nome</label>
-                <input type="text" id="user-name" name="name" 
-                    value="{{ Auth::user()->name ?? '' }}" required>
-            </div>
-
-
-            <div class="input-group">
-                <label>Email</label>
-                <input type="email" value="{{ Auth::user()->email ?? '' }}" disabled>
-            </div>
-
-
-            <button class="btn">ALTERAR E-MAIL</button>
-
-            <div class="input-group" style="margin-top: 20px;">
-                <label>Objetivo Financeiro</label>
-                <select>
-                    <option value="">Selecione</option>
-                    <option>Poupar</option>
-                    <option>Investir</option>
-                </select>
-            </div>
-
-            <button class="btn disabled" style="margin-top: 20px;">ATUALIZAR DADOS</button>
+    <form method="POST" action="/perfil/atualizar" enctype="multipart/form-data">
+        @csrf
+        <div class="input-group">
+            <label for="profile-image">Imagem de Perfil</label>
+            <input type="file" id="profile-image" name="profile_image" accept="image/*" onchange="previewImage(event)">
+            <br>
+            <img id="image-preview" src="{{ Auth::user()->profile_image_url ?? '' }}" alt="Preview da Imagem" style="max-width: 150px; margin-top: 10px; display: {{ Auth::user()->profile_image_url ? 'block' : 'none' }};">
         </div>
+
+        <div class="input-group">
+            <label for="user-name">Nome</label>
+            <input type="text" id="user-name" name="name" value="{{ Auth::user()->name ?? '' }}" required>
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" value="{{ Auth::user()->email ?? '' }}" disabled>
+        </div>
+
+        <button type="button" class="btn">ALTERAR E-MAIL</button>
+
+        <div class="input-group" style="margin-top: 20px;">
+            <label>Objetivo Financeiro</label>
+            <select name="financial_goal">
+                <option value="">Selecione</option>
+                <option {{ (Auth::user()->financial_goal ?? '') == 'Poupar' ? 'selected' : '' }}>Poupar</option>
+                <option {{ (Auth::user()->financial_goal ?? '') == 'Investir' ? 'selected' : '' }}>Investir</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn" style="margin-top: 20px;">ATUALIZAR DADOS</button>
+    </form>
+</div>
+
+<script>
+function previewImage(event) {
+    const input = event.target;
+    const preview = document.getElementById('image-preview');
+
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+
 
         <!-- Completar cadastro -->
         <div class="card">

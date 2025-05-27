@@ -151,14 +151,14 @@
 
         <button type="button" class="btn">ALTERAR E-MAIL</button>
 
-        <div class="input-group" style="margin-top: 20px;">
+{{--         <div class="input-group" style="margin-top: 20px;">
             <label>Objetivo Financeiro</label>
             <select name="financial_goal">
                 <option value="">Selecione</option>
                 <option {{ (Auth::user()->financial_goal ?? '') == 'Poupar' ? 'selected' : '' }}>Poupar</option>
                 <option {{ (Auth::user()->financial_goal ?? '') == 'Investir' ? 'selected' : '' }}>Investir</option>
             </select>
-        </div>
+        </div> --}}
 
         <button type="submit" class="btn" style="margin-top: 20px;">ATUALIZAR DADOS</button>
     </form>

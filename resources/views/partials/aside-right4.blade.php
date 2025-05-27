@@ -25,9 +25,9 @@
     {{-- <small class="text-muted">Admin</small> --}}
 </div>
 
-      <div class="profile-photo">
-          <img src="images/profile-1.jpg">
-      </div>
+  <div class="profile-photo">
+    <img src="{{ Auth::user()->profile_image_url }}" alt="Foto de Perfil">
+</div>
   </div>
   
   <div id="userDropdown" style="display: none; position: absolute; top: 60px; right: 20px; background-color: white; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); width: 180px; z-index: 999;">

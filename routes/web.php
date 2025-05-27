@@ -16,6 +16,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\NewplanningController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\ProfileController;
 
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -85,7 +86,7 @@ Route::get('/transactions/pdf', [TransactionController::class, 'exportPdf'])->na
 Route::get('/transactions/{id}/pdf', [TransactionController::class, 'exportSinglePdf'])->name('transaction.pdf.single');
 Route::get('/transactions/{id}/download', [TransactionController::class, 'downloadPdf'])->name('transaction.download');
 
-
+Route::post('/perfil/atualizar', [ProfileController::class, 'update'])->name('perfil.atualizar');
 
 
 

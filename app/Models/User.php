@@ -55,5 +55,15 @@ class User extends Authenticatable
         'last_login_at', // adicione se ainda não estiver
     ];
 
+     
+    public function getProfileImageUrlAttribute()
+{
+    if ($this->profile_image_path) {
+        return asset('storage/' . $this->profile_image_path);
+    }
+    // Imagem padrão caso não tenha foto
+    return asset('images/default-profile.png');
+}
+
 
 }

@@ -130,7 +130,7 @@
         <button class="btn" style="border-radius: 50%; padding: 10px;">✎</button>
     </div>
 
-    <form method="POST" action="/perfil/atualizar" enctype="multipart/form-data">
+<form method="POST" action="{{ route('perfil.atualizar') }}" enctype="multipart/form-data">
         @csrf
         <div class="input-group">
             <label for="profile-image">Imagem de Perfil</label>

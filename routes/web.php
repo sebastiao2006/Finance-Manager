@@ -30,6 +30,8 @@ use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\HomeSectionController;
+
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeMail;
 
@@ -174,7 +176,9 @@ Route::delete('/tip/{id}', [AdminTipController::class, 'destroy'])->name('tip.de
     Route::get('/user', [AdminUserController::class, 'index'])->name('user.index');
     Route::get('/service', [AdminServiceController::class, 'index'])->name('service.index');
     Route::resource('partner', AdminPartnerController::class);
-    Route::get('/home', [AdminHomeController::class, 'index'])->name('home.index');
+/*     Route::get('/home', [AdminHomeController::class, 'index'])->name('home.index'); */
+    Route::get('/home', [HomeSectionController::class, 'index'])->name('home.index');
+    Route::post('/home', [HomeSectionController::class, 'update'])->name('home.update');
     Route::resource('plans', PlanController::class);
 });
 

@@ -74,9 +74,11 @@
 
   </section>
  --}}
-
+@php
+    $section = \App\Models\HomeSection::first();
+@endphp
   <section class="nubank-section">
-        <div class="nubank-content">
+{{--         <div class="nubank-content">
           <div class="nubank-text">
             <h1>O melhor cartão para<br>seu perfil</h1>
             <p>Sem anuidade, sem tarifas abusivas e<br>cheio de vantagens.</p>
@@ -90,7 +92,28 @@
             <img src="site/assets/img/cartao-06.png"  alt="Cartão Gabriela Lima" class="card1">
             <img src="site/assets/img/cartao2-06.png"alt="Cartão Lucas Oliveira" class="card2">
           </div>
+        </div> --}}
+
+
+
+
+    <div class="nubank-content">
+        <div class="nubank-text">
+            <h1>{{ $section->title }}</h1>
+            <p>{!! nl2br(e($section->subtitle)) !!}</p>
+            <a href="#" class="nubank-btn">Conheça os Melhores Cartões</a>
+            <div class="nav-dots">
+                <span class="dot active">&#10094;</span>
+                <span class="dot">&#10095;</span>
+            </div>
         </div>
+        <div class="nubank-image">
+            <img src="{{ asset('storage/' . $section->image1) }}" alt="Cartão 1" class="card1">
+            <img src="{{ asset('storage/' . $section->image2) }}" alt="Cartão 2" class="card2">
+        </div>
+    </div>
+
+
 
    <style>
     /* Reset e fonte */

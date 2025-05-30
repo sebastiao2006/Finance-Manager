@@ -25,7 +25,7 @@
                 </li>
                 <li>
                     <a class="show-cat-btn" href="##">
-                        <span class="icon folder" aria-hidden="true"></span>Contas
+                        <span class="icon folder" aria-hidden="true"></span>Home
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -40,7 +40,7 @@
                 </li>
                 <li>
                     <a class="show-cat-btn" href="##">
-                        <span class="icon document" aria-hidden="true"></span>Transações 
+                        <span class="icon document" aria-hidden="true"></span>Dicas de Finanças
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -56,7 +56,7 @@
                     </ul>
                 </li>
                 
-                <li>
+{{--                 <li>
                     <a class="show-cat-btn" href="##">
                         <span class="icon image" aria-hidden="true"></span>Planejamentos
                         <span class="category__btn transparent-btn" title="Open list">
@@ -72,7 +72,7 @@
                             <a href="media-02.html">Adicionar</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <li>
                     <a class="show-cat-btn" href="##">
                         <span class="icon paper" aria-hidden="true"></span>Sobre Nós

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\AboutController;
+use App\Http\Controllers\Site\FinanceController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\TipController;
@@ -28,7 +29,7 @@ use App\Http\Controllers\Admin\TipController as AdminTipController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
-use App\Http\Controllers\Admin\PortfolioController as AdminPortfolioController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeMail;
 
@@ -151,6 +152,7 @@ Route::post('/transactions', [TransactionController::class, 'store'])->name('tra
 /* site*/
 Route::get('/home', [HomeController::class, 'index'])->name('sitehome.index');
 Route::get('/about', [AboutController::class, 'index'])->name('site.about.index');
+Route::get('/finance', [FinanceController::class, 'index'])->name('site.finance.index');
 
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(function () {
@@ -172,7 +174,7 @@ Route::delete('/tip/{id}', [AdminTipController::class, 'destroy'])->name('tip.de
     Route::get('/user', [AdminUserController::class, 'index'])->name('user.index');
     Route::get('/service', [AdminServiceController::class, 'index'])->name('service.index');
     Route::resource('partner', AdminPartnerController::class);
-    Route::resource('portfolios', AdminPortfolioController::class);
+    Route::get('/home', [AdminHomeController::class, 'index'])->name('home.index');
     Route::resource('plans', PlanController::class);
 });
 

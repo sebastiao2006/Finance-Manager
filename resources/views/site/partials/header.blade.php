@@ -20,8 +20,8 @@
       </a>
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">Sobre </a></li>
+          <li><a href="{{ route('site.home.index') }}" class="active">Home</a></li>
+          <li><a href="{{ route('site.about.index') }}">Sobre </a></li>
           <li><a href="#services">Dicas Financeiras</a></li>
 
           <li><a href="{{ route('login') }}"><i class="bi bi-person" style="font-size: 1.5rem; background: none;"></i>

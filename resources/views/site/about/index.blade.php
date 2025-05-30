@@ -243,6 +243,12 @@
   overflow: hidden;
 }
 
+.galeria-nu h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    }
+
 .carousel {
   display: flex;
   justify-content: center;

@@ -4,8 +4,8 @@
 
 <main class="main">
 
-  <!-- Hero Section -->
-<section id="hero" class="hero section light-background" style="position: relative; width: 100%; min-height: 75vh; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+<!-- Hero Section -->
+<section id="hero" class="hero section light-background" style="position: relative; width: 100%; min-height: 65vh; display: flex; align-items: center; justify-content: center; overflow: hidden;">
 
   <!-- Vídeo de fundo -->
   <video autoplay muted loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
@@ -14,72 +14,383 @@
   </video>
 
   <!-- Conteúdo por cima do vídeo -->
-<div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
-  <div class="text-center">
-    <h1 style="color: white;">Bem-vindo ao Meu Kumbu</h1>
-    <p style="color: white;">Organiza e controla as tuas finanças com facilidade.</p>
+  <div class="container d-flex align-items-center justify-content-center" style="height: auto; padding: 60px 20px; position: relative; z-index: 1;">
+    <div class="text-center">
+      <h1 style="color: white;">Bem-vindo ao Meu Kumbu</h1>
+      <p style="color: white;">Organiza e controla as tuas finanças com facilidade.</p>
+    </div>
   </div>
-</div>
-
 
 </section>
 
 
 
-  <!-- Featured Services Section -->
-  <section id="featured-services" class="featured-services section">
 
-    <div class="container">
-  <div class="row gy-4">
+ 
+  {{-- <section id="featured-services" class="featured-services section">
 
-    <div class="col-xl-3 col-md-6 d-flex" data-aos-delay="100">
-      <div class="service-item position-relative">
-        <div class="icon"><i class="bi bi-bullseye icon"></i></div> <!-- Crie objetivos -->
-        <h4><a href="" class="stretched-link">Crie objetivos</a></h4>
-        <p>Defina metas como juntar dinheiro para uma viagem, montar uma reserva de emergência ou pagar dívidas. O Meu Kumbu ajuda você a acompanhar o progresso.</p>
+        <div class="container">
+      <div class="row gy-4">
+
+        <div class="col-xl-3 col-md-6 d-flex" data-aos-delay="100">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-bullseye icon"></i></div> <!-- Crie objetivos -->
+            <h4><a href="" class="stretched-link">Crie objetivos</a></h4>
+            <p>Defina metas como juntar dinheiro para uma viagem, montar uma reserva de emergência ou pagar dívidas. O Meu Kumbu ajuda você a acompanhar o progresso.</p>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 d-flex" data-aos-delay="200">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-kanban icon"></i></div> <!-- Planejamento -->
+            <h4><a href="" class="stretched-link">Monte um planejamento</a></h4>
+            <p>Organize seu orçamento mensal e veja quanto pode gastar por categoria. Evite surpresas e saiba exatamente para onde vai o seu dinheiro.</p>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 d-flex" data-aos-delay="300">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-link-45deg icon"></i></div> <!-- Conecte suas contas -->
+            <h4><a href="" class="stretched-link">Conecte suas contas</a></h4>
+            <p>Lance suas receitas e despesas num só lugar. Categorize seus gastos e visualize o histórico de forma clara e organizada.</p>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 d-flex" data-aos-delay="400">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-graph-up icon"></i></div> <!-- Acompanhe os resultados -->
+            <h4><a href="" class="stretched-link">Acompanhe os seus resultados</a></h4>
+            <p>Acesse gráficos e relatórios em tempo real. Veja quanto entrou, quanto saiu e onde pode melhorar sua gestão financeira.</p>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <div class="col-xl-3 col-md-6 d-flex" data-aos-delay="200">
-      <div class="service-item position-relative">
-        <div class="icon"><i class="bi bi-kanban icon"></i></div> <!-- Planejamento -->
-        <h4><a href="" class="stretched-link">Monte um planejamento</a></h4>
-        <p>Organize seu orçamento mensal e veja quanto pode gastar por categoria. Evite surpresas e saiba exatamente para onde vai o seu dinheiro.</p>
+
+          </div>
+
+        </div>
+
+  </section>
+ --}}
+
+  <section class="nubank-section">
+        <div class="nubank-content">
+          <div class="nubank-text">
+            <h1>O melhor cartão para<br>seu perfil</h1>
+            <p>Sem anuidade, sem tarifas abusivas e<br>cheio de vantagens.</p>
+            <a href="#" class="nubank-btn">Conheça os Melhores Cartões</a>
+            <div class="nav-dots">
+              <span class="dot active">&#10094;</span>
+              <span class="dot">&#10095;</span>
+            </div>
+          </div>
+          <div class="nubank-image">
+            <img src="site/assets/img/cartao-06.png"  alt="Cartão Gabriela Lima" class="card1">
+            <img src="site/assets/img/cartao2-06.png"alt="Cartão Lucas Oliveira" class="card2">
+          </div>
+        </div>
+
+   <style>
+    /* Reset e fonte */
+ 
+
+      .nubank-section {
+        background-color: #f8f8f8;
+        padding: 60px 20px;
+      }
+
+      .nubank-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+        flex-wrap: wrap;
+      }
+
+      .nubank-text {
+        flex: 1;
+        min-width: 280px;
+        max-width: 500px;
+      }
+
+      .nubank-text h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        color: #000;
+      }
+
+      .nubank-text p {
+        font-size: 1.2rem;
+        color: #000;
+        margin-bottom: 30px;
+        line-height: 1.5;
+      }
+
+      .nubank-btn {
+        display: inline-block;
+        background-color: #0a53d1;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 14px 30px;
+        border-radius: 999px;
+        text-decoration: none;
+        margin-bottom: 30px;
+        transition: background 0.3s;
+      }
+
+      .nubank-btn:hover {
+        background-color: #0a53d1;
+      }
+
+      .nav-dots {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .dot {
+        background: #e6e6e6;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .dot.active {
+        background: #ccc;
+      }
+
+      .nubank-image {
+        position: relative;
+        flex: 1;
+        min-width: 300px;
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .card1,
+      .card2 {
+        max-width: 220px;
+        border-radius: 12px;
+        /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); */
+      }
+
+        .card1 {
+          transform: rotate(-10deg);
+          position: relative;
+          z-index: 2;
+        }
+
+        .card2 {
+          transform: rotate(5deg);
+          position: absolute;
+          right: 0;
+          top: 20px;
+          z-index: 1;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+          .nubank-content {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .nubank-text {
+            max-width: 100%;
+          }
+
+          .nubank-image {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .card2 {
+            position: relative;
+            top: -10px;
+            right: 0;
+          }
+        }
+
+    </style>
+</section>
+
+
+<section  class="sequencia">
+    <h1>Um app para tudo. E tudo no app</h1>
+
+  <div class="cards">
+    <div class="card large">
+      <div class="overlay">
+        <p class="overlay-title">Caixinhas</p>
+        <p>Decoração<br>Casamento</p>
       </div>
     </div>
-
-    <div class="col-xl-3 col-md-6 d-flex" data-aos-delay="300">
-      <div class="service-item position-relative">
-        <div class="icon"><i class="bi bi-link-45deg icon"></i></div> <!-- Conecte suas contas -->
-        <h4><a href="" class="stretched-link">Conecte suas contas</a></h4>
-        <p>Lance suas receitas e despesas num só lugar. Categorize seus gastos e visualize o histórico de forma clara e organizada.</p>
-      </div>
-    </div>
-
-    <div class="col-xl-3 col-md-6 d-flex" data-aos-delay="400">
-      <div class="service-item position-relative">
-        <div class="icon"><i class="bi bi-graph-up icon"></i></div> <!-- Acompanhe os resultados -->
-        <h4><a href="" class="stretched-link">Acompanhe os seus resultados</a></h4>
-        <p>Acesse gráficos e relatórios em tempo real. Veja quanto entrou, quanto saiu e onde pode melhorar sua gestão financeira.</p>
-      </div>
-    </div>
-
+    <div class="card small"></div>
+    <div class="card small"></div>
+    <div class="card small"></div>
   </div>
-</div>
+
+  <div class="description">
+    <p>Guarde dinheiro de maneira organizada<br>de acordo com seus objetivos.</p>
+    <a href="#">Conheça as Caixinhas do Meu Kumbu</a>
+  </div>
 
 
+    <style>
+
+   .sequencia {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+
+      .cards {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+      justify-content: flex-start; /* adiciona isso */
+    }
+
+
+    .card {
+      height: 500px;
+      border-radius: 30px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .card.large {
+      width: 380px;
+      background-image: url('site/assets/img/capa 22.jpg');
+    }
+
+    .card.small {
+      width: 200px;
+    }
+
+    .card:nth-child(2) {
+      background-image: url('site/assets/img/capa 20.jpg');
+    }
+
+    .card:nth-child(3) {
+      background-image: url('site/assets/img/capa 23.jpg');
+    }
+
+    .card:nth-child(4) {
+      background-image: url('site/assets/img/capa 25.jpg');
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 15px;
+      border-radius: 12px;
+    }
+
+    .overlay-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .description p {
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .description a {
+      color: #0a53d1;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card.large, .card.small {
+        width: 100%;
+      }
+    }
+  </style>
+</section>
+
+
+  <section id="about" class="about " style="background: #f8f8f8">
+    <div class="container">
+
+   <div class="row gy-3 origin invert">
+
+    <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos-delay="100">
+      <div class="about-content ps-0 ps-lg-3">
+        <h1>A segurança dos seus dados em primeiro lugar!</h1>
+        <p>
+          O Meu Kumbu possui medidas técnicas e administrativas com o objetivo de proteger seus dados pessoais, de acordo com a Lei Geral de Proteção de Dados (LGPD).
+        </p>
+           {{--         <ul>
+          <li>
+            <i class="bi bi-credit-card"></i>
+            <div>
+              <h3>Conecte suas contas e cartões</h3>
+              <p>Saiba exatamente para onde seu dinheiro está indo com nossa integração automática.</p>
+            </div>
+          </li>
+          <li>
+            <i class="bi bi-piggy-bank"></i>
+            <div>
+              <h3>Planeje seus gastos e crie objetivos</h3>
+              <p>Faça orçamentos mensais, mantenha seus gastos sob controle para juntar dinheiro e alcançar seus sonhos.</p>
+            </div>
+          </li>
+        </ul> --}}
       </div>
-
     </div>
 
-  </section><!-- /Featured Services Section -->
+    <div class="col-lg-6" data-aos-delay="200">
+      <img src="site/assets/img/pc.png" alt="" class="img-fluid">
+    </div>
+
+   </div>
+
+   </div>
+
+  </section>
+
+
+
 
   <!-- About Section -->
-  <section id="about" class="about section light-background">
+  <section id="about" class="about " style="background: #f8f8f8">
 
     <!-- Section Title -->
     <div class="container section-title" {{-- data-aos="fade-up" --}}>
-{{--       <h2>About</h2>
+     {{--       <h2>About</h2>
       <p><span>Find Out More</span> <span class="description-title">About Us</span></p> --}}
     </div><!-- End Section Title -->
 
@@ -91,130 +402,132 @@
           <img src="site/assets/img/capa 2.png" alt="" class="img-fluid">
         </div>
 
-       <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos-delay="200">
-  <div class="about-content ps-0 ps-lg-3">
-    <h1>Controle suas finanças em um só lugar</h1>
-    <p>
-      Com o Meu Kumbu, você centraliza toda a sua vida financeira num só lugar. Registre transações, acompanhe gastos e tome decisões mais inteligentes sobre seu dinheiro sem complicação.
-    </p>
-    <ul>
-      <li>
-        <i class="bi bi-journal-check"></i> <!-- Ícone atualizado -->
-        <div>
-          <h3>Registre receitas e despesas com facilidade</h3>
-          <p>Cadastre tudo que entra e sai da sua conta, classifique por categoria e tenha uma visão clara dos seus hábitos financeiros.</p>
-        </div>
-      </li>
-      <li>
-        <i class="bi bi-bar-chart-line"></i> <!-- Ícone atualizado -->
-        <div>
-          <h3>Planeje seus gastos e crie objetivos</h3>
-          <p>Faça orçamentos mensais, mantenha seus gastos sob controle para juntar dinheiro e alcançar seus sonhos.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
+          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos-delay="200">
+      <div class="about-content ps-0 ps-lg-3">
+        <h1>Controle suas finanças em um só lugar</h1>
+        <p>
+          Com o Meu Kumbu, você centraliza toda a sua vida financeira num só lugar. Registre transações, acompanhe gastos e tome decisões mais inteligentes sobre seu dinheiro sem complicação.
+        </p>
+        <ul>
+          <li>
+            <i class="bi bi-journal-check"></i> <!-- Ícone atualizado -->
+            <div>
+              <h3>Registre receitas e despesas com facilidade</h3>
+              <p>Cadastre tudo que entra e sai da sua conta, classifique por categoria e tenha uma visão clara dos seus hábitos financeiros.</p>
+            </div>
+          </li>
+          <li>
+            <i class="bi bi-bar-chart-line"></i> <!-- Ícone atualizado -->
+            <div>
+              <h3>Planeje seus gastos e crie objetivos</h3>
+              <p>Faça orçamentos mensais, mantenha seus gastos sob controle para juntar dinheiro e alcançar seus sonhos.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-{{--             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p> --}}
+    {{--             <p>
+                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                  culpa qui officia deserunt mollit anim id est laborum
+                </p> --}}
+              </div>
+
+            </div>
           </div>
 
         </div>
-      </div>
-
-    </div>
 
 
 
   </section><!-- /About Section -->
 
+  
+
 
   <section class="features">
-  <h1>Nossos principais recursos</h1>
-  <p>Conheça os recursos que vão revolucionar seu controle financeiro.</p>
+      <h1>Nossos principais recursos</h1>
+      <p>Conheça os recursos que vão revolucionar seu controle financeiro.</p>
 
-  <div class="features-grid">
-    <div class="features-left">
-      <div class="feature-item">
-        <span class="icon"><i class="fas fa-link"></i></span>
-        <div>
-          <h3>Conexão Bancária <span class="badge">NOVO</span></h3>
-          <p>Conecte contas e cartões para importar lançamentos direto do banco.</p>
+      <div class="features-grid">
+        <div class="features-left">
+          <div class="feature-item">
+            <span class="icon"><i class="fas fa-link"></i></span>
+            <div>
+              <h3>Conexão Bancária <span class="badge">NOVO</span></h3>
+              <p>Conecte contas e cartões para importar lançamentos direto do banco.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <span class="icon"><i class="fas fa-building-columns"></i></span>
+            <div>
+              <h3>Controle de contas</h3>
+              <p>Conta corrente, digital ou PJ? Gerencie todas no Organizze!</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <span class="icon"><i class="fas fa-bullseye"></i></span>
+            <div>
+              <h3>Limite de gastos</h3>
+              <p>Defina o quanto gastar em cada categoria e economize sem esforço.</p>
+            </div>
+          </div>
+
+{{--           <div class="feature-item">
+            <span class="icon"><i class="fas fa-bell"></i></span>
+            <div>
+              <h3>Alertas</h3>
+              <p>Receba alertas de todas as suas contas a pagar e dê adeus aos juros!</p>
+            </div>
+          </div> --}}
+        </div>
+
+        <div class="features-center">
+          <img src="site/assets/img/pc.png" alt="App preview">
+        </div>
+
+        <div class="features-right">
+          <div class="feature-item">
+            <span class="icon"><i class="fas fa-chart-pie"></i></span>
+            <div>
+              <h3>Relatórios</h3>
+              <p>Resumos incríveis, com gráficos simples e completos.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <span class="icon"><i class="fas fa-layer-group"></i></span>
+            <div>
+              <h3>Criação de categorias</h3>
+              <p>Crie suas próprias categorias de acordo com a sua necessidade.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <span class="icon"><i class="fas fa-credit-card"></i></span>
+            <div>
+              <h3>Controle de cartões</h3>
+              <p>O roxinho, o gold, o black… controle todos seus cartões em um único lugar.</p>
+            </div>
+          </div>
+
+{{--           <div class="feature-item">
+            <span class="icon"><i class="fas fa-desktop"></i> </span>
+            <div>
+              <h3>Multiplataforma</h3>
+              <p>Acesse seu controle financeiro de onde estiver, do celular ou computador.</p>
+            </div>
+          </div> --}}
         </div>
       </div>
-
-      <div class="feature-item">
-        <span class="icon"><i class="fas fa-building-columns"></i></span>
-        <div>
-          <h3>Controle de contas</h3>
-          <p>Conta corrente, digital ou PJ? Gerencie todas no Organizze!</p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <span class="icon"><i class="fas fa-bullseye"></i></span>
-        <div>
-          <h3>Limite de gastos</h3>
-          <p>Defina o quanto gastar em cada categoria e economize sem esforço.</p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <span class="icon"><i class="fas fa-bell"></i></span>
-        <div>
-          <h3>Alertas</h3>
-          <p>Receba alertas de todas as suas contas a pagar e dê adeus aos juros!</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="features-center">
-      <img src="site/assets/img/pc.png" alt="App preview">
-    </div>
-
-    <div class="features-right">
-      <div class="feature-item">
-        <span class="icon"><i class="fas fa-chart-pie"></i></span>
-        <div>
-          <h3>Relatórios</h3>
-          <p>Resumos incríveis, com gráficos simples e completos.</p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <span class="icon"><i class="fas fa-layer-group"></i></span>
-        <div>
-          <h3>Criação de categorias</h3>
-          <p>Crie suas próprias categorias de acordo com a sua necessidade.</p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <span class="icon"><i class="fas fa-credit-card"></i></span>
-        <div>
-          <h3>Controle de cartões</h3>
-          <p>O roxinho, o gold, o black… controle todos seus cartões em um único lugar.</p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <span class="icon"><i class="fas fa-desktop"></i> </span>
-        <div>
-          <h3>Multiplataforma</h3>
-          <p>Acesse seu controle financeiro de onde estiver, do celular ou computador.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 
 
-  <section id="about" class="about section light-background">
+  <section id="about" class="about " style="background: #f8f8f8">
     <div class="container">
 
   <div class="row gy-3 origin invert">
@@ -256,151 +569,152 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
   </section>
 
 
-  <section class="success-section">
-  <div class="container">
-    <div class="image">
-      <img src="site/assets/img/img1.png" alt="App mockup">
+
+<section class="blog-section">
+  <div class="blog-header">
+    <h2>Fique por dentro<br>das novidades</h2>
+    <div class="blog-controls">
+      <button class="nav-btn">&lt;</button>
+      <button class="nav-btn">&gt;</button>
+    </div>
+    <a href="#" class="blog-link">Ir para o blog</a>
+  </div>
+
+  <div class="blog-cards">
+    <div class="blog-card">
+      <img src="site/assets/img/capa 24.jpg" alt="">
+      <h3>The FRIENDS™ Experience: saiba o que você vai encontrar na exposição baseada na série</h3>
+      <a href="#">Ir para o artigo <span>&#8250;</span></a>
     </div>
 
-    <div class="content">
-      <p class="subtitle">Organize suas finanças</p>
-      <h2>O guia para o seu sucesso financeiro</h2>
+    <div class="blog-card">
+      <img src="site/assets/img/capa 29.jpg" alt="">
+      <h3>Como trocar criptoativos dentro do app pelo Nubank Cripto?</h3>
+      <a href="#">Ir para o artigo <span>&#8250;</span></a>
+    </div>
 
-      <div class="grid">
-        <div class="item">
-          <span class="number">01</span>
-          <h3>Suas contas e cartões num só lugar</h3>
-          <p>Comece cadastrando suas contas e cartões para ter uma visão mais clara das suas finanças.</p>
-        </div>
-
-        <div class="item">
-          <span class="number">02</span>
-          <h3>Cadastre todos os seus gastos</h3>
-          <p>Garanta uma previsibilidade financeira poderosa cadastrando suas despesas em tempo real, de onde você estiver.</p>
-        </div>
-
-        <div class="item">
-          <span class="number">03</span>
-          <h3>Saiba o destino de cada centavo</h3>
-          <p>Mantenha tudo sob controle informando sua renda e ganhos extras para ter um ponto de partida.</p>
-        </div>
-
-        <div class="item">
-          <span class="number">04</span>
-          <h3>Transformando em hábito</h3>
-          <p>Lance os gastos do dia a dia, acompanhe os relatórios sempre que possível e assuma o controle do seu dinheiro.</p>
-        </div>
-      </div>
+    <div class="blog-card">
+      <img src="site/assets/img/capa 30.jpg" alt="">
+      <h3>Nubank te leva para a FRIENDS™ Experience e ensina como concorrer a ingressos para a exposição da série</h3>
+      <a href="#">Ir para o artigo <span>&#8250;</span></a>
     </div>
   </div>
 </section>
 
 <style>
-  .success-section {
-    padding: 60px 20px;
-    background: #fefefc;
-    font-family: 'Inter', sans-serif;
-  }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    gap: 60px;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
 
-  .image {
-    flex: 0 0 400px;
-  }
+.blog-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 60px 100px 60px 100px; /* top right bottom left */
+  gap: 60px;
+  max-width: 1600px;
+  margin: auto;
+}
 
-  .image img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
-    /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); */
-  }
 
-  .content {
-    flex: 1;
-    min-width: 300px;
-  }
-
-  .subtitle {
-    color: #0a53d1;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-
-  .content h2 {
-    font-size: 32px;
-    font-weight: 800;
-    color: #111;
-    margin-bottom: 30px;
-    max-width: 500px;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .item {
+  .blog-header {
+    max-width: 400px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
+  }
+
+  .blog-header h2 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .blog-controls {
+    display: flex;
     gap: 10px;
   }
 
-  .number {
-    background: #8cb6ff;
-    color: #0a53d1;
-    font-weight: 700;
-    font-size: 14px;
-    border-radius: 8px;
-    padding: 6px 12px;
-    display: inline-block;
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background-color: #eee;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
   }
 
-  .item h3 {
+  .blog-link {
+    display: inline-block;
+    margin-top: 10px;
+    background: #0a53d1;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+  }
+
+  .blog-cards {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+  }
+
+  .blog-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 0 20px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 15px;
+  }
+
+  .blog-card h3 {
     font-size: 16px;
     font-weight: 700;
+    margin-bottom: 15px;
     color: #111;
-    margin: 0;
   }
 
-  .item p {
+  .blog-card a {
+    color: #0a53d1;
+    font-weight: 600;
+    text-decoration: none;
     font-size: 14px;
-    color: #555;
-    line-height: 1.5;
-    margin: 0;
   }
 
-  /* Responsivo */
-  @media (max-width: 768px) {
-    .container {
+  .blog-card a span {
+    font-size: 18px;
+    margin-left: 3px;
+  }
+
+  @media (max-width: 992px) {
+    .blog-section {
       flex-direction: column;
-      text-align: center;
+      align-items: center;
     }
 
-    .grid {
-      grid-template-columns: 1fr;
+    .blog-cards {
+      flex-direction: column;
+      align-items: center;
     }
 
-    .image {
-      margin-bottom: 40px;
-    }
-
-    .content h2 {
-      margin-left: auto;
-      margin-right: auto;
+    .blog-card {
+      width: 90%;
     }
   }
 </style>
-
 
 
 
@@ -489,45 +803,6 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
   <!-- Stats Section -->
  
 
-  <section id="about" class="about section light-background">
-    <div class="container">
-
-  <div class="row gy-3 origin invert">
-
-    <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos-delay="100">
-      <div class="about-content ps-0 ps-lg-3">
-        <h1>A segurança dos seus dados em primeiro lugar!</h1>
-        <p>
-          O Meu Kumbu possui medidas técnicas e administrativas com o objetivo de proteger seus dados pessoais, de acordo com a Lei Geral de Proteção de Dados (LGPD).
-        </p>
-{{--         <ul>
-          <li>
-            <i class="bi bi-credit-card"></i>
-            <div>
-              <h3>Conecte suas contas e cartões</h3>
-              <p>Saiba exatamente para onde seu dinheiro está indo com nossa integração automática.</p>
-            </div>
-          </li>
-          <li>
-            <i class="bi bi-piggy-bank"></i>
-            <div>
-              <h3>Planeje seus gastos e crie objetivos</h3>
-              <p>Faça orçamentos mensais, mantenha seus gastos sob controle para juntar dinheiro e alcançar seus sonhos.</p>
-            </div>
-          </li>
-        </ul> --}}
-      </div>
-    </div>
-
-    <div class="col-lg-6" data-aos-delay="200">
-      <img src="site/assets/img/pc.png" alt="" class="img-fluid">
-    </div>
-
-  </div>
-
-</div>
-
-  </section>
 
   <!-- Services Section -->
    {{--<section id="services" class="services section">
@@ -721,160 +996,9 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
 
 
 
-<style>
-  .faq-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
 
-  .faq-container h1 {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
 
-  .faq-container p {
-    font-size: 18px;
-    color: #4B5563;
-    margin-bottom: 40px;
-  }
 
-  .faq-carousel-wrapper {
-    position: relative;
-  }
-
-  .faq-carousel {
-    display: flex;
-    gap: 20px;
-    overflow: hidden;
-  }
-
-  .faq-card {
-    min-width: 260px;
-    max-width: 260px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s;
-  }
-
-  .faq-card img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-  }
-
-  .faq-card-body {
-    padding: 20px;
-  }
-
-  .faq-card-body h3 {
-    font-size: 16px;
-    font-weight: bold;
-    color: #0a53d1;
-    margin-bottom: 10px;
-  }
-
-  .faq-card-body p {
-    font-size: 14px;
-    margin-bottom: 20px;
-    color: #111827;
-  }
-
-  .faq-btn {
-    display: block;
-    text-align: center;
-    background: #0a53d1;
-    color: white;
-    border-radius: 30px;
-    padding: 10px 0;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-
-  .faq-btn:hover {
-    background: #0a53d1;
-  }
-
-  .faq-controls {
-    position: absolute;
-    top: 50%;
-    right: -40px;
-    transform: translateY(-50%);
-    display: flex;
-    gap: 10px;
-  }
-
-  .faq-controls button {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #9CA3AF;
-    transition: color 0.3s;
-  }
-
-  .faq-controls button:hover {
-    color: #4B5563;
-  }
-</style>
-
-<div class="faq-container">
-  <h1>Encontre respostas para as suas perguntas</h1>
-  <p>Organizamos e entregamos conteúdos de qualidade para que você tenha acesso a todas as suas possíveis dúvidas sobre finanças pessoais, cartões de crédito, empréstimos, investimentos e muito mais.</p>
-
-  <div class="faq-carousel-wrapper">
-    <div class="faq-carousel" id="carousel">
-      <div class="faq-card">
-        <img src="site/assets/img/pc.png" alt="Bancos">
-        <div class="faq-card-body">
-          <h3>Bancos</h3>
-          <p>C6 Bank cobra taxa de saque? Conheça as tarifas e saiba como sacar dinheiro</p>
-          <a href="#" class="faq-btn">Saiba mais</a>
-        </div>
-      </div>
-      <div class="faq-card">
-        <img src="site/assets/img/about.jpg" alt="Viagens">
-        <div class="faq-card-body">
-          <h3>Viagens</h3>
-          <p>Lugares baratos para viajar no Dia dos Namorados: 10 principais destinos</p>
-          <a href="#" class="faq-btn">Saiba mais</a>
-        </div>
-      </div>
-      <div class="faq-card">
-        <img src="site/assets/img/testimonials-bg.jpg" alt="Direitos">
-        <div class="faq-card-body">
-          <h3>Direitos</h3>
-          <p>Defensoria Pública agendamento online: acesso à justiça gratuita</p>
-          <a href="#" class="faq-btn">Saiba mais</a>
-        </div>
-      </div>
-      <div class="faq-card">
-        <img src="site/assets/img/capa4.jpg" alt="Direitos 2">
-        <div class="faq-card-body">
-          <h3>Direitos</h3>
-          <p>Advogado gratuito: saiba como conseguir um!</p>
-          <a href="#" class="faq-btn">Saiba mais</a>
-        </div>
-      </div>
-            <div class="faq-card">
-        <img src="site/assets/img/hero-bg.jpg" alt="Direitos 2">
-        <div class="faq-card-body">
-          <h3>Direitos</h3>
-          <p>Advogado gratuito: saiba como conseguir um!</p>
-          <a href="#" class="faq-btn">Saiba mais</a>
-        </div>
-      </div>
-    </div>
-
-  {{--   <div class="faq-controls">
-      <button onclick="scrollCarousel(-1)">&#x25C0;</button>
-      <button onclick="scrollCarousel(1)">&#x25B6;</button>
-    </div> --}}
-  </div>
-</div>
 
 <script>
   const carousel = document.getElementById('carousel');
@@ -886,76 +1010,7 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
 
 
 
-  <!-- Faq Section -->
-  <section id="faq" class="faq section light-background">
-
-  <!-- Section Title -->
-  <div class="container section-title">
-    <h2>F.A.Q</h2>
-    <p><span>Perguntas</span> <span class="description-title">Frequentes</span></p>
-  </div><!-- End Section Title -->
-
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-
-        <div class="faq-container">
-
-          <div class="faq-item faq-active">
-            <h3>O que é o Meu Kumbu?</h3>
-            <div class="faq-content">
-              <p>O Meu Kumbu é uma plataforma digital que ajuda-te a organizar, controlar e visualizar todas as tuas finanças pessoais num único lugar.</p>
-            </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-          </div>
-
-          <div class="faq-item">
-            <h3>O que posso fazer com o Meu Kumbu?</h3>
-            <div class="faq-content">
-              <p>Podes registar receitas e despesas, acompanhar o saldo mensal, categorizar transações, ver gráficos e até gerar relatórios em PDF ou Excel.</p>
-            </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-          </div>
-
-          <div class="faq-item">
-            <h3>Preciso de internet para usar o Meu Kumbu?</h3>
-            <div class="faq-content">
-              <p>Sim, por enquanto o Meu Kumbu funciona online. Futuramente poderá ter uma versão offline com sincronização.</p>
-            </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-          </div>
-
-          <div class="faq-item">
-            <h3>Os meus dados estão seguros?</h3>
-            <div class="faq-content">
-              <p>Sim. Todas as informações são armazenadas de forma segura. Não partilhamos dados com terceiros.</p>
-            </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-          </div>
-
-          <div class="faq-item">
-            <h3>Quanto custa usar o Meu Kumbu?</h3>
-            <div class="faq-content">
-              <p>O plano básico é gratuito. Futuramente serão adicionadas funcionalidades premium com preços acessíveis.</p>
-            </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-          </div>
-
-          <div class="faq-item">
-            <h3>Como começo a usar o Meu Kumbu?</h3>
-            <div class="faq-content">
-              <p>Basta criar uma conta no site, fazer login e começar a adicionar tuas transações. É simples e rápido.</p>
-            </div>
-            <i class="faq-toggle bi bi-chevron-right"></i>
-          </div>
-
-        </div>
-
-      </div><!-- End Faq Column-->
-    </div>
-  </div>
-</section><!-- /Faq Section -->
-
+  
 </main>
 
 @endsection

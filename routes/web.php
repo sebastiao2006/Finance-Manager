@@ -124,10 +124,17 @@ Route::get('/planning/pdf/export', [\App\Http\Controllers\PlanningController::cl
 
 /* Novo Planejamento*/
 Route::get('/newplanning', [NewplanningController::class, 'index'])->name('newplanning.index');
+Route::get('/newplanning/create', [PlanningController::class, 'create'])->name('planning.create');
+
+
 /* Relatorio*/
 Route::get('/report', [ReportController::class, 'index'])->name('report.index');
 /* Categoria*/
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 /* Calendario*/
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
 

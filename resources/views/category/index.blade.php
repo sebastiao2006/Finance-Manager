@@ -133,123 +133,309 @@
         }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <button id="transacoes-btn"><i class="fas fa-chevron-down"></i> Categoria de Despesas
+{{--     <button id="transacoes-btn"><i class="fas fa-chevron-down"></i> Categoria de Despesas
         <div class="dropdown-content">
             <a href="#"><span class="red"></span> Despesas</a>
             <a href="#"><span class="green"></span> Receitas</a>
             <a href="#"><span class="blue"></span> Transferências</a>
         </div>
-    </button>
+    </button> --}}
+<style>
+  /* Fundo do modal */
+  .modal-overlay {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
 
-    <table>
-        <thead>
+  /* Caixa do modal */
+  .modal {
+    background: #fff;
+    padding: 25px 30px 40px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    font-family: Arial, sans-serif;
+    position: relative;
+  }
+
+  .modal h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  /* Inputs */
+  input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+
+  /* Botão submit */
+  button.submit-btn {
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  button.submit-btn:hover {
+    background-color: #0056b3;
+  }
+
+  /* Seletor de cor em círculos */
+  .color-picker {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+
+  .color-option {
+      display: inline-block; /* deixa respeitar largura/altura */
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+      vertical-align: middle; /* alinha direitinho */
+  }
+
+  /* Cores pré-definidas */
+  .color-red { background-color: #e74c3c; }
+  .color-green { background-color: #27ae60; }
+  .color-blue { background-color: #3498db; }
+  .color-yellow { background-color: #f1c40f; }
+  .color-purple { background-color: #8e44ad; }
+
+  /* Quando selecionado */
+  input[type="radio"]:checked + .color-option {
+      border-color: #000;
+  }
+
+  /* Esconder os radios */
+  input[type="radio"] {
+      display: none;
+  }
+
+  /* Botão para abrir modal */
+  button.open-modal-btn {
+      background-color: #007BFF;
+      color: white;
+      font-size: 16px;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 20px;
+  }
+  button.open-modal-btn:hover {
+      background-color: #0056b3;
+  }
+
+  /* Botão fechar */
+  .close-btn {
+      background: transparent;
+      border: none;
+      font-size: 22px;
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      cursor: pointer;
+  }
+
+  /* Lista de ícones */
+  .icon-picker {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .icon-option {
+    cursor: pointer;
+    font-size: 26px;
+    color: #666;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .icon-option:hover {
+    color: #007BFF;
+    border-color: #007BFF;
+  }
+  .icon-option.selected {
+    color: #007BFF;
+    border-color: #007BFF;
+  }
+</style>
+
+<!-- Botão para abrir modal -->
+<button class="open-modal-btn" id="openModalBtn">Nova Categoria</button>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="close-btn" id="closeModalBtn">&times;</button>
+    <h2>Nova Categoria</h2>
+    <form action="{{ route('category.store') }}" method="POST">
+      @csrf
+      <input type="text" name="name" placeholder="Nome" required>
+
+      <!-- Ícones pré-definidos -->
+      <div class="icon-picker" id="iconPicker">
+        <div class="icon-option" data-icon="fas fa-bus" title="Transporte"><i class="fas fa-bus"></i></div>
+        <div class="icon-option" data-icon="fas fa-home" title="Casa"><i class="fas fa-home"></i></div>
+        <div class="icon-option" data-icon="fas fa-book" title="Educação"><i class="fas fa-book"></i></div>
+        <div class="icon-option" data-icon="fas fa-utensils" title="Alimentação"><i class="fas fa-utensils"></i></div>
+        <div class="icon-option" data-icon="fas fa-heartbeat" title="Saúde"><i class="fas fa-heartbeat"></i></div>
+        <div class="icon-option" data-icon="fas fa-ellipsis-h" title="Outros"><i class="fas fa-ellipsis-h"></i></div>
+      </div>
+
+      <!-- Input hidden para enviar o ícone selecionado -->
+      <input type="hidden" name="icon" id="iconInput" required>
+
+      <div class="color-picker">
+        <label>
+          <input type="radio" name="color" value="#e74c3c" required>
+          <span class="color-option color-red"></span>
+        </label>
+        <label>
+          <input type="radio" name="color" value="#27ae60" required>
+          <span class="color-option color-green"></span>
+        </label>
+        <label>
+          <input type="radio" name="color" value="#3498db" required>
+          <span class="color-option color-blue"></span>
+        </label>
+        <label>
+          <input type="radio" name="color" value="#f1c40f" required>
+          <span class="color-option color-yellow"></span>
+        </label>
+        <label>
+          <input type="radio" name="color" value="#8e44ad" required>
+          <span class="color-option color-purple"></span>
+        </label>
+      </div>
+
+      <button type="submit" class="submit-btn">Adicionar</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>
+  const openBtn = document.getElementById('openModalBtn');
+  const modal = document.getElementById('modalOverlay');
+  const closeBtn = document.getElementById('closeModalBtn');
+  const iconPicker = document.getElementById('iconPicker');
+  const iconInput = document.getElementById('iconInput');
+
+  openBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+    clearIconSelection();
+  });
+
+  // Fecha modal clicando fora da caixa
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal){
+      modal.classList.remove('active');
+      clearIconSelection();
+    }
+  });
+
+  // Controla seleção de ícones
+  iconPicker.querySelectorAll('.icon-option').forEach(option => {
+    option.addEventListener('click', () => {
+      clearIconSelection();
+      option.classList.add('selected');
+      iconInput.value = option.getAttribute('data-icon');
+    });
+  });
+
+  function clearIconSelection() {
+    iconPicker.querySelectorAll('.icon-option').forEach(o => o.classList.remove('selected'));
+    iconInput.value = '';
+  }
+</script>
+
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Ícone</th>
+            <th>Cor</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($categories as $category)
             <tr>
-                <th>Nome</th>
-                <th>Ícone</th>
-                <th>Cor</th>
-                <th>Valor</th> <!-- NOVO -->
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td data-label="Nome">Alimentação</td>
-                <td data-label="Ícone" class="icon"><i class="fas fa-utensils"></i></td>
-                <td data-label="Cor"><span class="color-circle" style="background: red;"></span></td>
-                <td data-label="Valor">kz 250,00</td> <!-- NOVO -->
-                <td data-label="Ações" class="actions">
-                    <i class="far fa-file"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                    <i class="fas fa-archive"></i>
-                    <i class="fas fa-plus-circle delete"></i>
+                <td>{{ $category->name }}</td>
+                <td class="icon"><i class="{{ $category->icon }}"></i></td>
+                <td><span class="color-circle" style="background: {{ $category->color }};"></span></td>
+                <td class="actions">
+                    <a href="{{ route('category.edit', $category->id) }}"><i class="fas fa-pencil-alt"></i></a>
+                    <form action="{{ route('category.destroy', $category->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja remover esta categoria?')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
-            <tr>
-                <td data-label="Nome">Assinatura</td>
-                <td data-label="Ícone" class="icon"><i class="fas fa-dollar-sign"></i></td>
-                <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
-                <td data-label="Valor">kz 89,90</td> <!-- NOVO -->
-                <td data-label="Ações" class="actions">
-                    <i class="far fa-file"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                    <i class="fas fa-archive"></i>
-                    <i class="fas fa-plus-circle delete"></i>
-                </td>
-            </tr>
-            <tr>
-                <td data-label="Nome">Casa</td>
-                <td data-label="Ícone" class="icon"><i class="fas fa-home"></i></td>
-                <td data-label="Cor"><span class="color-circle" style="background: blue;"></span></td>
-                <td data-label="Valor">kz 1.200,00</td> <!-- NOVO -->
-                <td data-label="Ações" class="actions">
-                    <i class="far fa-file"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                    <i class="fas fa-archive"></i>
-                    <i class="fas fa-plus-circle delete"></i>
-                </td>
-            </tr>
-            <tr>
-                <td data-label="Nome">Compras</td>
-                <td data-label="Ícone" class="icon"><i class="fas fa-dollar-sign"></i></td>
-                <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
-                <td data-label="Valor">kz 560,00</td> <!-- NOVO -->
-                <td data-label="Ações" class="actions">
-                    <i class="far fa-file"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                    <i class="fas fa-archive"></i>
-                    <i class="fas fa-plus-circle delete"></i>
-                </td>
-            </tr>
-            <tr>
-                <td data-label="Nome">Educação</td>
-                <td data-label="Ícone" class="icon"><i class="fas fa-book"></i></td>
-                <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
-                <td data-label="Valor">kz 300,00</td> <!-- NOVO -->
-                <td data-label="Ações" class="actions">
-                    <i class="far fa-file"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                    <i class="fas fa-archive"></i>
-                    <i class="fas fa-plus-circle delete"></i>
-                </td>
-            </tr>
-            <tr>
-                <td data-label="Nome">Lazer</td>
-                <td data-label="Ícone" class="icon"><i class="fas fa-umbrella-beach"></i></td>
-                <td data-label="Cor"><span class="color-circle" style="background: orange;"></span></td>
-                <td data-label="Valor">kz 150,00</td> <!-- NOVO -->
-                <td data-label="Ações" class="actions">
-                    <i class="far fa-file"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                    <i class="fas fa-archive"></i>
-                    <i class="fas fa-plus-circle delete"></i>
-                </td>
-            </tr>
-            <tr>
-                <td data-label="Nome">Operação bancária</td>
-                <td data-label="Ícone" class="icon"><i class="fas fa-dollar-sign"></i></td>
-                <td data-label="Cor"><span class="color-circle" style="background: purple;"></span></td>
-                <td data-label="Valor">kz 45,00</td> <!-- NOVO -->
-                <td data-label="Ações" class="actions">
-                    <i class="far fa-file"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                    <i class="fas fa-archive"></i>
-                    <i class="fas fa-plus-circle delete"></i>
-                </td>
-            </tr>
-            <tr>
-                <td data-label="Nome">Outros</td>
-                <td data-label="Ícone" class="icon"><i class="fas fa-ellipsis-h"></i></td>
-                <td data-label="Cor"><span class="color-circle" style="background: gray;"></span></td>
-                <td data-label="Valor">kz 99,00</td> <!-- NOVO -->
-                <td data-label="Ações" class="actions">
-                    <i class="far fa-file"></i>
-                    <i class="fas fa-pencil-alt"></i>
-                    <i class="fas fa-archive"></i>
-                    <i class="fas fa-plus-circle delete"></i>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        @endforeach
+    </tbody>
+</table>
+
+{{-- <h2>Editar Categoria</h2>
+<form action="{{ route('category.update', $category->id) }}" method="POST">
+    @csrf
+    @method('PUT')
+    <input type="text" name="name" value="{{ $category->name }}" required>
+    <input type="text" name="icon" value="{{ $category->icon }}" required>
+    <input type="color" name="color" value="{{ $category->color }}" required>
+    <button type="submit">Salvar</button>
+</form> --}}
+
     
 </main>
 

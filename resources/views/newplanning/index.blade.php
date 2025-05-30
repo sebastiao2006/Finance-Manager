@@ -16,111 +16,29 @@
             <div class="planejamento-categorias-scroll">
               
               <!-- Categoria Educação -->
-              <form action="{{ route('planning.store') }}" method="POST">
-                @csrf
-              
-                <div class="planejamento-categorias-scroll">
-              
-                  <!-- Educação -->
-                  <div class="planejamento-category-card">
-                    <div class="planejamento-icon planejamento-educacao"><i class="fas fa-book"></i></div>
-                    <div class="planejamento-details">
-                      <span class="planejamento-category-name">Educação</span>
-                      <div class="planejamento-total">
-                        <label>Total</label>
-                        <div class="planejamento-value">€ 0,00</div>
-                        <input type="number" name="categories[Educação]" step="0.01" min="0">
-                      </div>
-                    </div>
-                  </div>
-              
-                  <!-- Lazer -->
-                  <div class="planejamento-category-card">
-                    <div class="planejamento-icon planejamento-lazer"><i class="fas fa-umbrella-beach"></i></div>
-                    <div class="planejamento-details">
-                      <span class="planejamento-category-name">Lazer</span>
-                      <div class="planejamento-total">
-                        <label>Total</label>
-                        <div class="planejamento-value">€ 0,00</div>
-                        <input type="number" name="categories[Lazer]" step="0.01" min="0">
-                      </div>
-                    </div>
-                  </div>
-              
-                  <!-- Transporte -->
-                  <div class="planejamento-category-card">
-                    <div class="planejamento-icon planejamento-transporte"><i class="fas fa-car"></i></div>
-                    <div class="planejamento-details">
-                      <span class="planejamento-category-name">Transporte</span>
-                      <div class="planejamento-total">
-                        <label>Total</label>
-                        <div class="planejamento-value">€ 0,00</div>
-                        <input type="number" name="categories[Transporte]" step="0.01" min="0">
-                      </div>
-                    </div>
-                  </div>
-              
-                  <!-- Saúde -->
-                  <div class="planejamento-category-card">
-                    <div class="planejamento-icon planejamento-saude"><i class="fas fa-heartbeat"></i></div>
-                    <div class="planejamento-details">
-                      <span class="planejamento-category-name">Saúde</span>
-                      <div class="planejamento-total">
-                        <label>Total</label>
-                        <div class="planejamento-value">€ 0,00</div>
-                        <input type="number" name="categories[Saúde]" step="0.01" min="0">
-                      </div>
-                    </div>
-                  </div>
-              
-                  <!-- Alimentação -->
-                  <div class="planejamento-category-card">
-                    <div class="planejamento-icon planejamento-alimentacao"><i class="fas fa-utensils"></i></div>
-                    <div class="planejamento-details">
-                      <span class="planejamento-category-name">Alimentação</span>
-                      <div class="planejamento-total">
-                        <label>Total</label>
-                        <div class="planejamento-value">€ 0,00</div>
-                        <input type="number" name="categories[Alimentação]" step="0.01" min="0">
-                      </div>
-                    </div>
-                  </div>
-              
-                  <!-- Investimentos -->
-                  <div class="planejamento-category-card">
-                    <div class="planejamento-icon planejamento-investimento"><i class="fas fa-piggy-bank"></i></div>
-                    <div class="planejamento-details">
-                      <span class="planejamento-category-name">Investimentos</span>
-                      <div class="planejamento-total">
-                        <label>Total</label>
-                        <div class="planejamento-value">€ 0,00</div>
-                        <input type="number" name="categories[Investimentos]" step="0.01" min="0">
-                      </div>
-                    </div>
-                  </div>
-              
-                  <!-- Outros -->
-                  <div class="planejamento-category-card">
-                    <div class="planejamento-icon planejamento-outros"><i class="fas fa-ellipsis-h"></i></div>
-                    <div class="planejamento-details">
-                      <span class="planejamento-category-name">Outros</span>
-                      <div class="planejamento-total">
-                        <label>Total</label>
-                        <div class="planejamento-value">€ 0,00</div>
-                        <input type="number" name="categories[Outros]" step="0.01" min="0">
-                      </div>
-                    </div>
-                  </div>
-              
-                </div>
-              
-                <!-- Botão de salvar -->
-                <button type="submit" style="margin-top: 20px; padding: 10px 20px; background: #00c853; color: white; border: none; border-radius: 10px; cursor: pointer;">
-                  Salvar Planejamento
-                </button>
-              
-              </form>
-              
+<form action="{{ route('planning.store') }}" method="POST">
+    @csrf
+    <div class="planejamento-categorias-scroll">
+@foreach($categories as $category)
+    <div class="planejamento-category-card">
+        <div class="planejamento-icon" style="color: {{ $category->color }}">
+            <i class="{{ $category->icon }}"></i>
+        </div>
+        <div class="planejamento-details">
+            <span class="planejamento-category-name">{{ $category->name }}</span>
+            <div class="planejamento-total">
+                <label>Total</label>
+                <input type="number" name="categories[{{ $category->name }}]" step="0.01" min="0">
+            </div>
+        </div>
+    </div>
+@endforeach
+
+    </div>
+
+    <button type="submit" style="margin-top: 20px;">Salvar Planejamento</button>
+</form>
+
           
               <!-- Categoria Lazer -->
           {{--     <div class="planejamento-category-card">

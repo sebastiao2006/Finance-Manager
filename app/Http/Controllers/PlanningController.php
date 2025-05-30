@@ -41,6 +41,11 @@ public function index(Request $request)
     return view('planning.index', compact('plannings', 'months', 'month', 'year'));
 }
 
+public function create()
+{
+    $categories = Category::all();
+    return view('newplanning.index', compact('categories'));
+}
 
 
         // Exibe a lista de planejamentos

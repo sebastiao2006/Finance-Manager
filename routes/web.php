@@ -26,7 +26,7 @@ use App\Http\Controllers\Admin\KixiController as AdminKixiController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\TipController as AdminTipController;
-use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
@@ -174,7 +174,7 @@ Route::delete('/tip/{id}', [AdminTipController::class, 'destroy'])->name('tip.de
 
 
     Route::get('/user', [AdminUserController::class, 'index'])->name('user.index');
-    Route::get('/service', [AdminServiceController::class, 'index'])->name('service.index');
+    Route::get('/blog', [AdminBlogController::class, 'index'])->name('blog.index');
     Route::resource('partner', AdminPartnerController::class);
 /*     Route::get('/home', [AdminHomeController::class, 'index'])->name('home.index'); */
     Route::get('/home', [HomeSectionController::class, 'index'])->name('home.index');

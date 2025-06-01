@@ -91,7 +91,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="comments.html">
+                    <a href="{{ route('admin.blog.index') }}">
                         <span class="icon message" aria-hidden="true"></span>
                         Blog
                     </a>

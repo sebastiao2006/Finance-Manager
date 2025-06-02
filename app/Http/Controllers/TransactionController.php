@@ -69,24 +69,26 @@ class TransactionController extends Controller
     
 
     // Armazena uma nova transação (receita ou despesa)
-   public function store(Request $request)
+public function store(Request $request)
 {
-    // Primeiro, valide os campos
+    // Validação dos dados
     $validated = $request->validate([
         'type' => 'required|in:receita,despesa',
         'value' => 'required|numeric|min:0',
         'month' => 'required|string',
         'year' => 'required|numeric',
+        'description' => 'nullable|string|max:255', // <-- Adicionamos a validação da descrição
     ]);
 
-    // Depois, adicione o user_id manualmente
+    // Adiciona o ID do usuário autenticado
     $validated['user_id'] = auth()->id();
 
-    // Crie a transação
+    // Cria a transação com os dados validados
     Transaction::create($validated);
 
     return redirect()->back()->with('success', 'Transação registrada com sucesso!');
 }
+
 
   
 

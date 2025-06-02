@@ -76,15 +76,20 @@
         </div>
         
 
-        <!-- Formulário Receita -->
-        <form method="POST" action="{{ route('transactions.store') }}">
-            @csrf
-            <input type="hidden" name="type" value="receita">
-            <input type="hidden" name="month" value="{{ $month }}">
-            <input type="hidden" name="year" value="{{ date('Y') }}">
-            <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
-            <button type="submit">+ Receita</button>
-        </form>
+<!-- Formulário Receita -->
+<form method="POST" action="{{ route('transactions.store') }}">
+    @csrf
+    <input type="hidden" name="type" value="receita">
+    <input type="hidden" name="month" value="{{ $month }}">
+    <input type="hidden" name="year" value="{{ date('Y') }}">
+
+    <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
+
+    <input type="text" name="description" placeholder="Descrição da Receita" required>
+
+    <button type="submit">+ Receita</button>
+</form>
+
     </div>
 
     <div class="visits">
@@ -101,14 +106,20 @@
         </div>
 
         <!-- Formulário Despesa -->
-        <form method="POST" action="{{ route('transactions.store') }}">
-            @csrf
-            <input type="hidden" name="type" value="despesa">
-            <input type="hidden" name="month" value="{{ $month }}">
-            <input type="hidden" name="year" value="{{ date('Y') }}">
-            <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
-            <button type="submit">– Despesa</button>
-        </form>
+<!-- Formulário Despesa -->
+<form method="POST" action="{{ route('transactions.store') }}">
+    @csrf
+    <input type="hidden" name="type" value="despesa">
+    <input type="hidden" name="month" value="{{ $month }}">
+    <input type="hidden" name="year" value="{{ date('Y') }}">
+
+    <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
+
+    <input type="text" name="description" placeholder="Descrição da Despesa" required> <!-- 👈 Adicionado -->
+
+    <button type="submit">– Despesa</button>
+</form>
+
     </div>
     <div class="searches"> 
         <div class="buttons" style="display: flex; gap: 10px; justify-content: center;">

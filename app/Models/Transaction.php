@@ -11,9 +11,16 @@ class Transaction extends Model
 {
     use HasFactory;
 
-  protected $fillable = [
-    'type', 'value', 'month', 'year', 'user_id', // 👈 Adiciona 'user_id' aqui
+protected $fillable = [
+    'type',
+    'value',
+    'month',
+    'year',
+    'description',
+    'user_id',
+    // e outros campos que você usar (ex: 'status', 'category', 'account')
 ];
+
 
 
         public function user()

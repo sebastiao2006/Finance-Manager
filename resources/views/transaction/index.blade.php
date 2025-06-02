@@ -420,7 +420,7 @@
                                 @elseif($transaction->type == 'despesa')
                                     <span style="background-color: #fdecea; color: red; padding: 5px 10px; border-radius: 20px;">Despesa</span>
                                 @elseif($transaction->type == 'transferencia')
-                                    <span style="background-color: #e3f2fd; color: blue; padding: 5px 10px; border-radius: 20px;">Transferência</span>
+                                    <span style="background-color: #e3f2fd; color: blue; padding: 5px 10px; border-radius: 20px;">Transações</span>
                                 @else
                                     <span>{{ ucfirst($transaction->status ?? 'pendente') }}</span>
                                 @endif

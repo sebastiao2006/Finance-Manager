@@ -157,7 +157,7 @@
         <div class="dropdown-content">
             <a href="{{ route('transaction.despesa') }}"><span class="red"></span> Despesas</a>
             <a href="{{ route('transaction.receita') }}"><span class="green"></span> Receitas</a>
-            <a href="{{ route('transaction.index') }}"><span class="blue"></span> Transferências</a>
+            <a href="{{ route('transaction.index') }}"><span class="blue"></span> Transações</a>
         </div>
     </button>
 

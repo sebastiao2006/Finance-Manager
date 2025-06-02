@@ -17,6 +17,7 @@ class TransactionController extends Controller
         $year = $request->input('year', date('Y'));
     
         $transactions = Transaction::where('type', 'receita')
+        
             ->whereMonth('created_at', $month)
             ->whereYear('created_at', $year)
             ->orderBy('created_at', 'desc')

@@ -17,7 +17,7 @@ class TransactionController extends Controller
         $year = $request->input('year', date('Y'));
     
         $transactions = Transaction::where('type', 'receita')
-        
+            ->where('user_id', auth()->id()) // ADICIONA ESTA LINHA
             ->whereMonth('created_at', $month)
             ->whereYear('created_at', $year)
             ->orderBy('created_at', 'desc')
@@ -35,6 +35,7 @@ class TransactionController extends Controller
         $year = $request->input('year', date('Y'));
     
         $transactions = Transaction::where('type', 'despesa')
+            ->where('user_id', auth()->id()) // ADICIONA ESTA LINHA
             ->whereMonth('created_at', $month)
             ->whereYear('created_at', $year)
             ->orderBy('created_at', 'desc')
@@ -52,7 +53,7 @@ class TransactionController extends Controller
         $month = $request->get('month', date('m'));
         $year = $request->get('year', date('Y'));
     
-        $transactions = Transaction::whereYear('created_at', $year)
+        $transactions = Transaction::where('user_id', auth()->id()) // ADICIONA ESTA LINHA
             ->whereMonth('created_at', $month)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -115,7 +116,8 @@ public function destroy(Transaction $transaction)
 
 public function exportPdf()
 {
-    $transactions = Transaction::all();
+    $transactions = Transaction::where('user_id', auth()->id())->get(); // CORRETO
+
 
     $pdf = Pdf::loadView('transaction.pdf', compact('transactions'));
 

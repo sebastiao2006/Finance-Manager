@@ -97,6 +97,7 @@
 
 
 
+@if($section)
     <div class="nubank-content">
         <div class="nubank-text">
             <h1>{{ $section->title }}</h1>
@@ -107,11 +108,16 @@
                 <span class="dot">&#10095;</span>
             </div>
         </div>
+
         <div class="nubank-image">
             <img src="{{ asset('storage/' . $section->image1) }}" alt="Cartão 1" class="card1">
             <img src="{{ asset('storage/' . $section->image2) }}" alt="Cartão 2" class="card2">
         </div>
     </div>
+@else
+    <p>Conteúdo ainda não disponível.</p>
+@endif
+
 
 
 

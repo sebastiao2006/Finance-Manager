@@ -9,6 +9,8 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $section = Section::first(); // ou where(...)->first()
         return view('site.home.index')->with('teste', 'Página carregada!');
+
     }
 }

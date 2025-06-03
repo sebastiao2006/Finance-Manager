@@ -256,13 +256,13 @@
 
 
 <section  class="sequencia">
-    <h1>Um app para tudo. E tudo no app</h1>
+    <h1>Sua vida financeira organizada em um só lugar</h1>
 
   <div class="cards">
     <div class="card large">
       <div class="overlay">
-        <p class="overlay-title">Caixinhas</p>
-        <p>Decoração<br>Casamento</p>
+        <p class="overlay-title">Banco</p>
+        <p>Nacional de<br>Angola</p>
       </div>
     </div>
     <div class="card small"></div>

@@ -9,12 +9,21 @@ use App\Models\BlogCard;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        $blog = Blog::first();
-        $cards = BlogCard::all();
+public function index()
+{
+    $blog = Blog::first();
 
-        return view('site.home.index', compact('blog', 'cards'));
+    if (!$blog) {
+        $blog = Blog::create([
+            'titulo' => 'Fique por dentro das novidades',
+            'link_blog' => '#',
+        ]);
     }
+
+    $cards = BlogCard::all();
+
+    return view('site.home.index', compact('blog', 'cards'));
+}
+
 }
 

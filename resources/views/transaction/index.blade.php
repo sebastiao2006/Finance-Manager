@@ -391,64 +391,61 @@
                 <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
 
-            <!-- Tabela -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Situação</th>
-                        <th>Data <i class="fas fa-sort-down"></i></th>
-                        <th>Descrição</th>
-                        <th>Categoria</th>
-                        <th>Conta</th>
-                        <th>Valor</th>
-                        <th>Transação</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($transactions as $transaction)
-                        <tr>
-                            <td>{{ ucfirst($transaction->status ?? 'efectuada') }}</td>
-                            <td>{{ $transaction->created_at->format('d/m/Y') }}</td>
-                            <td>{{ $transaction->description ?? '-' }}</td>
-                            <td>{{ $transaction->category ?? '-' }}</td>
-                            <td>{{ $transaction->account ?? '-' }}</td>
-                            <td>{{ number_format($transaction->value, 2, ',', '.') }} kz</td>
-                            <td>
-                                @if($transaction->type == 'receita')
-                                    <span style="background-color: #e0f7e9; color: green; padding: 5px 10px; border-radius: 20px;">Receita</span>
-                                @elseif($transaction->type == 'despesa')
-                                    <span style="background-color: #fdecea; color: red; padding: 5px 10px; border-radius: 20px;">Despesa</span>
-                                @elseif($transaction->type == 'transferencia')
-                                    <span style="background-color: #e3f2fd; color: blue; padding: 5px 10px; border-radius: 20px;">Transações</span>
-                                @else
-                                    <span>{{ ucfirst($transaction->status ?? 'pendente') }}</span>
-                                @endif
-                            </td>
-                            <td class="action-links">
-                                <a href="{{ route('transaction.edit', $transaction->id) }}"><i class="fas fa-edit"></i> </a>
-                                
-                                <button 
-                                    class="delete-btn" 
-                                    data-id="{{ $transaction->id }}" 
-                                    style="background:none; border:none; color:rgb(88, 88, 88); cursor:pointer; padding:0; margin-left:10px;">
-                                    <i class="fas fa-trash-alt"></i> 
-                                </button>
-                            </td>
-                            
-                            
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="8" class="no-results">
-                                <div class="image-placeholder">
-                                    <img src="{{ asset('assets/img/result.svg') }}" alt="Imagem de placeholder" />
-                                </div>Nenhum resultado
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+<!-- Tabela -->
+<table>
+    <thead>
+        <tr>
+            <th>Situação</th>
+            <th>Data <i class="fas fa-sort-down"></i></th>
+            <th>Descrição</th>
+            <th>Conta</th>
+            <th>Valor</th>
+            <th>Transação</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse($transactions as $transaction)
+            <tr>
+                <td>{{ ucfirst($transaction->status ?? 'efectuada') }}</td>
+                <td>{{ $transaction->created_at->format('d/m/Y') }}</td>
+                <td>{{ $transaction->description ?? '-' }}</td>
+                <td>{{ $transaction->account ?? 'Principal' }}</td>
+                <td>{{ number_format($transaction->value, 2, ',', '.') }} kz</td>
+                <td>
+                    @if($transaction->type == 'receita')
+                        <span style="background-color: #e0f7e9; color: green; padding: 5px 10px; border-radius: 20px;">Receita</span>
+                    @elseif($transaction->type == 'despesa')
+                        <span style="background-color: #fdecea; color: red; padding: 5px 10px; border-radius: 20px;">Despesa</span>
+                    @elseif($transaction->type == 'transferencia')
+                        <span style="background-color: #e3f2fd; color: blue; padding: 5px 10px; border-radius: 20px;">Transações</span>
+                    @else
+                        <span>{{ ucfirst($transaction->status ?? 'pendente') }}</span>
+                    @endif
+                </td>
+                <td class="action-links">
+                    <a href="{{ route('transaction.edit', $transaction->id) }}"><i class="fas fa-edit"></i> </a>
+                    
+                    <button 
+                        class="delete-btn" 
+                        data-id="{{ $transaction->id }}" 
+                        style="background:none; border:none; color:rgb(88, 88, 88); cursor:pointer; padding:0; margin-left:10px;">
+                        <i class="fas fa-trash-alt"></i> 
+                    </button>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="7" class="no-results">
+                    <div class="image-placeholder">
+                        <img src="{{ asset('assets/img/result.svg') }}" alt="Imagem de placeholder" />
+                    </div>Nenhum resultado
+                </td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
+
 
             <!-- Linha horizontal -->
             <div class="horizontal-bar"></div>

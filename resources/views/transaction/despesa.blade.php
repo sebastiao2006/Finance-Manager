@@ -193,7 +193,6 @@
             <th>Situação</th>
             <th>Data</th>
             <th>Descrição</th>
-            <th>Categoria</th>
             <th>Conta</th>
             <th>Valor</th>
             <th>Ação</th>
@@ -205,8 +204,7 @@
                 <td>{{ ucfirst($transaction->status ?? 'efectuada') }}</td>
                 <td>{{ $transaction->created_at->format('d/m/Y') }}</td>
                 <td>{{ $transaction->description ?? '-' }}</td>
-                <td>{{ $transaction->category ?? '-' }}</td>
-                <td>{{ $transaction->account ?? '-' }}</td>
+                <td>{{ $transaction->account ?? 'Principal' }}</td>
                 <td>{{ number_format($transaction->value, 2, ',', '.') }} kz</td>
                 <td>
                     <!-- Editar -->

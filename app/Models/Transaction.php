@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Models;
-use App\Models\Transaction;
 
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Transaction extends Model
 {
-    use HasFactory;
+    // use HasFactory; // Uncomment if HasFactory trait is available in your Laravel version
 
 protected $fillable = [
     'type',

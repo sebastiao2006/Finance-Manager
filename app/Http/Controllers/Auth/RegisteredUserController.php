@@ -12,13 +12,19 @@ use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
 {
-   public function store(Request $request)
+public function store(Request $request)
 {
     // Validação
     $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users,email',
-        'password' => 'required|confirmed|min:6',
+        'password' => [
+            'required',
+            'string',
+            'min:8',
+            'regex:/^(?=.*[A-Z])(?=.*\d).+$/',
+            'confirmed',
+        ],
     ]);
 
     // Cria o usuário
@@ -37,6 +43,14 @@ class RegisteredUserController extends Controller
     // Redireciona
     return redirect('/dashboard');
 }
+
+public function messages()
+{
+    return [
+        'password.regex' => 'A senha deve conter pelo menos uma letra maiúscula e um número.',
+    ];
+}
+
 
 
 

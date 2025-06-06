@@ -65,6 +65,15 @@
   object-fit: cover;
 }
 
+#password-strength-text {
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+#password-strength-bar {
+    transition: all 0.3s ease-in-out;
+    border-radius: 4px;
+}
 
     </style>
 </head>
@@ -91,7 +100,9 @@
                 <span>ou use seu e-mail para se registrar</span>
                 <input type="text" name="name" placeholder="Nome" required>
                 <input type="email" name="email" placeholder="E-mail" required>
-                <input type="password" name="password" placeholder="Senha" required>
+                <input type="password" name="password" id="password" placeholder="Senha" required>
+                <div id="password-strength-text"></div>
+                <div id="password-strength-bar" style="height: 5px; background-color: #ccc; margin-top: 5px;"></div>
                 <input type="password" name="password_confirmation" placeholder="Confirmar Senha" required>
                 <button type="submit">Cadastrar</button>
             </form>
@@ -152,6 +163,72 @@
             container.classList.remove("active");
         });
     </script>
+
+    <script>
+    document.querySelector('form[action="{{ route('register') }}"]').addEventListener('submit', function(e) {
+        const password = document.querySelector('input[name="password"]').value;
+        const confirmPassword = document.querySelector('input[name="password_confirmation"]').value;
+
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+        if (!passwordRegex.test(password)) {
+            e.preventDefault(); // Impede o envio do formulário
+            alert('A senha deve ter no mínimo 8 caracteres, incluindo pelo menos uma letra maiúscula e um número.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            e.preventDefault();
+            alert('As senhas não coincidem.');
+            return;
+        }
+    });
+</script>
+
+<script>
+    const passwordInput = document.getElementById('password');
+    const strengthBar = document.getElementById('password-strength-bar');
+    const strengthText = document.getElementById('password-strength-text');
+
+    passwordInput.addEventListener('input', function () {
+        const value = passwordInput.value;
+
+        let strength = 0;
+        if (value.length >= 8) strength++;
+        if (/[A-Z]/.test(value)) strength++;
+        if (/\d/.test(value)) strength++;
+        if (/[\W]/.test(value)) strength++; // Caracteres especiais (opcional)
+
+        // Atualiza a barra e o texto
+        let color = "#ccc";
+        let text = "Muito fraca";
+
+        switch (strength) {
+            case 1:
+                color = "red";
+                text = "Muito fraca";
+                break;
+            case 2:
+                color = "orange";
+                text = "Fraca";
+                break;
+            case 3:
+                color = "yellowgreen";
+                text = "Boa";
+                break;
+            case 4:
+                color = "green";
+                text = "Forte";
+                break;
+        }
+
+        strengthBar.style.width = `${(strength / 4) * 100}%`;
+        strengthBar.style.backgroundColor = color;
+        strengthText.textContent = text;
+    });
+</script>
+
+
 
 </body>
 {{-- <div class="video-bg">

@@ -4,92 +4,23 @@
 
 <!-- Main Content -->
 <main>
-    <h1>Analytics</h1>
-
-
-
-    <!-- Analyses -->
-
-{{--     <video autoplay loop muted playsinline id="background-video">
-        <source src="/assets/img/video1.mp4" type="video/mp4">
-        Seu navegador não suporta vídeos.
-    </video>
-    <style>
-        #background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            z-index: -1;
-        }
-    </style> --}}
-  {{--   <div class="card entradas">
-        <p>Entradas</p>
-        <h3>{{ number_format($entradas, 2, ',', '.') }} Kz</h3>
-    </div>
-    
-    <div class="card saidas">
-        <p>Saídas</p>
-        <h3>{{ number_format($saidas, 2, ',', '.') }} Kz</h3>
-    </div>
-    
-    <div class="card saldo">
-        <p>Saldo até o fim de {{ ucfirst($month) }}</p>
-        <h3>{{ number_format($saldo, 2, ',', '.') }} Kz</h3>
-    </div> --}}
-<!-- Receita -->
-{{-- <form method="POST" action="{{ route('transactions.store') }}">
-    @csrf
-    <input type="hidden" name="type" value="receita">
-    <input type="hidden" name="month" value="{{ $month }}">
-    <input type="hidden" name="year" value="{{ date('Y') }}">
-    <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
-    <button type="submit">+ Receita</button>
-</form>
-
-<!-- Despesa -->
-<form method="POST" action="{{ route('transactions.store') }}">
-    @csrf
-    <input type="hidden" name="type" value="despesa">
-    <input type="hidden" name="month" value="{{ $month }}">
-    <input type="hidden" name="year" value="{{ date('Y') }}">
-    <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
-    <button type="submit">– Despesa</button>
-</form> --}}
-    
-
-
+    <h1>Dashboard </h1>
 <div class="analyse">
+
     <div class="sales">
         <div class="status">
             <div class="info">
                 <h3>Entradas</h3>
                 <h1>
-                    <span id="entradaValor">{{ number_format($entradas, 2, ',', '.') }}</span><span> kz</span>
+                    <a href="{{ route('transaction.receita') }}" style="color: inherit; text-decoration: none;">
+                        <span id="entradaValor">{{ number_format($entradas, 2, ',', '.') }}</span><span> kz</span>
+                    </a>
                 </h1>
             </div>
             <div class="enter">
                 <img src="assets/img/income.svg" alt="Imagem de entradas" />
             </div>
         </div>
-        
-
-<!-- Formulário Receita -->
-<form method="POST" action="{{ route('transactions.store') }}">
-    @csrf
-    <input type="hidden" name="type" value="receita">
-    <input type="hidden" name="month" value="{{ $month }}">
-    <input type="hidden" name="year" value="{{ date('Y') }}">
-
-    <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
-
-    <input type="text" name="description" placeholder="Descrição da Receita" required>
-
-    <button type="submit">+ Receita</button>
-</form>
-
     </div>
 
     <div class="visits">
@@ -97,78 +28,169 @@
             <div class="info">
                 <h3>Saídas</h3>
                 <h1>
-                    <span id="saidaValor">{{ number_format($saidas, 2, ',', '.') }}</span><span> kz</span>
+                    <a href="{{ route('transaction.despesa') }}" style="color: inherit; text-decoration: none;">
+                        <span id="saidaValor">{{ number_format($saidas, 2, ',', '.') }}</span><span> kz</span>
+                    </a>
                 </h1>
             </div>
             <div class="progresss">
-                <img src="assets/img/expense.svg" alt="Imagem de saídas">
+                <img src="assets/img/expense.svg" alt="Imagem de saídas" />
             </div>
         </div>
-
-        <!-- Formulário Despesa -->
-<!-- Formulário Despesa -->
-<form method="POST" action="{{ route('transactions.store') }}">
-    @csrf
-    <input type="hidden" name="type" value="despesa">
-    <input type="hidden" name="month" value="{{ $month }}">
-    <input type="hidden" name="year" value="{{ date('Y') }}">
-
-    <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
-
-    <input type="text" name="description" placeholder="Descrição da Despesa" required> <!-- 👈 Adicionado -->
-
-    <button type="submit">– Despesa</button>
-</form>
-
     </div>
-    <div class="searches"> 
-        <div class="buttons" style="display: flex; gap: 10px; justify-content: center;">
-    
-            <!-- Botão Receita -->
-            <a href="{{ route('transaction.receita') }}" 
-               style="
-                    border: 2px solid green; 
-                    color: green; 
-                    padding: 10px 20px; 
-                    border-radius: 20px; 
-                    text-decoration: none; 
-                    font-weight: bold;
-                    font-size: 16px;
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-                    transition: background 0.3s;
-               "
-               onmouseover="this.style.background='rgba(0,128,0,0.1)'" 
-               onmouseout="this.style.background='transparent'">
-                <span class="icon">+</span> Receita
-            </a>
-    
-            <!-- Botão Despesa -->
-            <a href="{{ route('transaction.despesa') }}" 
-               style="
-                    border: 2px solid red; 
-                    color: red; 
-                    padding: 10px 20px; 
-                    border-radius: 20px; 
-                    text-decoration: none; 
-                    font-weight: bold;
-                    font-size: 16px;
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-                    transition: background 0.3s;
-               "
-               onmouseover="this.style.background='rgba(255,0,0,0.1)'" 
-               onmouseout="this.style.background='transparent'">
-                <span class="icon">−</span> Despesa
-            </a>
-    
-        </div>
+
+    <!-- Botões para abrir os modais -->
+    <div class="buttons" style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+        <button type="button" onclick="openModal('receitaModal')" 
+                style="border: 2px solid green; color: green; padding: 10px 20px; border-radius: 20px; font-weight: bold; font-size: 16px; background: transparent;">
+            + Receita
+        </button>
+
+        <button type="button" onclick="openModal('despesaModal')" 
+                style="border: 2px solid red; color: red; padding: 10px 20px; border-radius: 20px; font-weight: bold; font-size: 16px; background: transparent;">
+            – Despesa
+        </button>
     </div>
-    
-    
+
 </div>
+
+<!-- Modais (no final do arquivo Blade) -->
+<div id="receitaModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('receitaModal')">&times;</span>
+        <h2>Nova Receita</h2>
+        <form method="POST" action="{{ route('transactions.store') }}">
+            @csrf
+            <input type="hidden" name="type" value="receita">
+            <input type="hidden" name="month" value="{{ $month }}">
+            <input type="hidden" name="year" value="{{ date('Y') }}">
+
+            <label>Valor (Kz)</label>
+            <input type="number" step="0.01" name="value" required>
+
+            <label>Descrição</label>
+            <input type="text" name="description" required>
+
+            <label>Data</label>
+            <input type="date" name="date" required>
+
+            <label>Categoria</label>
+            <select name="category" required>
+                <option value="Salário">Salário</option>
+                <option value="Kixikila">Kixikila</option>
+                <option value="Dividendos">Dividendos</option>
+                <option value="Empréstimo">Empréstimo</option>
+            </select>
+
+            <button type="submit">Salvar Receita</button>
+        </form>
+    </div>
+</div>
+
+<div id="despesaModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('despesaModal')">&times;</span>
+        <h2>Nova Despesa</h2>
+        <form method="POST" action="{{ route('transactions.store') }}">
+            @csrf
+            <input type="hidden" name="type" value="despesa">
+            <input type="hidden" name="month" value="{{ $month }}">
+            <input type="hidden" name="year" value="{{ date('Y') }}">
+
+            <label>Valor (Kz)</label>
+            <input type="number" step="0.01" name="value" required>
+
+            <label>Descrição</label>
+            <input type="text" name="description" required>
+
+            <label>Data</label>
+            <input type="date" name="date" required>
+
+            <label>Categoria</label>
+            <select name="category" required>
+                <option value="Casa">Casa</option>
+                <option value="Escola">Escola</option>
+                <option value="TV">TV</option>
+                <option value="Alimentação">Alimentação</option>
+                <option value="Lazer">Lazer</option>
+                <option value="Investimentos">Investimentos</option>
+                <option value="Educação">Educação</option>
+            </select>
+
+            <button type="submit">Salvar Despesa</button>
+        </form>
+    </div>
+</div>
+
+<!-- CSS para os modais -->
+<style>
+.modal {
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+}
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+.modal-content label {
+    font-weight: 600;
+    margin-top: 10px;
+    display: block;
+}
+.modal-content input, .modal-content select, .modal-content button {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    font-size: 16px;
+}
+.modal-content button {
+    margin-top: 15px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.modal-content button:hover {
+    background-color: #218838;
+}
+</style>
+
+<!-- Script para modais -->
+<script>
+function openModal(id) {
+    document.getElementById(id).style.display = 'block';
+}
+function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+}
+window.onclick = function(event) {
+    ['receitaModal', 'despesaModal'].forEach(function(id) {
+        if(event.target == document.getElementById(id)) {
+            closeModal(id);
+        }
+    });
+}
+</script>
+
 
 
     <style>

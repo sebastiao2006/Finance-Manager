@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Kivula')
+@section('title', 'Meu Kumbu')
 @section('content')
 
 <!-- Main Content -->

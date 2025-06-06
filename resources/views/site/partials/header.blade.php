@@ -3,8 +3,8 @@
   <div class="topbar d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">geral@meukumbu.co.ao</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+244 999 999 999</span></i>
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">geral@meukumbu.ao</a></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+244 957 772 047</span></i>
       </div>
       <div class="social-links d-none d-md-flex align-items-center">
         <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
@@ -20,9 +20,9 @@
       </a>
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="{{ route('site.home.index') }}" class="active">Home</a></li>
-          <li><a href="{{ route('site.about.index') }}">Sobre </a></li>
-          <li><a href="{{ route('site.finance.index') }}">Dicas Financeiras</a></li>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">Sobre </a></li>
+          <li><a href="#services">Dicas Financeiras</a></li>
 
           <li><a href="{{ route('login') }}"><i class="bi bi-person" style="font-size: 1.5rem; background: none;"></i>
 </a></li>

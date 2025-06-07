@@ -75,6 +75,14 @@
     border-radius: 4px;
 }
 
+.error-message {
+    color: #ff4d4f; /* vermelho estilo alert */
+    font-size: 0.9rem;
+    margin-top: 5px;
+    /* pode ajustar a posição aqui */
+}
+
+
     </style>
 </head>
 
@@ -100,6 +108,7 @@
                 <span>ou use seu e-mail para se registrar</span>
                 <input type="text" name="name" placeholder="Nome" required>
                 <input type="email" name="email" placeholder="E-mail" required>
+
                 <input type="password" name="password" id="password" placeholder="Senha" required>
                 <div id="password-strength-text"></div>
                 <div id="password-strength-bar" style="height: 5px; background-color: #ccc; margin-top: 5px;"></div>
@@ -110,11 +119,13 @@
 
         <div class="form-container sign-in">
             {{-- Exibe erros --}}
-            @if ($errors->any())
+{{--             @if ($errors->any())
                 <div style="color: red;">
                     {{ $errors->first() }}
                 </div>
-            @endif
+            @endif --}}
+
+
 
             {{-- Formulário conectado no Laravel --}}
             <form method="POST" action="{{ route('login') }}">
@@ -128,6 +139,11 @@
                 </div>
                 <span>ou use seu e-mail e senha</span>
                 <input type="email" name="email" placeholder="E-mail" required>
+                                @if ($errors->has('email'))
+                <div class="error-message">
+                    {{ $errors->first('email') }}
+                </div>
+                 @endif
                 <input type="password" name="password" placeholder="Senha" required>
                 <a href="{{ route('password.request') }}">Esqueceu sua senha?</a>
                 <button type="submit">Entrar</button>

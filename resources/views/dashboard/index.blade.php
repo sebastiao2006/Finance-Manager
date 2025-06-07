@@ -4,7 +4,7 @@
 
 <!-- Main Content -->
 <main>
-    <h1>Analytics</h1>
+    <h1>Dashboard</h1>
 
 
 
@@ -62,7 +62,7 @@
 
 
 <div class="analyse">
-    <div class="sales">
+    <div class="sales" id="openModalBtn" type="button">
         <div class="status">
             <div class="info">
                 <h3>Entradas</h3>
@@ -77,22 +77,79 @@
         
 
 <!-- Formulário Receita -->
-<form method="POST" action="{{ route('transactions.store') }}">
+<form method="POST" action="{{ route('transactions.store') }} " >
     @csrf
     <input type="hidden" name="type" value="receita">
     <input type="hidden" name="month" value="{{ $month }}">
     <input type="hidden" name="year" value="{{ date('Y') }}">
 
-    <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
+{{--     <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
 
     <input type="text" name="description" placeholder="Descrição da Receita" required>
 
-    <button type="submit">+ Receita</button>
+    <button type="submit">+ Receita</button> --}}
 </form>
+
+<!-- Botão para abrir a modal -->
+{{-- <button id="openModalBtn" type="button">+ Receita</button> --}}
+
+<!-- Modal -->
+<div id="receitaModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+     background-color: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+  
+  <div style="background: white; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px; position: relative;">
+    
+    <!-- Botão de fechar -->
+    <button id="closeModalBtn" style="position: absolute; top: 10px; right: 10px;">&times;</button>
+    
+    <!-- Formulário -->
+    <form method="POST" action="{{ route('transactions.store') }}">
+      @csrf
+      <input type="hidden" name="type" value="receita">
+      <input type="hidden" name="month" value="{{ $month }}">
+      <input type="hidden" name="year" value="{{ date('Y') }}">
+
+      <div>
+        <label>Valor da Receita</label>
+        <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
+      </div>
+
+      <div style="margin-top: 10px;">
+        <label>Descrição</label>
+        <input type="text" name="description" required placeholder="Descrição da Receita">
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button type="submit">Salvar Receita</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  const modal = document.getElementById('receitaModal');
+  const openBtn = document.getElementById('openModalBtn');
+  const closeBtn = document.getElementById('closeModalBtn');
+
+  openBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  // Também fecha clicando fora da modal
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+</script>
+
 
     </div>
 
-    <div class="visits">
+    <div class="visits" id="openDespesaCard">
         <div class="status">
             <div class="info">
                 <h3>Saídas</h3>
@@ -112,13 +169,70 @@
     <input type="hidden" name="type" value="despesa">
     <input type="hidden" name="month" value="{{ $month }}">
     <input type="hidden" name="year" value="{{ date('Y') }}">
-
+{{-- 
     <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
 
-    <input type="text" name="description" placeholder="Descrição da Despesa" required> <!-- 👈 Adicionado -->
+    <input type="text" name="description" placeholder="Descrição da Despesa" required>  --}}<!-- 👈 Adicionado -->
 
-    <button type="submit">– Despesa</button>
+    {{-- <button type="submit">– Despesa</button> --}}
 </form>
+
+
+
+<!-- Modal de Despesa -->
+<div id="despesaModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+     background-color: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+  
+  <div style="background: white; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px; position: relative;">
+    
+    <!-- Botão de fechar -->
+    <button id="closeDespesaModalBtn" style="position: absolute; top: 10px; right: 10px;">&times;</button>
+    
+    <!-- Formulário -->
+    <form method="POST" action="{{ route('transactions.store') }}">
+      @csrf
+      <input type="hidden" name="type" value="despesa">
+      <input type="hidden" name="month" value="{{ $month }}">
+      <input type="hidden" name="year" value="{{ date('Y') }}">
+
+      <div>
+        <label>Valor da Despesa</label>
+        <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
+      </div>
+
+      <div style="margin-top: 10px;">
+        <label>Descrição</label>
+        <input type="text" name="description" required placeholder="Descrição da Despesa">
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button type="submit">Salvar Despesa</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const despesaModal = document.getElementById('despesaModal');
+  const openDespesa = document.getElementById('openDespesaCard');
+  const closeDespesa = document.getElementById('closeDespesaModalBtn');
+
+  openDespesa.addEventListener('click', () => {
+    despesaModal.style.display = 'flex';
+  });
+
+  closeDespesa.addEventListener('click', () => {
+    despesaModal.style.display = 'none';
+  });
+
+  // Fecha ao clicar fora da modal
+  window.addEventListener('click', (e) => {
+    if (e.target === despesaModal) {
+      despesaModal.style.display = 'none';
+    }
+  });
+</script>
+
 
     </div>
     <div class="searches"> 

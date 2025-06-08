@@ -2,8 +2,8 @@
 <aside>
     <div class="toggle">
         <div class="logo">
-            <a href="{{ route('site.home.index') }}" ><img src="/assets/img/logonovo.png" alt="Imagem de entradas"></a>
-            {{-- <h2>KUMBU<span class="danger">.KZ</span></h2> --}}
+            <a href="{{ route('site.home.index') }}" style="display: inline-block; text-decoration: none;">
+    <img src="/assets/img/logonovo.png" alt="Imagem de entradas" style="height: 140px; width: 100px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
         </div>
         <div class="close" id="close-btn">
             <span class="material-icons-sharp"> close </span>
@@ -11,7 +11,6 @@
     </div>
 
     <div class="sidebar">
-        <div>
         <a href="{{ route('dashboard.index') }}" class="{{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
             <span class="material-icons-sharp"> dashboard </span>
             <h3>Dashboard</h3>
@@ -41,7 +40,7 @@
             <span style="font-size: 24px; font-weight: bold; font-family: Arial, sans-serif;"> K </span>
             <h3>Kixikila</h3>
         </a>
-        </div>
+        <div></div>
 </div>
 
 </aside>

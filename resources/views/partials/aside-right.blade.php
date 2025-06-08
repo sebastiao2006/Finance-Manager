@@ -11,14 +11,6 @@
         </span>
     </button>
 
-    <div class="dark-mode">
-        <span class="material-icons-sharp active">
-            light_mode
-        </span>
-        <span class="material-icons-sharp">
-            dark_mode
-        </span>
-    </div>
 
     <!-- Perfil com clique -->
     <div class="profile" onclick="toggleUserMenu()" style="cursor: pointer;">
@@ -35,7 +27,7 @@
   
   <div id="userDropdown" style="display: none; position: absolute; top: 60px; right: 20px; background-color: white; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); width: 180px; z-index: 999;">
       <ul style="list-style: none; margin: 0; padding: 10px;">
-          <li><a href="/perfil" style="display: block; padding: 10px; color: #333; text-decoration: none;">Perfil</a></li>
+          <li><a href="{{ route('settings.index') }}" class="{{ request()->routeIs('settings.index') ? 'active' : '' }} "style=" display: block; padding: 10px; color: #333; text-decoration: none;">Perfil</a></li>
           <li><a href="/notificacoes" style="display: block; padding: 10px; color: #333; text-decoration: none;">Notificações</a></li>
           <li>
               <form method="POST" action="{{ route('logout') }}">
@@ -305,14 +297,7 @@
       <style>
         
       </style>
-      
-        <div class="notification add-reminder">
-          <div>
-            <span class="material-icons-sharp">add</span>
-            <h3>Adicionar Lembrete</h3>
-          </div>
-        </div>
-      </div>
+
       
         <script>
 const addReminderBtn = document.querySelector('.add-reminder');

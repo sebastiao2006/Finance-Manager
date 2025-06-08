@@ -179,49 +179,7 @@
                     }
                 });
             </script>
-            
-              
-
-        
-            <div class="info-box">
-                <div class="info-text">
-                    <span>Receitas ></span>
-                    <strong>kz 0,00</strong> 
-                </div>
-                <div class="icon-circle green">
-                    <i class="fas fa-arrow-up"></i>
-                </div>
-            </div>
-        
-            <div class="info-box">
-                <div class="info-text">
-                    <span>Despesas ></span>
-                    <strong>kz 0,00</strong> 
-                </div>
-                <div class="icon-circle red">
-                    <i class="fas fa-arrow-down"></i>
-                </div>
-            </div>
-        
-            <div class="info-box">
-                <div class="info-text">
-                    <span>Balanço mensal ></span>
-                    <strong>kz 0,00</strong> 
-                </div>
-                <div class="icon-circle dark-green">
-                    <i class="fas fa-balance-scale"></i>
-                </div>
-            </div>
-        </div>
-        
-        
-     </div>
-        </div>
-    
-    
- </div>
-
- <style>
+             <style>
 .right-panel {
     margin-top: 5%;
     flex: 1;

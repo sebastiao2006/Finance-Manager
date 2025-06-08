@@ -279,18 +279,18 @@
 
   </style>        
       
-      <div class="finance-tip deactive">
-        <div class="icon">
-          <span class="material-icons-sharp">lightbulb</span>
-        </div>
-        <div class="content">
-          <div class="info">
-            <h3>Dica Arquivada</h3>
-            <p class="tip-text">Evite compras por impulso: espere 24 horas antes de decidir por uma aquisição não planejada.</p>
-            <small class="text-muted">Atualizado: 08:00 AM</small>
-          </div>
-        </div>
-      </div>
+      <div class="finance-tip active">
+  <div class="icon">
+    <span class="material-icons-sharp">savings</span>
+  </div>
+  <div class="content">
+    <div class="info">
+      <h3>Dica Financeira</h3>
+      <p class="tip-text">Reserva uma parte do teu rendimento mensal, mesmo que seja pequena, para criar um fundo de emergência.</p>
+      <small class="text-muted">Atualizado: 08:00 AM</small>
+    </div>
+  </div>
+</div>
       
 
       

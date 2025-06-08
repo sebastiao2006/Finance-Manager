@@ -81,6 +81,30 @@
     margin-top: 5px;
     /* pode ajustar a posição aqui */
 }
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        min-height: 600px;
+    }
+
+    .form-container {
+        width: 100% !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(0) !important;
+    }
+
+    .toggle-container {
+        display: none;
+    }
+
+    .container.active .sign-in,
+    .container.active .sign-up {
+        transform: translateX(0) !important;
+    }
+}
+
 
 
     </style>

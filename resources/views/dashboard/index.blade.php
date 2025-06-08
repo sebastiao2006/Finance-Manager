@@ -6,61 +6,6 @@
 <main>
     <h1>Dashboard</h1>
 
-
-
-    <!-- Analyses -->
-
-{{--     <video autoplay loop muted playsinline id="background-video">
-        <source src="/assets/img/video1.mp4" type="video/mp4">
-        Seu navegador não suporta vídeos.
-    </video>
-    <style>
-        #background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            z-index: -1;
-        }
-    </style> --}}
-  {{--   <div class="card entradas">
-        <p>Entradas</p>
-        <h3>{{ number_format($entradas, 2, ',', '.') }} Kz</h3>
-    </div>
-    
-    <div class="card saidas">
-        <p>Saídas</p>
-        <h3>{{ number_format($saidas, 2, ',', '.') }} Kz</h3>
-    </div>
-    
-    <div class="card saldo">
-        <p>Saldo até o fim de {{ ucfirst($month) }}</p>
-        <h3>{{ number_format($saldo, 2, ',', '.') }} Kz</h3>
-    </div> --}}
-<!-- Receita -->
-{{-- <form method="POST" action="{{ route('transactions.store') }}">
-    @csrf
-    <input type="hidden" name="type" value="receita">
-    <input type="hidden" name="month" value="{{ $month }}">
-    <input type="hidden" name="year" value="{{ date('Y') }}">
-    <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
-    <button type="submit">+ Receita</button>
-</form>
-
-<!-- Despesa -->
-<form method="POST" action="{{ route('transactions.store') }}">
-    @csrf
-    <input type="hidden" name="type" value="despesa">
-    <input type="hidden" name="month" value="{{ $month }}">
-    <input type="hidden" name="year" value="{{ date('Y') }}">
-    <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
-    <button type="submit">– Despesa</button>
-</form> --}}
-    
-
-
 <div class="analyse">
     <div class="sales" id="openModalBtn" type="button">
         <div class="status">
@@ -82,16 +27,8 @@
     <input type="hidden" name="type" value="receita">
     <input type="hidden" name="month" value="{{ $month }}">
     <input type="hidden" name="year" value="{{ date('Y') }}">
-
-{{--     <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
-
-    <input type="text" name="description" placeholder="Descrição da Receita" required>
-
-    <button type="submit">+ Receita</button> --}}
 </form>
 
-<!-- Botão para abrir a modal -->
-{{-- <button id="openModalBtn" type="button">+ Receita</button> --}}
 
 <!-- Modal -->
 <div id="receitaModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -125,6 +62,7 @@
     </form>
   </div>
 </div>
+
 <script>
   const modal = document.getElementById('receitaModal');
   const openBtn = document.getElementById('openModalBtn');
@@ -169,12 +107,6 @@
     <input type="hidden" name="type" value="despesa">
     <input type="hidden" name="month" value="{{ $month }}">
     <input type="hidden" name="year" value="{{ date('Y') }}">
-{{-- 
-    <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
-
-    <input type="text" name="description" placeholder="Descrição da Despesa" required>  --}}<!-- 👈 Adicionado -->
-
-    {{-- <button type="submit">– Despesa</button> --}}
 </form>
 
 
@@ -315,34 +247,48 @@
             font-weight: bold;
         }
         .pizza {
-            width: 350px;
-            height: 350px;
-            padding: 15px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        canvas {
-            width: 200px !important;
-            height: 200px !important;
-        }
-        .legenda {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-        .legenda div {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-        .cor {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: white; /* se quiser manter o fundo branco */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.pizza canvas {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+    height: auto;
+}
+
+.legenda {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    min-width: 180px;
+}
+
+.legenda div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.cor {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
 
     </style>
     <!-- End of Analyses -->

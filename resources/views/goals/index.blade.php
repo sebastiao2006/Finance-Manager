@@ -161,7 +161,7 @@
               <div class="progress-bar">
                 <div class="progress-fill" style="width: {{ $percent }}%;"></div>
               </div>
-              <div class="goal-values">€ {{ number_format($goal->valor_inicial, 2, ',', '.') }} / € {{ number_format($goal->valor_total, 2, ',', '.') }}</div>
+              <div class="goal-values">kz {{ number_format($goal->valor_inicial, 2, ',', '.') }} / kz {{ number_format($goal->valor_total, 2, ',', '.') }}</div>
               <div class="goal-actions">
                 <i class="fas fa-pause"></i>
                 <!-- Editar valor_inicial -->
@@ -302,7 +302,7 @@
               <div class="goal-form-group">
                 <label>Valor do goal</label>
                 <div class="goal-input-icon">
-                  <span style="color: #0049bf;">€</span>
+                  <span style="color: #0049bf;">kz</span>
                   <input type="text" name="valor_total" value="0.00" style="color: #0049bf;" required>
                 </div>
               </div>
@@ -310,7 +310,7 @@
               <div class="goal-form-group">
                 <label>Valor inicial</label>
                 <div class="goal-input-icon">
-                  <span style="color: #0049bf;">€</span>
+                  <span style="color: #0049bf;">kz</span>
                   <input type="text" name="valor_inicial" value="0.00" style="color: #0049bf;">
                 </div>
               </div>

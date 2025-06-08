@@ -257,15 +257,16 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    background-color: white; /* se quiser manter o fundo branco */
+    background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .pizza canvas {
     width: 100%;
     max-width: 300px;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1; /* Mantém o formato quadrado */
     height: auto;
+    display: block;
 }
 
 .legenda {
@@ -289,6 +290,19 @@
     margin-right: 5px;
 }
 
+.grafico-container {
+    width: 100%;
+    max-width: 300px;
+    height: 300px; /* altura fixa controlada */
+    position: relative; /* necessário para Chart.js funcionar corretamente */
+}
+
+.grafico-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
 
     </style>
     <!-- End of Analyses -->
@@ -297,13 +311,16 @@
     <div class="new-users">
         <h2>Despesas e Receitas</h2>
         <div class="user-list">
-            <div class="pizza">
-                <canvas id="grafico"></canvas>
-                <div class="legenda">
-                    <div><span class="cor" style="background: #0a53d1;"></span> Receitas - {{ number_format($entradas, 2, ',', '.') }} Kz</div>
-                    <div><span class="cor" style="background: #fb573b;"></span> Despesas - {{ number_format($saidas, 2, ',', '.') }} Kz</div>
-                </div>
-            </div>
+<div class="pizza">
+    <div class="grafico-container">
+        <canvas id="grafico"></canvas>
+    </div>
+    <div class="legenda">
+        <div><span class="cor" style="background: #0a53d1;"></span> Receitas - {{ number_format($entradas, 2, ',', '.') }} Kz</div>
+        <div><span class="cor" style="background: #fb573b;"></span> Despesas - {{ number_format($saidas, 2, ',', '.') }} Kz</div>
+    </div>
+</div>
+
         </div>
     </div>
 

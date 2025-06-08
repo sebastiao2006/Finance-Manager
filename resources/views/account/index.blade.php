@@ -15,13 +15,12 @@
 
 
 <style>
-
-
-.card-wrapper {
-    margin-top: 50px;
+ .card-wrapper {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* alinha à esquerda */
+  padding: 0 1rem; /* margem interna para não encostar nas bordas */
 }
 
 .card-title {
@@ -34,6 +33,7 @@
   background-color: #fff;
   border-radius: 1.5rem;
   width: 350px;
+  max-width: 100%;
   height: 200px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -66,7 +66,34 @@
   color: #0049bf;
 }
 
+/* Responsividade */
+@media (max-width: 480px) {
+  .card-wrapper {
+    align-items: center; /* centraliza no mobile */
+    padding: 0 1rem; /* mantém margem interna */
+  }
 
+  .card-nova-conta {
+    width: 100%;  /* ocupa toda a largura disponível no container */
+    max-width: 400px; /* opcional, para não ficar gigante */
+    height: 180px;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .plus-circle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.7rem;
+  }
+
+  .card-label {
+    font-size: 1rem;
+  }
+}
 </style>
 
 <!-- MODAL BANCOS -->

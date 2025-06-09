@@ -2,135 +2,139 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Despesa #{{ $transaction->id }}</title>
+    <title>Comprovativo #{{ $transaction->id }}</title>
     <style>
         body {
             font-family: DejaVu Sans, sans-serif;
             font-size: 13px;
+            color: #000;
+            background-color: #fff;
             padding: 40px;
-            color: #333;
         }
 
-        .header {
+.header {
+    text-align: center;
+}
+
+.logo {
+    width: 140px;
+    margin: 0 auto 20px auto;
+    display: block;
+}
+
+        .title {
             text-align: center;
-            border-bottom: 2px solid #0f62e4;
-            padding-bottom: 10px;
+            font-weight: bold;
             margin-bottom: 30px;
         }
 
-        .logo {
-            width: 80px;
-            height: auto;
-            margin-bottom: 10px;
+        .section {
+            margin-bottom: 25px;
         }
 
-        .header h2 {
-            color: #0f62e4;
-            margin: 0;
-            font-size: 22px;
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 4px;
         }
 
-        .sub-header {
-            text-align: center;
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .details {
+        .info-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
         }
 
-        .details td {
-            padding: 10px 6px;
+        .info-table td {
+            padding: 4px 6px;
             vertical-align: top;
         }
 
-        .label {
+        .info-label {
             font-weight: bold;
-            width: 180px;
-            color: #222;
+            width: 160px;
         }
 
-        .value {
-            color: #000;
-        }
-
-        .support {
+        .footer {
             font-size: 11px;
-            text-align: center;
-            margin-top: 50px;
+            color: #555;
+            margin-top: 40px;
             border-top: 1px solid #ccc;
             padding-top: 10px;
-            color: #777;
+            text-align: center;
         }
 
-        .iban-footer {
-            font-size: 11px;
-            text-align: center;
-            color: #777;
-            margin-top: 10px;
+        .timestamp {
+            margin-top: 20px;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .receipt {
+            margin-top: 15px;
+            font-size: 12px;
+        }
+
+        .receipt pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border: 1px solid #ccc;
+            overflow-x: auto;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-                @php
-    $logoPath = public_path('img/logonovo.png');
-@endphp
-
-@if (file_exists($logoPath))
-    <img src="data:image/png;base64,{{ base64_encode(file_get_contents($logoPath)) }}" class="logo" alt="Logotipo">
-@else
-    <p><strong>Logotipo não encontrado</strong></p>
-@endif
-        <h2>Comprovativo Digital</h2>
+        @php
+            $logoPath = public_path('img/logonovo.png');
+        @endphp
+        @if (file_exists($logoPath))
+            <img src="data:image/png;base64,{{ base64_encode(file_get_contents($logoPath)) }}" class="logo" alt="Logotipo">
+        @else
+            <p><strong>Logotipo</strong></p>
+        @endif
     </div>
 
-    <div class="sub-header">
-        Detalhe da operação realizada no sistema Kumbu.
+ {{--    <div class="title">
+        A operação que efectuou foi registada com sucesso através do sistema Kumbu.
+    </div> --}}
+
+    <div class="section">
+        <div class="section-title">Dados do Ordenante</div>
+        <table class="info-table">
+<tr><td class="info-label">Utilizador</td><td>{{ auth()->user()->name ?? 'Nome do Usuário' }}</td></tr>
+            
+        </table>
     </div>
 
-    <table class="details">
-        <tr>
-            <td class="label">Despesa Nº</td>
-            <td class="value">#{{ $transaction->id }}</td>
-        </tr>
-        <tr>
-            <td class="label">Situação</td>
-            <td class="value">{{ ucfirst($transaction->status ?? 'efectuada') }}</td>
-        </tr>
-        <tr>
-            <td class="label">Data</td>
-            <td class="value">{{ $transaction->created_at->format('d/m/Y H:i:s') }}</td>
-        </tr>
-        <tr>
-            <td class="label">Descrição</td>
-            <td class="value">{{ $transaction->description ?? '-' }}</td>
-        </tr>
-        <tr>
-            <td class="label">Categoria</td>
-            <td class="value">{{ $transaction->category ?? '-' }}</td>
-        </tr>
-        <tr>
-            <td class="label">Conta</td>
-            <td class="value">{{ $transaction->account ?? '-' }}</td>
-        </tr>
-        <tr>
-            <td class="label">Valor</td>
-            <td class="value">{{ number_format($transaction->value, 2, ',', '.') }} kz</td>
-        </tr>
-    </table>
-
-    <div class="support">
-        Em caso de dúvidas sobre esta despesa, entre em contacto com o suporte técnico do sistema Kumbu.
+    <div class="section">
+        <div class="section-title">Dados do Pagamento</div>
+        <table class="info-table">
+            <tr><td class="info-label">Número de Operação</td><td>{{ $transaction->id }}</td></tr>
+            <tr><td class="info-label">Tipo de Pagamento</td><td>{{ $transaction->description ?? '---' }}</td></tr>
+            <tr><td class="info-label">Montante</td><td>{{ number_format($transaction->value, 2, ',', '.') }} kz</td></tr>
+            <tr><td class="info-label">Data do Pagamento</td><td>{{ $transaction->created_at->format('d/m/Y H:i:s') }}</td></tr>
+            <tr><td class="info-label">Estado</td><td>{{ ucfirst($transaction->status ?? 'Sucesso') }}</td></tr>
+            <tr><td class="info-label">Canal</td><td>{{ $transaction->channel ?? 'Meu Kumbu' }}</td></tr>
+        </table>
     </div>
 
-    <div class="iban-footer">
-        ID Interno: {{ $transaction->uuid ?? '0000-xxxx-0000' }} | Referência: {{ $transaction->reference ?? '---' }}
+    <div class="section">
+        <div class="section-title">Dados do Recibo</div>
+        <div class="receipt">
+           <strong>Tipo de Operação:</strong><br>
+        <pre>{{ ucfirst($transaction->type ?? 'Despesa') }}</pre>
+
+        </div>
+    </div>
+
+    <div class="timestamp">
+        Documento processado pelo sistema Kumbu em: {{ now()->format('d/m/Y H:i:s') }}
+    </div>
+
+    <div class="footer">
+        Caso necessite de obter alguma informação adicional, contacte o suporte técnico do sistema Kumbu.<br>
+        Email: suporte@kumbu.ao | Tel: +244 000 000 000
     </div>
 
 </body>

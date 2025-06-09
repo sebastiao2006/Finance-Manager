@@ -5,16 +5,9 @@
 <!-- Main Content -->
 <main>
     <h1>Dashboard</h1>
-<<<<<<< HEAD
-  
-<div class="analyse">
-
-    <div class="sales">
-=======
 
 <div class="analyse">
     <div class="sales" id="openModalBtn" type="button">
->>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
         <div class="status">
             <div class="info">
                 <h3>Entradas</h3>
@@ -28,8 +21,6 @@
                 <img src="assets/img/income.svg" alt="Imagem de entradas" />
             </div>
         </div>
-<<<<<<< HEAD
-=======
         
 
 <!-- Formulário Receita -->
@@ -96,7 +87,6 @@
 </script>
 
 
->>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
     </div>
 
     <div class="visits" id="openDespesaCard">
@@ -113,8 +103,6 @@
                 <img src="assets/img/expense.svg" alt="Imagem de saídas" />
             </div>
         </div>
-<<<<<<< HEAD
-=======
 
         <!-- Formulário Despesa -->
 <!-- Formulário Despesa -->
@@ -232,7 +220,6 @@ form button:hover {
 </style>
 
 
->>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
     </div>
 
     <!-- Botões para abrir os modais -->

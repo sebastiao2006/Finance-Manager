@@ -1,14 +1,12 @@
-      
-   
    <!-- Right Section -->
-   <div class="right-section">
-    <div class="nav">
-        <button id="menu-btn">
-            <span class="material-icons-sharp">
-                menu
-            </span>
-        </button>
-    <div class="dark-mode">
+<div class="right-section">
+        <div class="nav">
+            <button id="menu-btn">
+                <span class="material-icons-sharp">
+                    menu
+                </span>
+            </button>
+              <div class="dark-mode">
         <span class="material-icons-sharp active">
             light_mode
         </span>
@@ -16,9 +14,9 @@
             dark_mode
         </span>
     </div>
-
-           <!-- Perfil com clique -->
-    <!-- Perfil com clique -->
+    
+            <!-- Perfil com clique -->
+     <!-- Perfil com clique -->
     <div class="profile" onclick="toggleUserMenu()" style="cursor: pointer;">
       <div class="info">
     <p>Olá, <b>{{ Auth::user()->name }}</b></p>
@@ -32,7 +30,7 @@
   
   <div id="userDropdown" style="display: none; position: absolute; top: 60px; right: 20px; background-color: white; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); width: 180px; z-index: 999;">
       <ul style="list-style: none; margin: 0; padding: 10px;">
-          <li><a href="/perfil" style="display: block; padding: 10px; color: #333; text-decoration: none;">Perfil</a></li>
+          <li><a href="{{ route('settings.index') }}" style="display: block; padding: 10px; color: #333; text-decoration: none;">Perfil</a></li>
           <li><a href="/notificacoes" style="display: block; padding: 10px; color: #333; text-decoration: none;">Notificações</a></li>
           <li>
               <form method="POST" action="{{ route('logout') }}">
@@ -44,10 +42,10 @@
           </li>
       </ul>
   </div>
+    
+        </div>
 
-    </div>
-
-    <script>
+        <script>
   function toggleUserMenu() {
       const dropdown = document.getElementById('userDropdown');
       dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';

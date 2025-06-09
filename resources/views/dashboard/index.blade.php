@@ -165,6 +165,56 @@
   });
 </script>
 
+<style>
+
+
+form div {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+form input[type="number"],
+form input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.8px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+form input[type="number"]:focus,
+form input[type="text"]:focus {
+  border-color: #0f62e4;
+  outline: none;
+}
+
+form button {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #0f62e4;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #084bb5;
+}
+
+</style>
+
 
     </div>
     <div class="searches"> 

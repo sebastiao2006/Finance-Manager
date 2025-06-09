@@ -3,15 +3,148 @@
 @section('content')
 
 <main>
-
-    <div class="card-wrapper">
-    <h2 class="card-title">Contas</h2>
-    <div class="card-nova-conta" class="btn-abrir" onclick="document.querySelector('.modal-overlay').classList.add('active')">
-        <div class="plus-circle">+</div>
-        <span class="card-label">Nova conta</span>
+<div class="card-wrapper">
+  <h2 class="card-title">Contas</h2>
+  <div class="card-container">
+    <div class="card-nova-conta btn-abrir" onclick="document.querySelector('.modal-overlay').classList.add('active')">
+      <div class="plus-circle">+</div>
+      <span class="card-label">Nova conta</span>
     </div>
-    </div>
 
+{{-- <div class="carteira">
+  <div class="carteira-header">
+    <div class="carteira-title">
+      <span class="carteira-icon"></span>
+      <strong>Carteira</strong>
+    </div>
+    <div class="carteira-menu">⋮</div>
+  </div>
+
+  <div class="carteira-content">
+    <div class="linha-saldo">
+      <span class="label">Saldo atual</span>
+      <span class="valor">kz 0,00</span>
+    </div>
+    <div class="linha-saldo">
+      <span class="label">
+        Saldo previsto
+        <span class="info-icon" title="Estimativa com base nas despesas previstas">ℹ️</span>
+      </span>
+      <span class="valor">kz 0,00</span>
+    </div>
+  </div>
+
+  <div class="carteira-footer">
+    <a href="#" class="btn-despesa">Ver Mais</a>
+  </div>
+</div> --}}
+
+</div>
+
+
+<style>
+  .carteira {
+  background-color: #fff;
+  border-radius: 1.5rem;
+  width: 350px;
+  max-width: 100%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: sans-serif;
+}
+.card-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap; /* para responsividade */
+}
+
+/* Header */
+.carteira-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.carteira-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  color: #444;
+  font-size: 1.1rem;
+}
+
+.carteira-icon {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.9rem;
+}
+
+/* Menu */
+.carteira-menu {
+  font-size: 1.2rem;
+  color: #777;
+  cursor: pointer;
+}
+
+/* Conteúdo */
+.carteira-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+}
+
+.linha-saldo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.label {
+  color: #333;
+  font-weight: 600;
+}
+
+.info-icon {
+  font-size: 0.8rem;
+  margin-left: 4px;
+  cursor: help;
+}
+
+.valor {
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+/* Rodapé */
+.carteira-footer {
+  text-align: right;
+}
+
+.btn-despesa {
+  color: #8e44ad;
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.btn-despesa:hover {
+  color: #5e3370;
+}
+
+
+</style>
+
+    
 
 
 <style>

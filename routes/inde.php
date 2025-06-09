@@ -72,7 +72,9 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 // Site público
-Route::get('/', fn () => view('site.home.index'))->name('site.home.index');
+Route::get('/', function () {
+    return view('site.home.index');
+})->name('site.home.index');
 Route::get('/home', [HomeController::class, 'index'])->name('sitehome.index');
 Route::get('/about', [AboutController::class, 'index'])->name('site.about.index');
 Route::get('/finance', [FinanceController::class, 'index'])->name('site.finance.index');

@@ -56,11 +56,11 @@
             <span style="font-size: 24px; font-weight: bold; font-family: Arial, sans-serif;"> K </span>
             <h3>Kixikila</h3>
         </a>
-
+{{-- 
         <a href="{{ route('settings.index') }}" class="{{ request()->routeIs('settings.index') ? 'active' : '' }}">
             <span class="material-icons-sharp"> settings </span>
             <h3>Definições</h3>
-        </a>
+        </a> --}}
       {{--   <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" style="background-color: #512da8; color: white; padding: 8px 16px; margin-left: 40px; border: none; border-radius: 6px; cursor: pointer;">

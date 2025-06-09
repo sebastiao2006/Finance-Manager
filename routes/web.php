@@ -40,6 +40,7 @@ use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\HomeSectionController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\Admin\BlogController;
 
 // Recuperação de senha
 use App\Http\Controllers\ForgotPasswordController;
@@ -67,7 +68,7 @@ Route::get('/test-email', function () {
 | Rotas Públicas (sem autenticação)
 |--------------------------------------------------------------------------
 */
-Route::get('/', fn () => view('site.home.index'))->name('site.home.index');
+Route::get('/', [HomeController::class, 'index'])->name('site.home.index');
 Route::get('/home', [HomeController::class, 'index'])->name('sitehome.index');
 Route::get('/about', [AboutController::class, 'index'])->name('site.about.index');
 Route::get('/finance', [FinanceController::class, 'index'])->name('site.finance.index');
@@ -151,6 +152,8 @@ Route::middleware(['auth'])->group(function () {
 |--------------------------------------------------------------------------
 | Rotas Admin (auth + is_admin)
 |--------------------------------------------------------------------------
+
+
 */
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
@@ -168,7 +171,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(
 
     // Usuários, Blog e Parceiros
     Route::get('/user', [AdminUserController::class, 'index'])->name('user.index');
-    Route::get('/blog', [AdminBlogController::class, 'index'])->name('blog.index');
+    Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
     Route::resource('partner', AdminPartnerController::class);
 
     // Página inicial
@@ -177,4 +180,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(
 
     // Planos
     Route::resource('plans', PlanController::class);
+});
+
+Route::prefix('admin/blog')->name('admin.blog.')->group(function () {
+    Route::get('/', [BlogController::class, 'index'])->name('index');
+    Route::post('/update', [BlogController::class, 'update'])->name('update');
+    Route::post('/card', [BlogController::class, 'storeCard'])->name('card.store');
+    Route::delete('/card/{id}', [BlogController::class, 'destroyCard'])->name('card.destroy');
 });

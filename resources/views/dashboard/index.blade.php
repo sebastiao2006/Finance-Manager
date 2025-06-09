@@ -5,10 +5,16 @@
 <!-- Main Content -->
 <main>
     <h1>Dashboard</h1>
+<<<<<<< HEAD
   
 <div class="analyse">
 
     <div class="sales">
+=======
+
+<div class="analyse">
+    <div class="sales" id="openModalBtn" type="button">
+>>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
         <div class="status">
             <div class="info">
                 <h3>Entradas</h3>
@@ -22,9 +28,78 @@
                 <img src="assets/img/income.svg" alt="Imagem de entradas" />
             </div>
         </div>
+<<<<<<< HEAD
+=======
+        
+
+<!-- Formulário Receita -->
+<form method="POST" action="{{ route('transactions.store') }} " >
+    @csrf
+    <input type="hidden" name="type" value="receita">
+    <input type="hidden" name="month" value="{{ $month }}">
+    <input type="hidden" name="year" value="{{ date('Y') }}">
+</form>
+
+
+<!-- Modal -->
+<div id="receitaModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+     background-color: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+  
+  <div style="background: white; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px; position: relative;">
+    
+    <!-- Botão de fechar -->
+    <button id="closeModalBtn" style="position: absolute; top: 10px; right: 10px;">&times;</button>
+    
+    <!-- Formulário -->
+    <form method="POST" action="{{ route('transactions.store') }}">
+      @csrf
+      <input type="hidden" name="type" value="receita">
+      <input type="hidden" name="month" value="{{ $month }}">
+      <input type="hidden" name="year" value="{{ date('Y') }}">
+
+      <div>
+        <label>Valor da Receita</label>
+        <input type="number" step="0.01" name="value" required placeholder="Valor da Receita">
+      </div>
+
+      <div style="margin-top: 10px;">
+        <label>Descrição</label>
+        <input type="text" name="description" required placeholder="Descrição da Receita">
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button type="submit">Salvar Receita</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('receitaModal');
+  const openBtn = document.getElementById('openModalBtn');
+  const closeBtn = document.getElementById('closeModalBtn');
+
+  openBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  // Também fecha clicando fora da modal
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+</script>
+
+
+>>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
     </div>
 
-    <div class="visits">
+    <div class="visits" id="openDespesaCard">
         <div class="status">
             <div class="info">
                 <h3>Saídas</h3>
@@ -38,6 +113,126 @@
                 <img src="assets/img/expense.svg" alt="Imagem de saídas" />
             </div>
         </div>
+<<<<<<< HEAD
+=======
+
+        <!-- Formulário Despesa -->
+<!-- Formulário Despesa -->
+<form method="POST" action="{{ route('transactions.store') }}">
+    @csrf
+    <input type="hidden" name="type" value="despesa">
+    <input type="hidden" name="month" value="{{ $month }}">
+    <input type="hidden" name="year" value="{{ date('Y') }}">
+</form>
+
+
+
+<!-- Modal de Despesa -->
+<div id="despesaModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+     background-color: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+  
+  <div style="background: white; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px; position: relative;">
+    
+    <!-- Botão de fechar -->
+    <button id="closeDespesaModalBtn" style="position: absolute; top: 10px; right: 10px;">&times;</button>
+    
+    <!-- Formulário -->
+    <form method="POST" action="{{ route('transactions.store') }}">
+      @csrf
+      <input type="hidden" name="type" value="despesa">
+      <input type="hidden" name="month" value="{{ $month }}">
+      <input type="hidden" name="year" value="{{ date('Y') }}">
+
+      <div>
+        <label>Valor da Despesa</label>
+        <input type="number" step="0.01" name="value" required placeholder="Valor da Despesa">
+      </div>
+
+      <div style="margin-top: 10px;">
+        <label>Descrição</label>
+        <input type="text" name="description" required placeholder="Descrição da Despesa">
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button type="submit">Salvar Despesa</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const despesaModal = document.getElementById('despesaModal');
+  const openDespesa = document.getElementById('openDespesaCard');
+  const closeDespesa = document.getElementById('closeDespesaModalBtn');
+
+  openDespesa.addEventListener('click', () => {
+    despesaModal.style.display = 'flex';
+  });
+
+  closeDespesa.addEventListener('click', () => {
+    despesaModal.style.display = 'none';
+  });
+
+  // Fecha ao clicar fora da modal
+  window.addEventListener('click', (e) => {
+    if (e.target === despesaModal) {
+      despesaModal.style.display = 'none';
+    }
+  });
+</script>
+
+<style>
+
+
+form div {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+form input[type="number"],
+form input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.8px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+form input[type="number"]:focus,
+form input[type="text"]:focus {
+  border-color: #0f62e4;
+  outline: none;
+}
+
+form button {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #0f62e4;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #084bb5;
+}
+
+</style>
+
+
+>>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
     </div>
 
     <!-- Botões para abrir os modais -->
@@ -223,34 +418,62 @@ window.onclick = function(event) {
             font-weight: bold;
         }
         .pizza {
-            width: 350px;
-            height: 350px;
-            padding: 15px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        canvas {
-            width: 200px !important;
-            height: 200px !important;
-        }
-        .legenda {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-        .legenda div {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-        .cor {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.pizza canvas {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1 / 1; /* Mantém o formato quadrado */
+    height: auto;
+    display: block;
+}
+
+.legenda {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    min-width: 180px;
+}
+
+.legenda div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.cor {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.grafico-container {
+    width: 100%;
+    max-width: 300px;
+    height: 300px; /* altura fixa controlada */
+    position: relative; /* necessário para Chart.js funcionar corretamente */
+}
+
+.grafico-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
 
     </style>
     <!-- End of Analyses -->
@@ -259,13 +482,16 @@ window.onclick = function(event) {
     <div class="new-users">
         <h2>Despesas e Receitas</h2>
         <div class="user-list">
-            <div class="pizza">
-                <canvas id="grafico"></canvas>
-                <div class="legenda">
-                    <div><span class="cor" style="background: #0a53d1;"></span> Receitas - {{ number_format($entradas, 2, ',', '.') }} Kz</div>
-                    <div><span class="cor" style="background: #fb573b;"></span> Despesas - {{ number_format($saidas, 2, ',', '.') }} Kz</div>
-                </div>
-            </div>
+<div class="pizza">
+    <div class="grafico-container">
+        <canvas id="grafico"></canvas>
+    </div>
+    <div class="legenda">
+        <div><span class="cor" style="background: #0a53d1;"></span> Receitas - {{ number_format($entradas, 2, ',', '.') }} Kz</div>
+        <div><span class="cor" style="background: #fb573b;"></span> Despesas - {{ number_format($saidas, 2, ',', '.') }} Kz</div>
+    </div>
+</div>
+
         </div>
     </div>
 

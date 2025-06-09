@@ -256,13 +256,13 @@
 
 
 <section  class="sequencia">
-    <h1>Um app para tudo. E tudo no app</h1>
+    <h1>Sua vida financeira organizada em um só lugar</h1>
 
   <div class="cards">
     <div class="card large">
       <div class="overlay">
-        <p class="overlay-title">Caixinhas</p>
-        <p>Decoração<br>Casamento</p>
+        <p class="overlay-title">Banco</p>
+        <p>Nacional de<br>Angola</p>
       </div>
     </div>
     <div class="card small"></div>
@@ -601,34 +601,25 @@ Utilizamos tecnologias seguras e boas práticas para garantir que seus dados est
 
 <section class="blog-section">
   <div class="blog-header">
-    <h2>Fique por dentro<br>das novidades</h2>
+    <h2>{!! nl2br($blog->titulo ?? 'Fique por dentro<br>das novidades') !!}</h2>
     <div class="blog-controls">
       <button class="nav-btn">&lt;</button>
       <button class="nav-btn">&gt;</button>
     </div>
-    <a href="#" class="blog-link">Ir para o blog</a>
+    <a href="{{ $blog->link_blog ?? '#' }}" class="blog-link">Ir para o blog</a>
   </div>
 
   <div class="blog-cards">
+    @foreach($cards as $card)
     <div class="blog-card">
-      <img src="site/assets/img/capa 24.jpg" alt="">
-      <h3>The FRIENDS™ Experience: saiba o que você vai encontrar na exposição baseada na série</h3>
-      <a href="#">Ir para o artigo <span>&#8250;</span></a>
+      <img src="{{ asset('storage/'.$card->imagem) }}" alt="">
+      <h3>{{ $card->titulo }}</h3>
+      <a href="{{ $card->link }}">Ir para o artigo <span>&#8250;</span></a>
     </div>
-
-    <div class="blog-card">
-      <img src="site/assets/img/capa 29.jpg" alt="">
-      <h3>Como trocar criptoativos dentro do app pelo Nubank Cripto?</h3>
-      <a href="#">Ir para o artigo <span>&#8250;</span></a>
-    </div>
-
-    <div class="blog-card">
-      <img src="site/assets/img/capa 30.jpg" alt="">
-      <h3>Nubank te leva para a FRIENDS™ Experience e ensina como concorrer a ingressos para a exposição da série</h3>
-      <a href="#">Ir para o artigo <span>&#8250;</span></a>
-    </div>
+    @endforeach
   </div>
 </section>
+
 
 <style>
 

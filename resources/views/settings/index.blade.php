@@ -115,10 +115,10 @@
 
     <div class="tabs">
         <div class="tab active" onclick="showSection('overview')">Visão geral</div>
-        <div class="tab" onclick="showSection('cadastro')">Meu cadastro</div>
-        <div class="tab">Assinatura</div>
+      {{--   <div class="tab" onclick="showSection('cadastro')">Meu cadastro</div> --}}
+{{--         <div class="tab">Assinatura</div>
         <div class="tab">Convidar amigos</div>
-        <div class="tab">Privacidade</div>
+        <div class="tab">Privacidade</div> --}}
     </div>
 
     <!-- Visão geral -->
@@ -201,14 +201,14 @@ function previewImage(event) {
 
                 <label>Moeda</label>
                 <select>
-                    <option>France</option>
-                    <option>Brasil</option>
+                    <option>Kwanza </option>
+                 {{--    <option>Brasil</option> --}}
                 </select>
 
                 <label>Aparência</label>
                 <select>
                     <option>Modo claro</option>
-                    <option>Modo escuro</option>
+                    {{-- <option>Modo escuro</option> --}}
                 </select>
 
                 <button class="btn" style="width: 100%; margin-top: 20px;">SALVAR ALTERAÇÕES</button>

@@ -32,7 +32,7 @@
   
   <div id="userDropdown" style="display: none; position: absolute; top: 60px; right: 20px; background-color: white; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); width: 180px; z-index: 999;">
       <ul style="list-style: none; margin: 0; padding: 10px;">
-          <li><a href="/perfil" style="display: block; padding: 10px; color: #333; text-decoration: none;">Perfil</a></li>
+          <li><a href="{{ route('settings.index') }}" style="display: block; padding: 10px; color: #333; text-decoration: none;">Perfil</a></li>
           <li><a href="/notificacoes" style="display: block; padding: 10px; color: #333; text-decoration: none;">Notificações</a></li>
           <li>
               <form method="POST" action="{{ route('logout') }}">
@@ -126,10 +126,10 @@
         
           <div class="button-container">
             <!-- Botão Nova Receita -->
-            <button class="btn btn-text" id="openModalBtn">
+{{--             <button class="btn btn-text" id="openModalBtn">
             <span class="material-icons" style="font-size:18px; color:green;">add</span>
             <span style="margin-left:5px; white-space: nowrap;">NOVA RECEITA</span>
-            </button>
+            </button> --}}
 
               
         
@@ -179,7 +179,45 @@
                     }
                 });
             </script>
+<<<<<<< HEAD
              <style>
+=======
+            
+              
+
+        
+            <div class="info-box">
+                <div class="info-text">
+                    <span>Receitas ></span>
+                    <strong>kz 0,00</strong> 
+                </div>
+                <div class="icon-circle green">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </div>
+        
+            <div class="info-box">
+                <div class="info-text">
+                    <span>Despesas ></span>
+                    <strong>kz 0,00</strong> 
+                </div>
+                <div class="icon-circle red">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+            </div>
+        
+
+        </div>
+        
+        
+     </div>
+        </div>
+    
+    
+ </div>
+
+ <style>
+>>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
 .right-panel {
     margin-top: 5%;
     flex: 1;

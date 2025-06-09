@@ -24,18 +24,15 @@
                     <a class="active" href="/"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
                 </li>
                 <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon folder" aria-hidden="true"></span>Home
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
+
+                 <li>
+                    <a href="{{ route('admin.home.index') }}">
+                        <span class="icon folder" aria-hidden="true"></span>
+                        Home
                     </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="categories.html">Ver </a>
-                        </li>
-                    </ul>
+                    {{-- <span class="msg-counter">7</span> --}}
+                </li>
+
                     
                 </li>
                 <li>

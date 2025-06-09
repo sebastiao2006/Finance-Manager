@@ -18,17 +18,35 @@
    <img src="site/assets/img/logo.png" alt="logo" style="width: 95px; height: 95px; max-width: 100%; image-rendering: auto; display: block;">
 
       </a>
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="{{ route('site.home.index') }}" class="active">Home</a></li>
-          <li><a href="{{ route('site.about.index') }}">Sobre </a></li>
-          <li><a href="{{ route('site.finance.index') }}">Dicas Financeiras</a></li>
+<nav id="navmenu" class="navmenu">
+    <ul>
+        <li>
+            <a href="{{ route('site.home.index') }}"
+               class="{{ Route::is('site.home.index') ? 'active' : '' }}">
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('site.about.index') }}"
+               class="{{ Route::is('site.about.index') ? 'active' : '' }}">
+                Sobre
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('site.finance.index') }}"
+               class="{{ Route::is('site.finance.index') ? 'active' : '' }}">
+                Dicas Financeiras
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('login') }}">
+                <i class="bi bi-person" style="font-size: 1.5rem; background: none;"></i>
+            </a>
+        </li>
+    </ul>
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
 
-          <li><a href="{{ route('login') }}"><i class="bi bi-person" style="font-size: 1.5rem; background: none;"></i>
-</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
 
     </div>
 

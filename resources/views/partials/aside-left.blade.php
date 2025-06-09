@@ -40,9 +40,25 @@
             <span style="font-size: 24px; font-weight: bold; font-family: Arial, sans-serif;"> K </span>
             <h3>Kixikila</h3>
         </a>
+<<<<<<< HEAD
         <div></div>
 </div>
 
+=======
+{{-- 
+        <a href="{{ route('settings.index') }}" class="{{ request()->routeIs('settings.index') ? 'active' : '' }}">
+            <span class="material-icons-sharp"> settings </span>
+            <h3>Definições</h3>
+        </a> --}}
+      {{--   <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" style="background-color: #512da8; color: white; padding: 8px 16px; margin-left: 40px; border: none; border-radius: 6px; cursor: pointer;">
+                Logout
+            </button>
+        </form> --}}
+        
+    </div>
+>>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
 </aside>
 <!-- End of Sidebar Section -->
 

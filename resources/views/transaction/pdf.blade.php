@@ -104,8 +104,8 @@
         <tr>
             <td><strong>Data:</strong> {{ date('Y-m-d') }}</td>
             <td><strong>Cliente:</strong> 141730031</td>
-            <td><strong>Local:</strong> AGENCIA DE VIANA (1801)</td>
-            <td><strong>SWIFT:</strong> LUANDA</td>
+{{--             <td><strong>Local:</strong> AGENCIA DE VIANA (1801)</td>
+            <td><strong>SWIFT:</strong> LUANDA</td> --}}
         </tr>
         <tr>
             <td colspan="4"><strong>Período:</strong> {{ $transactions->min('created_at')->format('Y-m-d') }} a {{ $transactions->max('created_at')->format('Y-m-d') }}</td>
@@ -115,7 +115,7 @@
     <div class="section-title">RESUMO</div>
     <table class="info-table">
         <tr>
-            <td><strong>Activo:</strong> D/O Conta Simplificada BNA</td>
+            <td><strong>Activo:</strong> D/O Conta Simplificada </td>
             <td><strong>Moeda:</strong> Kz</td>
             <td><strong>Saldo:</strong> {{ number_format($transactions->sum('value'), 2, ',', '.') }} Kz</td>
         </tr>
@@ -127,8 +127,8 @@
             <tr>
                 <th>Data do Movimento</th>
                 <th>Descrição</th>
-                <th>Categoria</th>
-                <th>Conta</th>
+              {{--  <th>Categoria</th> --}}
+                <th>Conta</th> 
                 <th>Tipo de Movimento</th> {{-- Nova coluna --}}
                 <th>Débito</th>
                 <th>Crédito</th>
@@ -146,8 +146,8 @@
                 <tr>
                     <td>{{ $transaction->created_at->format('Y-m-d') }}</td>
                     <td>{{ $transaction->description ?? '-' }}</td>
-                    <td>{{ $transaction->category ?? '-' }}</td>
-                    <td>{{ $transaction->account ?? '-' }}</td>
+ {{--                    <td>{{ $transaction->category ?? '-' }}</td> --}}
+                    <td>{{ $transaction->account ?? 'Principal' }}</td>
                     <td>{{ ucfirst($transaction->type) }}</td> {{-- Aqui mostra Receita ou Despesa --}}
                     <td class="right">{{ $debito ? number_format($debito, 2, ',', '.') : '-' }}</td>
                     <td class="right">{{ $credito ? number_format($credito, 2, ',', '.') : '-' }}</td>

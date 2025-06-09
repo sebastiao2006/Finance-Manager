@@ -38,9 +38,9 @@
                   }
 
                   .purpose .selected {
-                    background-color: #007bff;
+                    background-color: #0f62e4;
                     color: white;
-                    border-color: #007bff;
+                    border-color: #0f62e4;
                   }
 
                 </style>
@@ -109,7 +109,7 @@
 }
 
 .iban-container input[type="text"]:focus {
-  border-color: #007bff;
+  border-color: #0f62e4;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
@@ -363,7 +363,7 @@ document.getElementById('saveSimulation').addEventListener('click', async () => 
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             font-family: Arial, sans-serif;
             margin-top: 50px;
-            color: #003087;
+            color: #0f62e4;
         }
 /* 
         .simulator {
@@ -376,7 +376,7 @@ document.getElementById('saveSimulation').addEventListener('click', async () => 
     
         .simulator h1 {
           text-align: center;
-          color: #003087;
+          color: #0f62e4;
           font-size: 36px;
           font-weight: 800;
         }
@@ -414,7 +414,7 @@ document.getElementById('saveSimulation').addEventListener('click', async () => 
         }
     
         .simulator .purpose div {
-          border: 2px solid #00AEEF;
+          border: 2px solid #0f62e4;
           border-radius: 6px;
           padding: 12px 6px;
           text-align: center;
@@ -422,7 +422,7 @@ document.getElementById('saveSimulation').addEventListener('click', async () => 
           margin: 0 5px;
           cursor: pointer;
           font-size: 14px;
-          color: #00AEEF;
+          color: #0f62e4;
           font-weight: bold;
         }
     
@@ -453,7 +453,7 @@ document.getElementById('saveSimulation').addEventListener('click', async () => 
           width: 100%;
           appearance: none;
           height: 6px;
-          background: linear-gradient(135deg, #0400d3 0%, #04b8ff 100%);
+          background: linear-gradient(135deg, #0400d3 0%, #0f62e4 100%);
           border-radius: 5px;
         }
     
@@ -461,14 +461,14 @@ document.getElementById('saveSimulation').addEventListener('click', async () => 
           appearance: none;
           width: 14px;
           height: 14px;
-          background: #003087;
+          background: #0f62e4;
           border-radius: 50%;
           cursor: pointer;
         }
 
     
         .simulator .value {
-          color: #00AEEF;
+          color: #0f62e4;
           font-weight: bold;
         }
     
@@ -489,19 +489,19 @@ document.getElementById('saveSimulation').addEventListener('click', async () => 
           align-items: center;
           justify-content: center;
           flex-direction: column;
-          box-shadow: inset 0 0 0 4px #74a9ff;
+          box-shadow: inset 0 0 0 4px #0f62e4;
         }
     
         .simulator .circle .amount {
           font-size: 26px;
           font-weight: bold;
-          color: #003087;
+          color: #0f62e4;
         }
     
         .simulator .circle .label {
           width: 80%;
           height: 10px;
-          background: #003087;
+          background: #0f62e4;
           margin: 10px 0;
           border-radius: 10px;
         }
@@ -520,7 +520,7 @@ document.getElementById('saveSimulation').addEventListener('click', async () => 
         }
     
         .simulator button {
-          background: #0049bf;
+          background: #0f62e4;
           border: none;
           color: white;
           padding: 12px 30px;
@@ -538,7 +538,7 @@ document.getElementById('saveSimulation').addEventListener('click', async () => 
     
         .simulator .links div {
           margin: 5px 0;
-          color: #003087;
+          color: #0f62e4;
         }
 
         @media (max-width: 768px) {

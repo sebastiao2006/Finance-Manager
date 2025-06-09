@@ -180,8 +180,6 @@
       
 
     
-<<<<<<< HEAD
-=======
         <div class="info-box">
             <div class="info-text">
                 <span>Receitas ></span>
@@ -203,7 +201,6 @@
         </div>
     
 
->>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
     </div>
     
     

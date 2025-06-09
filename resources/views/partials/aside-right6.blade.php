@@ -131,38 +131,6 @@
             <span style="margin-left:5px; white-space: nowrap;">NOVA RECEITA</span>
             </button> --}}
 
-<<<<<<< HEAD
-
-
- <div class="painel">
-    <div class="right-panel">
-        <div class="info-box">
-            <div class="info-text">
-                <span>Saldo atual ></span>
-                <strong>kz 0,00</strong> 
-            </div>
-            <div class="icon-circle blue">
-                <i class="fas fa-university"></i>
-            </div>
-        </div>
-
-        <script>
-          document.addEventListener('DOMContentLoaded', () => {
-              const saldoAtual = document.querySelector('.info-box strong');
-              const mesSelecionado = localStorage.getItem('mesSelecionado') || 'janeiro';
-              let valorSalvo = localStorage.getItem(mesSelecionado) || '0.00';
-      
-              // Converte para formato "0,00"
-              valorSalvo = parseFloat(valorSalvo).toFixed(2).replace('.', ',');
-      
-              if (saldoAtual) {
-                  saldoAtual.textContent = `kz ${valorSalvo}`;
-              }
-          });
-      </script>
-      
-    </div>
-=======
               
         
             <!-- Botão de pesquisa -->
@@ -241,7 +209,6 @@
         
      </div>
         </div>
->>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
     
     
  </div>

@@ -1,17 +1,4 @@
    <!-- Right Section -->
-<<<<<<< HEAD
-   <div class="right-section">
-    <div class="nav">
-        <button id="menu-btn">
-            <span class="material-icons-sharp">
-                menu
-            </span>
-        </button>
-    
-
-           <!-- Perfil com clique -->
-    <!-- Perfil com clique -->
-=======
 <div class="right-section">
         <div class="nav">
             <button id="menu-btn">
@@ -30,7 +17,6 @@
     
             <!-- Perfil com clique -->
      <!-- Perfil com clique -->
->>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
     <div class="profile" onclick="toggleUserMenu()" style="cursor: pointer;">
       <div class="info">
     <p>Olá, <b>{{ Auth::user()->name }}</b></p>

@@ -179,9 +179,6 @@
                     }
                 });
             </script>
-<<<<<<< HEAD
-             <style>
-=======
             
               
 
@@ -217,7 +214,6 @@
  </div>
 
  <style>
->>>>>>> bc205fd0eca1e6c550476cc0e36bcb8dcd048751
 .right-panel {
     margin-top: 5%;
     flex: 1;

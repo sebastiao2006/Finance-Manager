@@ -15,10 +15,6 @@
             <span class="material-icons-sharp"> dashboard </span>
             <h3>Dashboard</h3>
         </a>
-        <a href="{{ route('account.index') }}" class="{{ request()->routeIs('account.index') ? 'active' : '' }}">
-            <span class="material-icons-sharp"> account_balance </span>
-            <h3>Contas</h3>
-        </a>
         <a href="{{ route('transaction.index') }}" class="{{ request()->routeIs('transaction.index') ? 'active' : '' }}">
             <span class="material-icons-sharp"> sync_alt </span>
             <h3>Transações</h3>
@@ -31,10 +27,7 @@
             <span class="material-icons-sharp"> assessment </span>
             <h3>Relatórios</h3>
         </a>
-   {{--      <a href="#" class="{{ request()->routeIs/* ('settings.index')  */? 'active' : '' }}">
-            <span class="material-icons-sharp"> lightbulb </span>
-            <h3>Escola de Finanças</h3>
-        </a> --}}
+
         <a href="{{ route('goals.index') }}" class="{{ request()->routeIs('goals.index') ? 'active' : '' }}">
             <span class="material-icons-sharp"> track_changes </span>
             <h3>Metas</h3>
@@ -43,10 +36,7 @@
             <span class="material-icons-sharp"> category </span>
             <h3>Categoria</h3>
         </a>
-       {{--  <a href="{{ route('calendar.index') }}" class="{{ request()->routeIs('calendar.index') ? 'active' : '' }}">
-            <span class="material-icons-sharp"> calendar_today </span>
-            <h3>Calendário</h3>
-        </a> --}}
+
         <a href="{{ route('tip.index') }}" class="{{ request()->routeIs('tip.index') ? 'active' : '' }}">
             <span class="material-icons-sharp"> trending_up </span>
             <h3>Desempenho</h3>
@@ -61,7 +51,7 @@
             <span class="material-icons-sharp"> settings </span>
             <h3>Definições</h3>
         </a>
-        
+        <div></div>
     </div>
 </aside>
 <!-- End of Sidebar Section -->
